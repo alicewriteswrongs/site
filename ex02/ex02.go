@@ -26,8 +26,8 @@ import (
 // XOR operation.
 func fixedXOR(a1, a2 []byte) (bytes []byte) {
     bytes = make([]byte, len(a1))
-    for i := 0; i < len(a1); i++ {
-        bytes[i] = a1[i]^a2[i]
+    for i, v := range a1 {
+        bytes[i] = v^a2[i]
     }
     return
 }
