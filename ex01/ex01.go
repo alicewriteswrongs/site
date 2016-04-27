@@ -25,7 +25,6 @@ import (
     "encoding/base64"
 )
 
-// we'll declare all of our variables and constantsahead of time
 const (
     hexString string = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"
     base64Answer string = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
@@ -36,24 +35,21 @@ var (
 )
 
 func main () {
-    // convert the hex string to an array of bytes
     rawBytes, _ := hex.DecodeString(hexString)
 
-    // convert that back to base64!
     base64Output = base64.StdEncoding.EncodeToString(rawBytes)
 
-    // print it!
     fmt.Println("hex string:")
     fmt.Println(hexString + "\n")
     fmt.Println("the string, translated to base64:")
     fmt.Println(base64Output + "\n")
 
-    // awesome, that should have given us the correct answer.
-
-    // let's check though, just to make sure:
     if base64Output == base64Answer {
         fmt.Println("it works! hooray!")
     } else {
         fmt.Println("sad :(")
     }
 }
+
+// Basically, all we've done is use some functions from the `encoding` module.
+// I learned a bit about go syntax, modules, and build stuff doing this.
