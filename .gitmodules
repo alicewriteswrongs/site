@@ -1,0 +1,3 @@
+[submodule "cryptopals-go"]
+	path = cryptopals-go
+	url = git@github.com:aliceriot/cryptopals-go.git
