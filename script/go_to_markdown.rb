@@ -20,7 +20,10 @@ class Comment
     if /^\/\//.match(line)
       line.gsub(/^\/\//, '')
     elsif /^\/\*/.match(line)
-      line.gsub(/^\/\/*/, '')
+      binding.pry
+      line.gsub(/^\/\*/, '')
+    else
+      line
     end
   end
 
@@ -95,7 +98,9 @@ class Document
         end
       end
     end
-    push_current_section
+    if !@current_section.nil?
+      push_current_section
+    end
   end
 
   def comment_check(line)
@@ -124,5 +129,4 @@ lines = File.readlines(ARGV[0])
 
 doc = Document.new(lines)
 
-puts "here"
 puts doc.to_s
