@@ -120,7 +120,7 @@ class Document
   end
 
   def to_s
-    @sections.map(&:to_s).join("\n")
+    @sections.map(&:to_s).join("\n").strip
   end
 end
 
