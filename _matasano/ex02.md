@@ -4,7 +4,7 @@ layout: matasano_exercise
 title: "Exercise 2"
 ---
 
-#Exercise 2
+# Exercise 2
 
 The [2nd Matasano challenge](http://cryptopals.com/sets/1/challenges/2/)!
 Now we're doing fixed XOR. Basically, we have two input strings:
