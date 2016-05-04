@@ -57,12 +57,14 @@ func charCount(bytes []byte) map[byte]int {
 	return counts
 }
 
-// ## Doing the work
+/*
+## Doing the work
 
-// now that we've written all of the functions we'll need, we can go ahead
-// and solve the problem!
+now that we've written all of the functions we'll need, we can go ahead
+and solve the problem!
 
-// First, declare the ciphertext
+First, declare the ciphertext
+*/
 
 func main() {
 	const cipherText = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
