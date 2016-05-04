@@ -47,21 +47,20 @@ Here's our main function, where we'll do all the work. Go is a bit
 like C, in that, if you have `package main` up top, a function called
 `main` will automatically be called when you run the binary built from
 this file.
+
+Go seems to be a bit picky about position returns - here the
+`hex.DecodeString` method returns two values, a byte slice and
+a boolean that signals if there were any errors.
+
+We're not really expecting any, so we'll use the `_` to signal
+that we don't care about putting a name to that value.
+
+We also get to use the `:=` operator, which lets us skip declaring
+a type for variables we bind. Anything with an inferrable type (a
+return from a function, a literal) will cause the type of our variable
+to be automatically inferred. Handy!
 */
 func main() {
-	/*
-	   Go seems to be a bit picky about position returns - here the
-	   `hex.DecodeString` method returns two values, a byte slice and
-	   a boolean that signals if there were any errors.
-
-	   We're not really expecting any, so we'll use the `_` to signal
-	   that we don't care about putting a name to that value.
-
-	   We also get to use the `:=` operator, which lets us skip declaring
-	   a type for variables we bind. Anything with an inferrable type (a
-	   return from a function, a literal) will cause the type of our variable
-	   to be automatically inferred. Handy!
-	*/
 	s1, _ := hex.DecodeString("1c0111001f010100061a024b53535009181c")
 	s2, _ := hex.DecodeString("686974207468652062756c6c277320657965")
 
