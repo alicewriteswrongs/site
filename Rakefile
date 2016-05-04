@@ -3,13 +3,19 @@ task :default => [:build_markdown]
 directory "_matasano"
 
 # git related things
+def git_pull(dir = Dir.pwd)
+  Dir.chdir(dir) do
+    status = %x{git pull}
+    puts status unless status =~ /Already up-to-date\./
+  end
+end
+
 task :update_cryptopals do |t|
-  sh "cd cryptopals-go && git pull origin master "
+  git_pull("cryptopals-go")
 end
 task :update_submodules => [:update_cryptopals]
 
 # build markdown files
-
 def cryptopals_go_filename(go_file)
   go_file.split("/").last.gsub(/\.go$/, ".md")
 end
