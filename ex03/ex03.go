@@ -1,4 +1,11 @@
 /*
+---
+layout: matasano_exercise
+title: "Exercise 1"
+---
+
+#Exercise 3
+
 [Matasano exercise 3](http://cryptopals.com/sets/1/challenges/3/). This asks
 us to break a single byte XOR. Basically, this means that we have a
 ciphertext which has been XORed against a single byte. This means we
