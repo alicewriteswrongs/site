@@ -69,7 +69,6 @@ func main() {
 	output = fixedXOR(s1, s2)
 	fmt.Println(hex.EncodeToString(output))
 
-	// we can check that it works:
 	if hex.EncodeToString(output) == correctAnswer {
 		fmt.Println("It works!")
 	} else {
