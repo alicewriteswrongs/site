@@ -23,7 +23,7 @@ end
 task :build_cryptopals_markdown => ["_matasano", :update_submodules] do |t|
   go_files = FileList['./cryptopals-go/*/*.go']
   go_files.each do |go_file|
-    ruby "script/go_to_markdown.rb #{go_file} > _matasano/#{cryptopals_go_filename go_file}"
+    sh "mark_set_go #{go_file} > _matasano/#{cryptopals_go_filename go_file}"
   end
 end
 task :build_markdown => [:build_cryptopals_markdown]
