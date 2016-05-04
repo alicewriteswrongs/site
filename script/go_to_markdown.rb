@@ -20,7 +20,6 @@ class Comment
     if /^\/\//.match(line)
       line.gsub(/^\/\//, '')
     elsif /^\/\*/.match(line)
-      binding.pry
       line.gsub(/^\/\*/, '')
     else
       line
