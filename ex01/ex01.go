@@ -4,7 +4,7 @@ layout: matasano_exercise
 title: "Exercise 1"
 ---
 
-#Exercise 01
+# Exercise 01
 
 This is the [first Matasano challenge](http://cryptopals.com/sets/1/challenges/1/),
 a very simple one. We just need to convert the following hex string:
