@@ -40,7 +40,7 @@ class Code
 
   def to_s
     <<-HERE
-```
+```go
 #{@lines.join("")}
 ```
 HERE
