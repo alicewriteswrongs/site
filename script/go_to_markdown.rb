@@ -41,7 +41,7 @@ class Code
   def to_s
     <<-HERE
 ```go
-#{@lines.join("")}
+#{@lines.join("").strip}
 ```
 HERE
   end
