@@ -27,17 +27,15 @@ with that byte.
 We'll call it `arrayXOR`:
 */
 
-func arrayXOR(inBytes []byte, n byte) (outBytes []byte) {
-	outBytes = make([]byte, len(inBytes))
-	for i, v := range inBytes {
-		outBytes[i] = v ^ n
+func arrayXOR(in, out []byte, n byte) {
+	for i, v := range in {
+		out[i] = v ^ n
 	}
-	return outBytes
 }
 
 /*
 Then if we want to XOR a particular byte, say, 42, with a byte array we can
-just do `xorResult := arrayXOR(myBytes, byte(42))`. Nice!
+just do `xorResult := arrayXOR(in, out, byte(42))`. Nice!
 
 Next we'll need a function that takes a string and returns a count
 of the occurences of each letter.
@@ -65,6 +63,8 @@ func main() {
 
 	counts := make(map[byte]int)
 	charCount(cipherBytes, counts)
-	// fmt.Println(charCount(cipherBytes))
-	fmt.Println(arrayXOR(cipherBytes, byte(42)))
+
+	out := make([]byte, len(cipherBytes))
+	arrayXOR(cipherBytes, out, byte(42))
+	fmt.Println(out)
 }
