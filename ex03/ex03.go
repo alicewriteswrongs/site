@@ -44,17 +44,10 @@ of the occurences of each letter.
 We can use a byte -> int map to keep track.
 */
 
-func charCount(bytes []byte) map[byte]int {
-	counts := make(map[byte]int)
+func charCount(bytes []byte, counts map[byte]int) {
 	for _, c := range bytes {
-		_, test := counts[c]
-		if test {
-			counts[c]++
-		} else {
-			counts[c] = 1
-		}
+		counts[c]++
 	}
-	return counts
 }
 
 /*
@@ -69,7 +62,9 @@ First, declare the ciphertext
 func main() {
 	const cipherText = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
 	cipherBytes, _ := hex.DecodeString(cipherText)
-	charCount(cipherBytes)
-	fmt.Println(charCount(cipherBytes))
+
+	counts := make(map[byte]int)
+	charCount(cipherBytes, counts)
+	// fmt.Println(charCount(cipherBytes))
 	fmt.Println(arrayXOR(cipherBytes, byte(42)))
 }
