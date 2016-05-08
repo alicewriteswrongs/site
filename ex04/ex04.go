@@ -216,3 +216,13 @@ func main() {
 	}
 	f.Close()
 }
+
+/*
+And it works! Hooray!
+
+I'm not sure that my approach here is ultimately correct. In particular,
+the `aeotCheck` method is not particular scientific, but instead based on a
+little bit of fine-tuning in order to get the right answer.
+
+But it works, so who cares!
+*/
