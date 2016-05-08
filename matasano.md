@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: matasano_index
 title: Matasano Challenges
 permalink: /matasano/
 ---
