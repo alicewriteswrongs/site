@@ -39,20 +39,11 @@ const (
 	base64Answer string = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
 )
 
-var (
-	base64Output string
-	rawBytes     []byte
-)
-
 func main() {
 	rawBytes, _ := hex.DecodeString(hexString)
+	base64Output := base64.StdEncoding.EncodeToString(rawBytes)
 
-	base64Output = base64.StdEncoding.EncodeToString(rawBytes)
-
-	fmt.Println("hex string:")
-	fmt.Println(hexString + "\n")
-	fmt.Println("the string, translated to base64:")
-	fmt.Println(base64Output + "\n")
+	fmt.Printf("hex encoding: %s\nbase64 encoding: %s\n", hexString, base64Output)
 
 	if base64Output == base64Answer {
 		fmt.Println("it works! hooray!")
