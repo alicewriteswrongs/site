@@ -54,5 +54,5 @@ func main() {
 
 /*
 Basically, all we've done is use some functions from the `encoding` module.
-I learned a bit about go syntax, modules, and build stuff doing this.
+I learned a bit about Go syntax, modules, and build stuff doing this.
 */
