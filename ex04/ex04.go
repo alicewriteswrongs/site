@@ -20,12 +20,15 @@ import (
 	"encoding/hex"
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 )
 
-/* First off, we're going to be re-using a couple of functions we wrote
+/*
+First off, we're going to be re-using a couple of functions we wrote
 for exercise three. First we'll need our little helper functions to check
-plaintexts:
+plaintexts, first our asciiCheck, which ensures that we're only dealing with
+printable ascii characters:
 */
 
 func asciiCheck(bytes []byte) bool {
@@ -47,6 +50,11 @@ func charCheck(c byte) bool {
 	}
 }
 
+/*
+Next is spaceCheck, which just checks that our putative plaintext has a space
+somewhere in it:
+*/
+
 func spaceCheck(bytes []byte) bool {
 	for _, c := range string(bytes) {
 		if c == ' ' {
@@ -56,6 +64,15 @@ func spaceCheck(bytes []byte) bool {
 	return false
 }
 
+/*
+Next is the most tricky one: scoring based on character count. What we're going
+to want to check is that the top two most prevalent characters in a plaintext
+are among the characters `AEOT `. First, a function that takes a string and
+returns a `map[rune]int` of characters and their occurences. We'll need to make
+sure that we only pass strings which have been made all lowercase, since we don't
+have any logic for handling that here:
+*/
+
 func charCount(str string) map[rune]int {
 	counts := make(map[rune]int)
 	for _, c := range str {
@@ -64,45 +81,104 @@ func charCount(str string) map[rune]int {
 	return counts
 }
 
+/*
+Now the slightly more complicated piece - checking for common characters.
+First we're going to need to create a named type for our arrays of integers,
+so that we can implement methods on it to satisfy the sort interface.
+*/
+
+type sortableCount struct {
+	runeArray []rune
+	counts    map[rune]int
+}
+
+/*
+Then, following the [sort documentation](https://golang.org/pkg/sort/) we need
+to implement the following methods on `sortableCount`:
+*/
+
+func (s sortableCount) Len() int {
+	return len(s.runeArray)
+}
+
+func (s sortableCount) Swap(i, j int) {
+	s.runeArray[i], s.runeArray[j] = s.runeArray[j], s.runeArray[i]
+}
+
+func (s sortableCount) Less(i, j int) bool {
+	return s.counts[s.runeArray[i]] < s.counts[s.runeArray[j]]
+}
+
+/*
+After implementing these methods we should be able to use the `sort.Sort` interface
+to sort our array of runes based on the values stored in the map returned by `charCount`.
+Nice!
+
+Then we can do our check. We're basically going to call `charCount` to get the counts
+map, put the characters that we find with charCount into the `[]rune` slice on our
+`sortableCount` struct, sort that slice based on the counts, and then finally check that
+at least 2 of the most common characters are in the set `AEOT `.
+
+Here we go:
+*/
+
 func aeotCheck(bytes []byte) bool {
-	counts := charCount(strings.ToLower(string(bytes)))
-	var biggest rune
+	sorted := sortableCount{
+		runeArray: []rune{},
+		counts:    charCount(strings.ToLower(string(bytes))),
+	}
+	for c, _ := range sorted.counts {
+		sorted.runeArray = append(sorted.runeArray, c)
+	}
+
+	sort.Sort(sorted)
+
+	length := len(sorted.runeArray)
 	count := 0
-	for k, v := range counts {
-		if v > count {
-			biggest = k
-			count = v
+	for i := length - 1; i > length-4; i-- {
+		for _, c := range "aeto " {
+			if sorted.runeArray[i] == c {
+				count++
+			}
 		}
 	}
-	for _, c := range "aeto " {
-		if biggest == c {
-			return true
-		}
+	if count == 2 {
+		return true
 	}
 	return false
 }
+
+/*
+Whew! That got a little heavy. Interfaces are kind of cool though, we can `sort.Sort()`
+anything at all, and all we have to do is implement these three methods that it looks
+for. I think I'm starting to understand how object oriented programming works in Go,
+and I think I like it.
+
+Anyway, now that we have our character frequency check sorted out, we'll combine that
+with the others to check for valid plaintext:
+*/
 
 func validPlaintext(plain []byte) bool {
 	return asciiCheck(plain) && spaceCheck(plain) && aeotCheck(plain)
 }
 
 /*
-Great! Then based on those we can write another helper function that takes
+Then using these we can write another helper function that takes
 a possible ciphertext and tries to break it:
 */
 
 func breakXOR(plain []byte) (map[byte]string, bool) {
 	keysAndResults := make(map[byte]string)
 
-	found := false
+	valid := false
 	for i := byte(0); i < 255; i++ {
 		plain := arrayXOR(plain, i)
 		if validPlaintext(plain) {
 			keysAndResults[i] = string(plain)
-			found = true
+			valid = true
 		}
 	}
-	return keysAndResults, found
+	return keysAndResults, valid
 }
 
 /*
