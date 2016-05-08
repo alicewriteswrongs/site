@@ -75,7 +75,7 @@ Now that we've written all of the functions we'll need, we can try to
 solve the problem!
 
 Basically, we're dealing with a keyspace of all the values a single byte
-can take on (0 - 255). This isn't so many, and while we don't want to just
+can take on (0 - 255). This isn't so many, so while we don't want to just
 manually check each one, it won't be too much work to check the result of
 'decrypting' with each value for certain attributes.
 
