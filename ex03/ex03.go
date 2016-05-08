@@ -86,17 +86,16 @@ func main() {
 	const cipherText = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
 	cipherBytes, _ := hex.DecodeString(cipherText)
 
-	possibleKeys := make([]byte, 0)
+	keysAndResults := make(map[byte]string)
 	for i := byte(0); i < 255; i++ {
 		plain := arrayXOR(cipherBytes, i)
 		if asciiCheck(plain) && spaceCheck(plain) {
-			possibleKeys = append(possibleKeys, byte(i))
+			keysAndResults[i] = string(plain)
 		}
 	}
 
-	for _, k := range possibleKeys {
-		plain := arrayXOR(cipherBytes, k)
-		fmt.Println(string(plain))
+	for k, plain := range keysAndResults {
+		fmt.Printf("key: %d\tplaintext: %s\n", k, plain)
 	}
 }
 
