@@ -78,8 +78,8 @@ func arrayXOR(in []byte, n byte) []byte {
 
 /*
 Next is the most tricky one: scoring based on character count. What we're going
-to want to check is that the two of the top four most prevalent characters in a plaintext
-are among the characters `AEOT `. First, a function that takes a string and
+to want to check is that two of the top four most prevalent characters in a potential
+plaintext are among the characters `AEOT `. First, a function that takes a string and
 returns a `map[rune]int` of characters and their occurences. We'll need to make
 sure that we only pass strings which have been made all lowercase, since we don't
 have any logic for handling that here:
@@ -209,9 +209,12 @@ func main() {
 	input := bufio.NewScanner(f)
 	for input.Scan() {
 		line, _ := hex.DecodeString(input.Text())
-		keysAndResults, _ := breakXOR(line)
-		for k, plain := range keysAndResults {
-			fmt.Printf("key: %d\tplaintext: %s\n", k, plain)
+		keysAndResults, ok := breakXOR(line)
+
+		if ok {
+			for k, plain := range keysAndResults {
+				fmt.Printf("key: %d\tplaintext: %s\n", k, plain)
+			}
 		}
 	}
 	f.Close()
