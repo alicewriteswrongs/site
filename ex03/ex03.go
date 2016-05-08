@@ -60,7 +60,7 @@ about the content of the plaintext).
 
 func asciiCheck(bytes []byte) bool {
 	for _, c := range bytes {
-		if int(c) > 127 {
+		if c > 127 || c < 32 {
 			return false
 		}
 	}
@@ -98,13 +98,8 @@ func main() {
 		}
 	}
 
-	fmt.Println(possibleKeys)
-
-	// 	counts := make(map[byte]int)
-	// 	charCount(cipherBytes, counts)
-
-	// 	out := make([]byte, len(cipherBytes))
-	// 	arrayXOR(cipherBytes, out, byte(42))
-	// 	fmt.Println(out)
-
+	for _, k := range possibleKeys {
+		plain := arrayXOR(cipherBytes, k)
+		fmt.Println(string(plain))
+	}
 }
