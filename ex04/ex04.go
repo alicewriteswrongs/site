@@ -27,7 +27,7 @@ import (
 /*
 First off, we're going to be re-using a couple of functions we wrote
 for exercise three. First we'll need our little helper functions to check
-plaintexts, first our onlyASCII, which ensures that we're only dealing with
+plaintexts, first our `onlyASCII`, which ensures that we're only dealing with
 printable ascii characters:
 */
 
@@ -94,8 +94,7 @@ func charCount(str string) map[rune]int {
 }
 
 /*
-Now the slightly more complicated piece - checking for common characters.
-First we're going to need to create a named struct type for holding the relevant
+Now we're going to need to create a named struct type for holding the relevant
 data, so that we can then implement methods on it to satisfy the sort interface.
 */
 
@@ -105,7 +104,7 @@ type sortableCount struct {
 }
 
 /*
-So we have `sortableCount`, which has a slice of runes and a `map[rune]int`. The
+So we have `sortableCount` struct, which has a slice of runes and a `map[rune]int`. The
 idea is that `counts` holds the result of calling `charCount` on a particular string,
 and `runeSlice` holds the characters that occur in that string, so that we can then
 sort them based on the number of times they occurred.
@@ -134,7 +133,7 @@ Nice!
 Then we can do our check. We're basically going to call `charCount` to get the counts
 map, put the characters that we find with charCount into the `[]rune` slice on our
 `sortableCount` struct, sort that slice based on the counts, and then finally check that
-at least 2 of the most common characters are in the set `AEOT `.
+at least 2 of the four most common characters are in the set `AEOT `.
 
 Here we go:
 */
