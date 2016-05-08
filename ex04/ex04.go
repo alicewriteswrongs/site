@@ -27,20 +27,20 @@ import (
 /*
 First off, we're going to be re-using a couple of functions we wrote
 for exercise three. First we'll need our little helper functions to check
-plaintexts, first our asciiCheck, which ensures that we're only dealing with
+plaintexts, first our onlyASCII, which ensures that we're only dealing with
 printable ascii characters:
 */
 
-func asciiCheck(bytes []byte) bool {
+func onlyASCII(bytes []byte) bool {
 	for _, c := range bytes {
-		if !charCheck(c) {
+		if !asciiCheck(c) {
 			return false
 		}
 	}
 	return true
 }
 
-func charCheck(c byte) bool {
+func asciiCheck(c byte) bool {
 	if c > 31 && c < 127 {
 		return true
 	} else if c == 10 || c == 10 {
@@ -65,8 +65,20 @@ func spaceCheck(bytes []byte) bool {
 }
 
 /*
+We'll also need our little `arrayXOR` helper function:
+*/
+
+func arrayXOR(in []byte, n byte) []byte {
+	out := make([]byte, len(in))
+	for i, v := range in {
+		out[i] = v ^ n
+	}
+	return out
+}
+
+/*
 Next is the most tricky one: scoring based on character count. What we're going
-to want to check is that the top two most prevalent characters in a plaintext
+to want to check is that the two of the top four most prevalent characters in a plaintext
 are among the characters `AEOT `. First, a function that takes a string and
 returns a `map[rune]int` of characters and their occurences. We'll need to make
 sure that we only pass strings which have been made all lowercase, since we don't
@@ -83,30 +95,35 @@ func charCount(str string) map[rune]int {
 
 /*
 Now the slightly more complicated piece - checking for common characters.
-First we're going to need to create a named type for our arrays of integers,
-so that we can implement methods on it to satisfy the sort interface.
+First we're going to need to create a named struct type for holding the relevant
+data, so that we can then implement methods on it to satisfy the sort interface.
 */
 
 type sortableCount struct {
-	runeArray []rune
+	runeSlice []rune
 	counts    map[rune]int
 }
 
 /*
+So we have `sortableCount`, which has a slice of runes and a `map[rune]int`. The
+idea is that `counts` holds the result of calling `charCount` on a particular string,
+and `runeSlice` holds the characters that occur in that string, so that we can then
+sort them based on the number of times they occurred.
+
 Then, following the [sort documentation](https://golang.org/pkg/sort/) we need
 to implement the following methods on `sortableCount`:
 */
 
 func (s sortableCount) Len() int {
-	return len(s.runeArray)
+	return len(s.runeSlice)
 }
 
 func (s sortableCount) Swap(i, j int) {
-	s.runeArray[i], s.runeArray[j] = s.runeArray[j], s.runeArray[i]
+	s.runeSlice[i], s.runeSlice[j] = s.runeSlice[j], s.runeSlice[i]
 }
 
 func (s sortableCount) Less(i, j int) bool {
-	return s.counts[s.runeArray[i]] < s.counts[s.runeArray[j]]
+	return s.counts[s.runeSlice[i]] < s.counts[s.runeSlice[j]]
 }
 
 /*
@@ -124,20 +141,20 @@ Here we go:
 
 func aeotCheck(bytes []byte) bool {
 	sorted := sortableCount{
-		runeArray: []rune{},
+		runeSlice: []rune{},
 		counts:    charCount(strings.ToLower(string(bytes))),
 	}
 	for c, _ := range sorted.counts {
-		sorted.runeArray = append(sorted.runeArray, c)
+		sorted.runeSlice = append(sorted.runeSlice, c)
 	}
 
 	sort.Sort(sorted)
 
-	length := len(sorted.runeArray)
+	length := len(sorted.runeSlice)
 	count := 0
 	for i := length - 1; i > length-4; i-- {
 		for _, c := range "aeto " {
-			if sorted.runeArray[i] == c {
+			if sorted.runeSlice[i] == c {
 				count++
 			}
 		}
@@ -159,7 +176,7 @@ with the others to check for valid plaintext:
 */
 
 func validPlaintext(plain []byte) bool {
-	return asciiCheck(plain) && spaceCheck(plain) && aeotCheck(plain)
+	return onlyASCII(plain) && spaceCheck(plain) && aeotCheck(plain)
 }
 
 /*
@@ -179,18 +196,6 @@ func breakXOR(plain []byte) (map[byte]string, bool) {
 		}
 	}
 	return keysAndResults, valid
-}
-
-/*
-We'll also need our arrayXOR function:
-*/
-
-func arrayXOR(in []byte, n byte) []byte {
-	out := make([]byte, len(in))
-	for i, v := range in {
-		out[i] = v ^ n
-	}
-	return out
 }
 
 /*
