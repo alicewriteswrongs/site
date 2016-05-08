@@ -18,6 +18,7 @@ package main
 import (
 	"encoding/hex"
 	"fmt"
+	"strings"
 )
 
 /*
@@ -69,6 +70,43 @@ func spaceCheck(bytes []byte) bool {
 }
 
 /*
+We're going to also make one more assumption about the plaintext: we assume
+that the most common byte in a decoded plaintext will correspond to one of
+the letters `EAOT` or a space, since these are the four most common English
+letters. Here's two functions that check that:
+*/
+
+func charCount(str string) map[rune]int {
+	counts := make(map[rune]int)
+	for _, c := range str {
+		counts[c]++
+	}
+	return counts
+}
+
+func aeotCheck(bytes []byte) bool {
+	counts := charCount(strings.ToLower(string(bytes)))
+	var biggest rune
+	count := 0
+	for k, v := range counts {
+		if v > count {
+			biggest = k
+			count = v
+		}
+	}
+	for _, c := range "aeto " {
+		if biggest == c {
+			return true
+		}
+	}
+	return false
+}
+
+func validPlaintext(plain []byte) bool {
+	return asciiCheck(plain) && spaceCheck(plain) && aeotCheck(plain)
+}
+
+/*
 ## Doing the work
 
 Now that we've written all of the functions we'll need, we can try to
@@ -87,9 +125,10 @@ func main() {
 	cipherBytes, _ := hex.DecodeString(cipherText)
 
 	keysAndResults := make(map[byte]string)
+
 	for i := byte(0); i < 255; i++ {
 		plain := arrayXOR(cipherBytes, i)
-		if asciiCheck(plain) && spaceCheck(plain) {
+		if validPlaintext(plain) {
 			keysAndResults[i] = string(plain)
 		}
 	}
