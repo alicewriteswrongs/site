@@ -73,7 +73,8 @@ func spaceCheck(bytes []byte) bool {
 We're going to also make one more assumption about the plaintext: we assume
 that the most common byte in a decoded plaintext will correspond to one of
 the letters `EAOT` or a space, since these are the four most common English
-letters. Here's two functions that check that:
+letters. Here's two functions that check for this scenario. The first takes
+a string and returns a `map[rune]int` giving the character counts in the string:
 */
 
 func charCount(str string) map[rune]int {
@@ -83,6 +84,13 @@ func charCount(str string) map[rune]int {
 	}
 	return counts
 }
+
+/*
+The second function checks that the most common byte in a putative plaintext
+is one of the characters `EAOT `. To do this we get the character count of a
+lowercased plaintext, find the most common character, and then check to see
+if that is one of our key characters:
+*/
 
 func aeotCheck(bytes []byte) bool {
 	counts := charCount(strings.ToLower(string(bytes)))
@@ -102,6 +110,10 @@ func aeotCheck(bytes []byte) bool {
 	return false
 }
 
+/*
+Great! Together this lets us define a criterion for a valid plaintext:
+*/
+
 func validPlaintext(plain []byte) bool {
 	return asciiCheck(plain) && spaceCheck(plain) && aeotCheck(plain)
 }
@@ -117,7 +129,8 @@ can take on (0 - 255). This isn't so many, so while we don't want to just
 manually check each one, it won't be too much work to check the result of
 'decrypting' with each value for certain attributes.
 
-So, we're going to use our two helper functions to now it down!
+So, we're basically going to iterate through all the possible keys, attempt
+to decrypt, and then check `validPlaintext`:
 */
 
 func main() {
@@ -139,6 +152,5 @@ func main() {
 }
 
 /*
-Great! After all that we get two possible keys out the end, and one of
-those produces an obvious plaintext.
+Great! After all that we get one key out the end, and a readable plaintext.
 */
