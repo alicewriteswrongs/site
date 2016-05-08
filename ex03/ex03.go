@@ -60,13 +60,12 @@ func asciiCheck(bytes []byte) bool {
 }
 
 func spaceCheck(bytes []byte) bool {
-	found := false
 	for _, c := range string(bytes) {
 		if c == ' ' {
-			found = true
+			return true
 		}
 	}
-	return found
+	return false
 }
 
 /*
