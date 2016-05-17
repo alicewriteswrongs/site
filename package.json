@@ -18,10 +18,10 @@
   "homepage": "https://github.com/aliceriot/literate-crypto#readme",
   "dependencies": {
     "react": "^15.0.2",
-    "react-dom": "^15.0.2",
-    "webpack": "^1.13.0"
+    "react-dom": "^15.0.2"
   },
   "devDependencies": {
+    "webpack": "^1.13.0",
     "babel-core": "^6.9.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-object-assign": "^1.2.1",
