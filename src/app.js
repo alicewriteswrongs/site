@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import Test from "./components/Test";
+import MarkdownWrapper from "./components/MarkdownWrapper";
 
-render(<Test />, document.getElementById("literate-crypto-app"));
+render(<MarkdownWrapper />, document.getElementById("literate-crypto-app"));
