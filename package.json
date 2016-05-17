@@ -1,0 +1,22 @@
+{
+  "name": "literate-crypto",
+  "version": "1.0.0",
+  "description": "This is a web project I started to document my progress in learning Go by doing the Matasano crypto problemset. Really, this is just a way to combine my three great areas of CS enthusiasm: literate programming, cryptography, and overengineered tooling.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliceriot/literate-crypto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aliceriot/literate-crypto/issues"
+  },
+  "homepage": "https://github.com/aliceriot/literate-crypto#readme",
+  "dependencies": {
+    "react": "^15.0.2"
+  }
+}
