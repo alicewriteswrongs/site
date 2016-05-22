@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
+import routes from './routes';
 
-import MarkdownWrapper from "./components/MarkdownWrapper";
+let domElement = document.getElementById("literate-crypto-app");
 
-render(<MarkdownWrapper />, document.getElementById("literate-crypto-app"));
+render(routes(), domElement);
