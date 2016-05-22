@@ -9,12 +9,12 @@ class MatasanoExercise extends React.Component {
   }
 
   getBody = () => (
-    matasano[this.props.params.exercise].body
+    matasano[this.props.route.path].body
   );
 
   render () {
     return (
-      <div dangerouslySetInnerHTML={{__html: this.getBody}}></div>
+      <div dangerouslySetInnerHTML={{__html: this.getBody()}}></div>
     );
   }
 }

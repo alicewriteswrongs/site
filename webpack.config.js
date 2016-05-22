@@ -58,7 +58,7 @@ module.exports = {
   },
   output: {
     path: __dirname,
-    filename: 'maps.js',
+    filename: 'literate_crypto.js',
   },
   module: {
     loaders: [
