@@ -827,6 +827,11 @@
       "from": "escape-string-regexp@>=1.0.2 <2.0.0",
       "resolved": "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz"
     },
+    "esprima": {
+      "version": "2.7.2",
+      "from": "esprima@>=2.6.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/esprima/-/esprima-2.7.2.tgz"
+    },
     "esutils": {
       "version": "2.0.2",
       "from": "esutils@>=2.0.2 <3.0.0",
@@ -940,6 +945,11 @@
       "version": "0.3.0",
       "from": "fresh@0.3.0",
       "resolved": "https://registry.npmjs.org/fresh/-/fresh-0.3.0.tgz"
+    },
+    "front-matter": {
+      "version": "2.0.8",
+      "from": "front-matter@latest",
+      "resolved": "https://registry.npmjs.org/front-matter/-/front-matter-2.0.8.tgz"
     },
     "get-stdin": {
       "version": "4.0.1",
@@ -1179,6 +1189,18 @@
       "version": "1.0.3",
       "from": "js-tokens@>=1.0.2 <2.0.0",
       "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-1.0.3.tgz"
+    },
+    "js-yaml": {
+      "version": "3.6.1",
+      "from": "js-yaml@>=3.4.6 <4.0.0",
+      "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-3.6.1.tgz",
+      "dependencies": {
+        "argparse": {
+          "version": "1.0.7",
+          "from": "argparse@>=1.0.7 <2.0.0",
+          "resolved": "https://registry.npmjs.org/argparse/-/argparse-1.0.7.tgz"
+        }
+      }
     },
     "jsesc": {
       "version": "0.5.0",
@@ -1773,6 +1795,11 @@
           "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.1.32.tgz"
         }
       }
+    },
+    "sprintf-js": {
+      "version": "1.0.3",
+      "from": "sprintf-js@>=1.0.2 <1.1.0",
+      "resolved": "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz"
     },
     "statuses": {
       "version": "1.2.1",

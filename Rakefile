@@ -26,8 +26,13 @@ task :build_cryptopals_markdown => ["_matasano", :update_submodules] do |t|
     sh "mark_set_go #{go_file} > _matasano/#{cryptopals_go_filename go_file}"
   end
 end
-task :build_markdown => [:build_cryptopals_markdown]
+
+task :build_json do |t|
+end
+
+task :build_markdown => [:build_cryptopals_markdown, :build_json]
 
 task :clean do |t|
   sh "rm -rf _matasano"
 end
+
