@@ -2,6 +2,7 @@
 ---
 layout: matasano_exercise
 title: "Exercise 2"
+key: "ex02"
 ---
 
 # Exercise 2

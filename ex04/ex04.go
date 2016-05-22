@@ -2,6 +2,7 @@
 ---
 layout: matasano_exercise
 title: "Exercise 4"
+key: "ex04"
 ---
 
 # Exercise 4
