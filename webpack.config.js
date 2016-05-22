@@ -65,7 +65,7 @@ module.exports = {
       {test: /\.jsx$/, exclude: /node_modules/, loaders: getJSLoaders()},
       {test: /\.js$/, exclude: /node_modules/, loaders: getJSLoaders()},
       {test: /\.scss$/, loader: "style!css!sass" },
-      { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$/, loader: "file" }
+      {test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$/, loader: "file"}
     ]
   },
   plugins: getPlugins(),
