@@ -1,6 +1,6 @@
 task :default => [:build_markdown]
 
-directory "_matasano"
+directory "matasano"
 
 # git related things
 def git_pull(dir = Dir.pwd)
@@ -20,10 +20,10 @@ def cryptopals_go_filename(go_file)
   go_file.split("/").last.gsub(/\.go$/, ".md")
 end
 
-task :build_cryptopals_markdown => ["_matasano", :update_submodules] do |t|
+task :build_cryptopals_markdown => ["matasano", :update_submodules] do |t|
   go_files = FileList['./cryptopals-go/*/*.go']
   go_files.each do |go_file|
-    sh "mark_set_go #{go_file} > _matasano/#{cryptopals_go_filename go_file}"
+    sh "mark_set_go #{go_file} > matasano/#{cryptopals_go_filename go_file}"
   end
 end
 
@@ -33,6 +33,6 @@ end
 task :build_markdown => [:build_cryptopals_markdown, :build_json]
 
 task :clean do |t|
-  sh "rm -rf _matasano"
+  sh "rm -rf matasano"
 end
 
