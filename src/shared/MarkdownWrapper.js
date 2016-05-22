@@ -6,11 +6,9 @@ class MarkdownWrapper extends React.Component {
     body:     React.PropTypes.string,
   }
 
-  render () {
-    return (
-      <div dangerouslySetInnerHTML={{__html: this.body}}></div>
-    );
-  }
+  renderHTML = rawHTML => (
+    <div dangerouslySetInnerHTML={{__html: rawHTML}}></div>
+  );
 }
 
 export default MarkdownWrapper;
