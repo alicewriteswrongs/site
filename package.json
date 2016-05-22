@@ -22,9 +22,7 @@
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-router": "^2.4.0",
-    "remarkable": "^1.6.2"
-  },
-  "devDependencies": {
+    "remarkable": "^1.6.2",
     "babel-core": "^6.9.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-object-assign": "^1.2.1",
