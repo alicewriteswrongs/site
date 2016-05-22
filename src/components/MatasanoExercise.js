@@ -1,16 +1,20 @@
 import React from 'react';
 
-import MarkdownWrapper from '../shared/MarkdownWrapper.js';
 let matasano = require('json!../data/matasano.json');
 
-class MatasanoExercise extends MarkdownWrapper {
+class MatasanoExercise extends React.Component {
+  static propTypes = {
+    title:    React.PropTypes.string,
+    body:     React.PropTypes.string,
+  }
+
   getBody = () => (
     matasano[this.props.params.exercise].body
   );
 
   render () {
     return (
-      this.renderHTML(this.getBody)
+      <div dangerouslySetInnerHTML={{__html: this.getBody}}></div>
     );
   }
 }
