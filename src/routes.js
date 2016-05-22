@@ -16,6 +16,7 @@ export default function routes () {
   return (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
+        <Route path="
         {makeMatasanoRoutes()}
       </Route>
     </Router>
