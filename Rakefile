@@ -1,4 +1,4 @@
-task :default => [:build_markdown]
+task :default => [:build_markdown, :build_json]
 
 directory "matasano"
 
@@ -26,13 +26,16 @@ task :build_cryptopals_markdown => ["matasano", :update_submodules] do |t|
     sh "mark_set_go #{go_file} > matasano/#{cryptopals_go_filename go_file}"
   end
 end
+task :build_markdown => [:build_cryptopals_markdown]
 
-task :build_json do |t|
+task :build_matasano_json do |t|
+  sh "node ./build/markdown_to_json.js ./matasano ./src/data/matasano.json"
 end
 
-task :build_markdown => [:build_cryptopals_markdown, :build_json]
+task :build_json => [:build_matasano_json]
 
 task :clean do |t|
   sh "rm -rf matasano"
+  sh "rm -rf src/data/matasano.json"
 end
 
