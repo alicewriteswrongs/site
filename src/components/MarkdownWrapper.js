@@ -1,16 +1,14 @@
 import React from 'react';
-import Markdown from 'remarkable';
-import hljs from 'highlight.js';
 
 class MarkdownWrapper extends React.Component {
-  constructor (props) {
-    super(props);
-    this.md = new Markdown('full');
+  static propTypes = {
+    title:    React.PropTypes.string,
+    body:     React.PropTypes.string,
   }
 
   render () {
     return (
-      <div dangerouslySetInnerHTML={{__html: this.md.render('# A TITLE\n ```js\nthis.props\n```')}}></div>
+      <div dangerouslySetInnerHTML={{__html: this.body}}></div>
     );
   }
 }
