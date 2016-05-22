@@ -37,5 +37,13 @@
     "remarkable": "^1.6.2",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
+  },
+  "babel": {
+    "presets": ["es2015","react","stage-1"],
+    "plugins": [
+      "transform-react-jsx",
+      "transform-object-assign",
+      "transform-object-rest-spread"
+    ]
   }
 }
