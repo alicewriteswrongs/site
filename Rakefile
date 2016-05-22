@@ -28,10 +28,10 @@ task :build_cryptopals_markdown => ["matasano", :update_submodules] do |t|
 end
 task :build_markdown => [:build_cryptopals_markdown]
 
+# build JSON
 task :build_matasano_json do |t|
   sh "node ./build/markdown_to_json.js ./matasano ./src/data/matasano.json"
 end
-
 task :build_json => [:build_matasano_json]
 
 task :clean do |t|
