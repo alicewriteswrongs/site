@@ -1,23 +1,19 @@
-'use strict';
+var path = require('path');
+var webpack = require('webpack');
 
-var webpack = require('webpack'),
-  HtmlWebpackPlugin = require('html-webpack-plugin'),
-  path = require('path'),
-  srcPath = path.join(__dirname, 'src');
-
+var srcPath = path.join(__dirname, 'src');
 var isProduction = function () {
   return process.env.NODE_ENV === 'production';
 };
 
+function getJSLoaders () {
+  return isProduction() ? ['babel-loader'] : ['react-hot', 'babel-loader'];
+}
+
 function getPlugins() {
   var plugins = [];
 
-  plugins.push(new HtmlWebpackPlugin({
-      inject: true,
-      template: 'src/index.html'
-    }));
   plugins.push(new webpack.NoErrorsPlugin());
-
   if (isProduction()) { // prod plugins
     plugins.push(new webpack.DefinePlugin({
       'process.env': {
@@ -25,7 +21,8 @@ function getPlugins() {
       }
     }));
   }
-  else { // dev plugins
+  else {
+    plugins.push(new webpack.HotModuleReplacementPlugin());
   }
   return plugins;
 }
@@ -36,30 +33,23 @@ function entryPoints () {
   }
   else {
     return [
-      'webpack-dev-server/client?http://0.0.0.0:8080',
+      'webpack-dev-server/client?http://localhost:8080',
       'webpack/hot/only-dev-server',
       path.join(srcPath, 'app.js')
     ];
   }
 }
 
-function getJSLoaders () {
-  return isProduction() ? ['babel-loader'] : ['react-hot', 'babel-loader'];
-}
-
 module.exports = {
-  target: 'web',
-  cache: true,
+  debug: !isProduction(),
+  devtool: 'eval',
   entry: entryPoints(),
-  resolve: {
-    root: srcPath,
-    extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ['node_modules', 'src']
-  },
   output: {
-    path: __dirname,
-    filename: 'literate_crypto.js',
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/static/'
   },
+  plugins: getPlugins(),
   module: {
     loaders: [
       {test: /\.jsx$/, exclude: /node_modules/, loaders: getJSLoaders()},
@@ -67,11 +57,5 @@ module.exports = {
       {test: /\.scss$/, loader: "style!css!sass" },
       {test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$/, loader: "file"}
     ]
-  },
-  plugins: getPlugins(),
-  debug: isProduction() ? false : true,
-  devtool: isProduction() ? '' : 'eval-cheap-module-source-map',
-  devServer: {
-    historyApiFallback: true
   }
 };

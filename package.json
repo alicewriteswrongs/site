@@ -4,7 +4,7 @@
   "description": "This is a web project I started to document my progress in learning Go by doing the Matasano crypto problemset. Really, this is just a way to combine my three great areas of CS enthusiasm: literate programming, cryptography, and overengineered tooling.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --colors --progress --hot",
+    "start": "node ./dev-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -47,8 +47,8 @@
   "babel": {
     "presets": [
       "es2015",
-      "react",
-      "stage-1"
+      "stage-1",
+      "react"
     ],
     "plugins": [
       "transform-react-jsx",
