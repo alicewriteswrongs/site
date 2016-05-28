@@ -41,7 +41,7 @@ class Nav extends React.Component {
             <i className="fa fa-bars fa-2x"></i>
           </div>
         </nav>
-        <ul className={`nav-link-dropdown ${this.dropdownClass()}`}>
+        <ul className={`nav-link-sidebar ${this.dropdownClass()}`}>
           { this.links() }
         </ul>
       </div>
