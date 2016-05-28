@@ -1,12 +1,20 @@
 import React from 'react';
+import {
+  Layout,
+  Header,
+  Navigation,
+  Drawer
+} from 'react-mdl';
+import { Link } from 'react-router';
 
 class App extends React.Component {
   render () {
     return (
-      <div>
-        wow
-        {this.props.children}
-      </div>
+      <Layout>
+        <Header transparent title="LC">
+        </Header>
+        { this.props.children }
+      </Layout>
     );
   }
 }
