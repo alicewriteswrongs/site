@@ -15,7 +15,8 @@ body {
 
 .literate-crypto-content {
   @media (max-width: 899px) {
-    height: 94vh;
+    height: 100%;
+    padding-top: 40px;
   }
   @media (min-width: 900px) {
     height: 94vh;

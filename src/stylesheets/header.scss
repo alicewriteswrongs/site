@@ -10,13 +10,24 @@
   }
   @media (max-width: 899px) {
     .literate-crypto-nav {
-      height: 6vh;
+      position: fixed;
+      height: 40px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      background-color: #fff;
       .nav-link-list {
         display: none;
       }
-      .nav-link-dropdown-switch {
-        padding-left: 10px;
-        padding-top: 4px;
+      .nav-link-sidebar-switch {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: 8px;
+        left: 12px;
+        background: url("../images/menu.png");
+        background-size: 24px;
       }
     }
     .nav-link-sidebar {
@@ -30,7 +41,7 @@
         padding-bottom: 5px;
       }
     }
-    .nav-link-dropdown.closed {
+    .nav-link-sidebar.closed {
       display: none;
     }
   }
@@ -49,7 +60,7 @@
           display: inline;
         }
       }
-      .nav-link-dropdown-switch {
+      .nav-link-sidebar-switch {
         display: none;
       }
     }
