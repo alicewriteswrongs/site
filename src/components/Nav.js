@@ -14,6 +14,19 @@ class Nav extends React.Component {
     ));
   }
 
+  dropdownClass = () => {
+    const { state: { nav_open } } = this.props;
+    return nav_open ? "open" : "closed";
+  }
+
+  toggleShowDropdown = () => {
+    const {
+      state: { nav_open },
+      setNavShowState
+    } = this.props;
+    setNavShowState(!nav_open);
+  }
+
   render () {
     return (
       <div className="literate-crypto-nav-wrapper">
@@ -21,8 +34,14 @@ class Nav extends React.Component {
           <ul className="nav-link-list">
             { this.links() }
           </ul>
+          <div 
+            className="nav-link-dropdown-switch"
+            onClick={this.toggleShowDropdown}
+          >
+            <i className="fa fa-bars fa-2x"></i>
+          </div>
         </nav>
-        <ul className="nav-link-dropdown">
+        <ul className={`nav-link-dropdown ${this.dropdownClass()}`}>
           { this.links() }
         </ul>
       </div>

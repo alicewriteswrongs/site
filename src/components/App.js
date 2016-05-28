@@ -1,27 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { setNavOpen, setNavClosed } from '../actions/actions';
+import { setNavShowState } from '../actions/actions';
 
 import Nav from './Nav';
 
 class App extends React.Component {
-  setNavOpen = () => {
-    const { dispatch } = this.props;
-    dispatch(setNavOpen());
-  }
 
-  setNavClosed = () => {
+  setNavShowState = bool => {
     const { dispatch } = this.props;
-    dispatch(setNavClosed());
+    dispatch(setNavShowState(bool));
   }
 
   render () {
     return (
       <div>
         <Nav 
-          setNavClosed={this.setNavClosed}
-          setNavOpen={this.setNavOpen}
+          setNavShowState={this.setNavShowState}
           {...this.props}
         />
         <div className="literate-crypto-content">

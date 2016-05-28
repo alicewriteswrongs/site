@@ -11,6 +11,9 @@
       .nav-link-list {
         display: none;
       }
+      .nav-link-dropdown-switch {
+        // position it!
+      }
     }
 
     .nav-link-dropdown {
@@ -23,6 +26,9 @@
       li {
         padding-bottom: 5px;
       }
+    }
+    .nav-link-dropdown.closed {
+      display: none;
     }
   }
 
@@ -38,6 +44,9 @@
         li {
           display: inline;
         }
+      }
+      .nav-link-dropdown-switch {
+        display: none;
       }
     }
     i {
