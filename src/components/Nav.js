@@ -55,9 +55,11 @@ class Nav extends React.Component {
           >
           </div>
         </nav>
-        <ul className={`nav-link-sidebar ${this.dropdownClass()}`}>
-          { this.links() }
-        </ul>
+        <div className={`nav-link-sidebar ${this.dropdownClass()}`}>
+          <ul>
+            { this.links() }
+          </ul>
+        </div>
       </div>
     );
   }
