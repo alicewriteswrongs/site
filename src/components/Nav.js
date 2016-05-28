@@ -3,7 +3,11 @@ import { Link } from 'react-router';
 import _ from 'lodash';
 
 class Nav extends React.Component {
-  currentRoute = () => this.props.route.path;
+  static contextTypes = {
+    router:  React.PropTypes.object
+  };
+
+  currentRoute = () => this.props.location.pathname;
 
   links = () => {
     let active = path => path === this.currentRoute() ? "active" : "";

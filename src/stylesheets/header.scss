@@ -1,4 +1,9 @@
 .literate-crypto-nav-wrapper {
+  .active {
+    a {
+      border-bottom: 3px solid #42b983
+    }
+  }
   .literate-crypto-nav {
     box-shadow: 0 0 4px rgba(0,0,0,0.25);
     width: 100%;
