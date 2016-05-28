@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 
-import App from './components/App';
+import Nav from './components/Nav';
 import MatasanoExercises from './components/MatasanoExercises';
 import MatasanoExercise from './components/MatasanoExercise';
 let matasano = require('json!./data/matasano.json');
@@ -15,7 +15,7 @@ const matasanoExercises = () => (
 export default function routes () {
   return (
     <Router history={browserHistory}>
-      <Route path="/" component={App}>
+      <Route path="/" component={Nav}>
         <Route path="matasano" component={MatasanoExercises}>
           {matasanoExercises()}
         </Route>
