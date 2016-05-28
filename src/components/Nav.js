@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import _ from 'lodash';
 
 class Nav extends React.Component {
   links = () => {
@@ -13,6 +14,13 @@ class Nav extends React.Component {
       </li>
     ));
   }
+
+  desktopLinks = () => {
+    let sep = k => <li key={k}>/</li>;
+    return this.links().reduce( (cur, next) => (
+      _.isArray(cur) ? cur.concat(sep(cur), next) : [cur].concat(sep(cur), next)
+    ));
+  };
 
   dropdownClass = () => {
     const { state: { nav_open } } = this.props;
@@ -32,7 +40,7 @@ class Nav extends React.Component {
       <div className="literate-crypto-nav-wrapper">
         <nav className="literate-crypto-nav">
           <ul className="nav-link-list">
-            { this.links() }
+            { this.desktopLinks() }
           </ul>
           <div 
             className="nav-link-sidebar-switch"

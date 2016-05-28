@@ -57,8 +57,14 @@
         margin: auto;
         padding-top: 1.5vh;
         text-align: center;
+        .sep {
+          font-size: 8px;
+          vertical-align: middle;
+        }
         li {
+          text-transform: lowercase;
           display: inline;
+          padding-right: 5px;
         }
       }
       .nav-link-sidebar-switch {
