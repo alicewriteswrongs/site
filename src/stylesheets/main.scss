@@ -5,9 +5,15 @@
 
 body {
   font-family: "Lato";
+  margin: 0;
 }
 
 .literate-crypto-content {
-  height: 90vh;
+  @media (max-width: 899px) {
+    height: 94vh;
+  }
+  @media (min-width: 900px) {
+    height: 95vh;
+  }
   overflow: auto;
 }

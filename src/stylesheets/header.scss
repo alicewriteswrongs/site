@@ -1,11 +1,53 @@
-.literate-crypto-nav {
+.literate-crypto-nav-wrapper {
   background-color: black;
-  color: black;
-  height: 6vh;
-  i {
-    color: black;
+  color: white;
+  a {
+    color: white;
+    text-decoration: none;
   }
-  .nav-link-list {
-    margin-top: 0;
+  @media (max-width: 899px) {
+    .literate-crypto-nav {
+      height: 6vh;
+      .nav-link-list {
+        display: none;
+      }
+    }
+
+    .nav-link-dropdown {
+      margin-top: 0px;
+      background-color: black;
+      z-index: 1000;
+      max-height: 40vh;
+      overflow: auto;
+      margin-bottom: 0;
+      li {
+        padding-bottom: 5px;
+      }
+    }
+  }
+
+  @media (min-width: 900px) {
+    .nav-link-dropdown {
+      display: none;
+    }
+    .literate-crypto-nav {
+      height: 5vh;
+      .nav-link-list {
+        padding-top: 10px;
+        text-align: center;
+        li {
+          display: inline;
+        }
+      }
+    }
+    i {
+      color: black;
+    }
+    .nav-link-list {
+      margin-top: 0;
+      li {
+        margin-right: 5px;
+      }
+    }
   }
 }
