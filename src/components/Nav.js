@@ -3,13 +3,16 @@ import { Link } from 'react-router';
 import _ from 'lodash';
 
 class Nav extends React.Component {
+  currentRoute = () => this.props.route.path;
+
   links = () => {
+    let active = path => path === this.currentRoute() ? "active" : "";
     return Object.entries({
       "/": "Home",
       "/about": "About",
       "/matasano": "Matasano Exercises"
     }).map( ([path, label]) => (
-      <li key={path}>
+      <li key={path} className={active(path)}>
         <Link to={path}>{label}</Link>
       </li>
     ));
