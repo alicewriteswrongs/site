@@ -3,7 +3,10 @@ import {
   SET_NAV_CLOSED
 } from '../actions/actions';
 
-export function nav (state = {nav_open: false}, action) {
+const initialNavState = {
+  nav_open: false
+};
+export function nav (state = initialNavState, action) {
   switch (action.type) {
   case SET_NAV_OPEN:
     return { ...state, nav_open: true };
@@ -13,3 +16,7 @@ export function nav (state = {nav_open: false}, action) {
     return state;
   }
 }
+
+export const initialState = {
+  ...initialNavState
+};
