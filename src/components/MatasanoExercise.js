@@ -14,7 +14,10 @@ class MatasanoExercise extends React.Component {
 
   render () {
     return (
-      <div dangerouslySetInnerHTML={{__html: this.getBody()}}></div>
+      <div 
+        className="markdown"
+        dangerouslySetInnerHTML={{__html: this.getBody()}}>
+      </div>
     );
   }
 }
