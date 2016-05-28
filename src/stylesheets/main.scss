@@ -8,6 +8,10 @@ body {
   margin: 0;
 }
 
+.hljs {
+  background: none;
+}
+
 .literate-crypto-content {
   @media (max-width: 899px) {
     height: 94vh;
