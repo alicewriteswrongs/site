@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 class Nav extends React.Component {
   render () {
     return (
-      <nav>
+      <nav className="literate-crypto-nav">
         <ul className="nav-link-list">
           <li><Link to="/">Home</Link></li>
         </ul>

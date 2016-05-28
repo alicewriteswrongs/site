@@ -8,7 +8,9 @@ class App extends React.Component {
     return (
       <div>
         <Nav />
-        { this.props.children }
+        <div className="literate-crypto-content">
+          { this.props.children }
+        </div>
       </div>
     );
   }
