@@ -14,7 +14,15 @@ key with each byte of the plaintext, so that the first byte of the plaintext wil
 be XORed against the first of the key, the 2nd with the 2nd, and so on. Our key is only
 3 bytes long however, so in general we'll have:
 
-\\[ \frac{1}{2} \\]
+\\[ C[i] = k[i%len(k)]\ XOR\ P[i] \\]
+
+where \\(P\\) is our plaintext, \\(k\\) is our key, and \\(C\\) is our ciphertext.
+The key we're going to be using is `ICE`, and the plaintext is:
+
+```
+Burning 'em, if you ain't quick and nimble
+I go crazy when I hear a cymbal
+```
 */
 
 
