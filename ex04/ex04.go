@@ -159,7 +159,7 @@ func aeotCheck(bytes []byte) bool {
 			}
 		}
 	}
-	if count == 2 {
+	if count >= 2 {
 		return true
 	}
 	return false
