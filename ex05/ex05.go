@@ -9,10 +9,12 @@ key: "ex05"
 This [exercise](http://cryptopals.com/sets/1/challenges/5) asks us to implement
 a simple cryptosystem: repeating-key XOR, which is similar to the Vigenere cipher.
 
-For repeating-key XOR we are going to end up sequentially XORing each byte of 
+For repeating-key XOR we are going to end up sequentially XORing each byte of
 key with each byte of the plaintext, so that the first byte of the plaintext will
 be XORed against the first of the key, the 2nd with the 2nd, and so on. Our key is only
 3 bytes long however, so in general we'll have:
 
+\\[ \frac{1}{2} \\]
+*/
 
 
