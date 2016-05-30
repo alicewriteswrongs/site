@@ -103,10 +103,9 @@ func keysizeDistance(keysize int, bytes []byte) float {
 		chunked := chunks(i, bytes)
 		distance := 0
 		for _, chunk := range chunked {
-			distance += hamming(chunk, 
-
-
+			distance += hamming(chunk, chunked[0])
 		}
+		return float(distance / 
 	}
 }
 
