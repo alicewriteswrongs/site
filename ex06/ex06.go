@@ -64,14 +64,50 @@ if `b1` and `b2` had a different value at a given position. Then we can just use
 our `bitCount` function to count those up!
 */
 
-func hamming(s1 string, s2 string) int {
-	b1 := []byte(s1)
-	b2 := []byte(s2)
+func hamming(b1 []byte, b2 []byte) int {
 	count := 0
 	for i, _ := range b1 {
 		count += bitCount(b1[i] ^ b2[i])
 	}
 	return count
+}
+
+/*
+So how are we going to use this, anyway? Well, the utility of the Hamming distance
+function rests on a bit of a wager. We assume that, if \\(k\\) is the correct keysize,
+then the average pairwise Hamming distance of the set \\(K\\) of linear chunks of length
+\\(k\\) pulled from our ciphertext will be lower than a randomly-chosen keysize. So
+in order to find the right keysize, we'll need iterate through the range of possible
+keysizes and, for each keysize, chop up our ciphertext into chunks of that size and
+record the average pairwise Hamming distance. Then, the keysize with the lowest average
+should be correct!
+
+First, let's write a little function that takes a keysize and a `[]byte`, and chunks
+it up properly!
+*/
+
+func chunks(k int, bytes []byte) [][]byte {
+	out := [][]byte{}
+	for i := 0; i < len(bytes)/k; i++ {
+		out = append(out, bytes[i*k:(i+1)*k])
+	}
+	return out
+}
+
+/*
+Now, a function that takes a keysize and a ciphertext, and returns the average pairwise
+Hamming distance:
+*/
+
+func keysizeDistance(keysize int, bytes []byte) float {
+		chunked := chunks(i, bytes)
+		distance := 0
+		for _, chunk := range chunked {
+			distance += hamming(chunk, 
+
+
+		}
+	}
 }
 
 // func main() {
