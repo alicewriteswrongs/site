@@ -2602,6 +2602,11 @@
       "from": "range-parser@>=1.0.3 <1.1.0",
       "resolved": "https://registry.npmjs.org/range-parser/-/range-parser-1.0.3.tgz"
     },
+    "raw-loader": {
+      "version": "0.5.1",
+      "from": "raw-loader@latest",
+      "resolved": "https://registry.npmjs.org/raw-loader/-/raw-loader-0.5.1.tgz"
+    },
     "react": {
       "version": "15.1.0",
       "from": "react@>=15.0.2 <16.0.0",
