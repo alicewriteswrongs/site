@@ -23,7 +23,8 @@ module.exports = {
       include: path.join(__dirname, 'src')
     },
     {test: /\.scss$/, loader: "style!css!sass" },
-    {test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$/, loader: "file"}
+    {test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$/, loader: "file"},
+    {test: /\.json$/, loader: "json", include: "src/data"},
     ]
   }
 };
