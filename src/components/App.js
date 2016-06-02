@@ -27,6 +27,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({state: state});
+const mapStateToProps = state => ({
+  navOpen: state.navOpen,
+  matasano: state.matasano,
+});
 
 export default connect(mapStateToProps)(App);

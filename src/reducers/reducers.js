@@ -4,14 +4,14 @@ import {
 } from '../actions/actions';
 
 export const initialState = {
-  nav_open: false,
+  navOpen: false,
   matasano: {}
 };
 
 export function nav (state = initialState, action) {
   switch (action.type) {
   case SET_NAV_SHOW_STATE:
-    return { ...state, nav_open: action.payload };
+    return { ...state, navOpen: action.payload };
   case SET_MATASANO_CONTENTS:
     return { ...state, matasano: action.payload };
   default:

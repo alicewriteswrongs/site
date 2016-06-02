@@ -30,16 +30,16 @@ class Nav extends React.Component {
   };
 
   dropdownClass = () => {
-    const { state: { nav_open } } = this.props;
-    return nav_open ? "open" : "closed";
+    const { navOpen } = this.props;
+    return navOpen ? "open" : "closed";
   }
 
   toggleShowDropdown = () => {
     const {
-      state: { nav_open },
+      navOpen,
       setNavShowState
     } = this.props;
-    setNavShowState(!nav_open);
+    setNavShowState(!navOpen);
   }
 
   render () {
