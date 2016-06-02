@@ -22,6 +22,8 @@ end
 
 task :build_cryptopals_markdown => ["matasano", :update_submodules] do |t|
   go_files = FileList['./cryptopals-go/*/*.go']
+  go_files.exclude { |file| file.match(/_test.go$/) }
+
   go_files.each do |go_file|
     sh "mark_set_go #{go_file} > matasano/#{cryptopals_go_filename go_file}"
   end
