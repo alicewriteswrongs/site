@@ -1,3 +1,6 @@
+require 'json'
+require 'pry'
+
 task :default => [:build_markdown, :build_json]
 
 directory "matasano"
@@ -40,4 +43,27 @@ task :clean do |t|
   sh "rm -rf matasano"
   sh "rm -rf src/data/matasano.json"
 end
+
+task :dist_clean do |t|
+  dist_files = FileList['./dist/*'].exclude { |f| f.match(/.gitkeep/) }
+  dist_files.each do |dist_file|
+    sh "rm -rf #{dist_file}"
+  end
+end
+
+# build the website for production
+task :publish => [:clean, :dist_clean, :build_markdown, :build_json, :build_routes]
+
+def getJSON(path)
+  JSON.parse(File.read(path))
+end
+
+task :build_matasano_routes do |t|
+  matasano_json = getJSON('./src/data/matasano.json')
+
+end
+task :build_routes => [:build_matasano_routes]
+
+
+
 
