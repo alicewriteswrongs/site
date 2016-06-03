@@ -60,8 +60,8 @@ end
 
 task :build_matasano_routes do |t|
   matasano_json = getJSON('./src/data/matasano.json')
-
 end
+
 task :build_routes => [:build_matasano_routes]
 
 
