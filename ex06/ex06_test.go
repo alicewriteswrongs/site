@@ -6,53 +6,54 @@ import (
 )
 
 // bitCount
+type bitCountTestPair struct {
+	value       byte
+	expectation int
+}
+
+var bitCountTestPairs = []bitCountTestPair{
+	{1, 1},
+	{2, 1},
+	{52, 3},
+	{255, 8},
+}
+
 func TestBitcountOne(t *testing.T) {
-	bc := bitCount(1)
-	if bc != 1 {
-		t.Error("expected 1 for 1, got", bc)
-	}
-}
-
-func TestBitcountTwo(t *testing.T) {
-	bc := bitCount(2)
-	if bc != 1 {
-		t.Error("expected 1 for 2, got", bc)
-	}
-}
-
-func TestBitcountThree(t *testing.T) {
-	bc := bitCount(52)
-	if bc != 3 {
-		t.Error("expected 3 for 52, got", bc)
-	}
-}
-
-func TestBitcountFour(t *testing.T) {
-	bc := bitCount(255)
-	if bc != 8 {
-		t.Error("expected 8 for 255, got", bc)
+	for _, pair := range bitCountTestPairs {
+		bc := bitCount(pair.value)
+		if bc != pair.expectation {
+			t.Error(
+				"For", pair.value,
+				"expected", pair.expectation,
+				"got", bc,
+			)
+		}
 	}
 }
 
 // hamming distance
-func TestHammingDistanceOne(t *testing.T) {
-	distance := hamming([]byte("foo"), []byte("bar"))
-	if distance != 8 {
-		t.Error("expected 8, got", distance)
-	}
+type hammingTestPair struct {
+	s1          string
+	s2          string
+	expectation int
 }
 
-func TestHammingDistanceTwo(t *testing.T) {
-	distance := hamming([]byte("foo"), []byte("foo"))
-	if distance != 0 {
-		t.Error("expected 0, got", distance)
-	}
+var hammingTestPairs = []hammingTestPair{
+	{"foo", "bar", 8},
+	{"foo", "foo", 0},
+	{"fizzbuzz", "fozzbozz", 5},
 }
 
-func TestHammingDistanceThree(t *testing.T) {
-	distance := hamming([]byte("fizzbuzz"), []byte("fozzbozz"))
-	if distance != 5 {
-		t.Error("expected 5, got", distance)
+func TestHammingDistance(t *testing.T) {
+	for _, pair := range hammingTestPairs {
+		dist := hamming([]byte(pair.s1), []byte(pair.s2))
+		if dist != pair.expectation {
+			t.Error(
+				"For", pair.s1, pair.s2,
+				"expected", pair.expectation,
+				"got", dist,
+			)
+		}
 	}
 }
 
