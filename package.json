@@ -62,7 +62,8 @@
     "plugins": [
       "transform-react-jsx",
       "transform-object-assign",
-      "transform-object-rest-spread"
+      "transform-object-rest-spread",
+      "transform-flow-strip-types"
     ]
   }
 }
