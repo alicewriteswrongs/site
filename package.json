@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./dev-server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "babel-core": "^6.9.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-object-assign": "^1.2.1",
+    "babel-plugin-transform-flow-strip-types": "^6.8.0",
     "babel-plugin-transform-object-assign": "^6.8.0",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
