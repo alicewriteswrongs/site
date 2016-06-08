@@ -1,3 +1,10 @@
 [ignore]
 .*/node_modules/fbjs/.*
 .*.git/.*
+
+[include]
+./src
+
+[options]
+esproposal.class_instance_fields=enable
+esproposal.class_static_fields=enable

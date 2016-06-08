@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { Link } from 'react-router';
 
@@ -12,7 +13,7 @@ class MatasanoExercises extends React.Component {
         {route.path}
       </Link>
     ));
-  }
+  };
 
   render () {
     let body;

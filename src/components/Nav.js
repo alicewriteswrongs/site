@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { Link } from 'react-router';
 import _ from 'lodash';
@@ -20,7 +21,7 @@ class Nav extends React.Component {
         <Link to={path}>{label}</Link>
       </li>
     ));
-  }
+  };
 
   desktopLinks = () => {
     let sep = k => <li key={k}>/</li>;
@@ -32,7 +33,7 @@ class Nav extends React.Component {
   dropdownClass = () => {
     const { navOpen } = this.props;
     return navOpen ? "open" : "closed";
-  }
+  };
 
   toggleShowDropdown = () => {
     const {
@@ -40,7 +41,7 @@ class Nav extends React.Component {
       setNavShowState
     } = this.props;
     setNavShowState(!navOpen);
-  }
+  };
 
   render () {
     return (
