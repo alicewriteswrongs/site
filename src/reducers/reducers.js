@@ -2,8 +2,8 @@
 import {
   SET_NAV_SHOW_STATE,
   SET_MATASANO_CONTENTS,
-  Action,
 } from '../actions/actions';
+import type { Action } from '../actions/actions';
 
 export const initialState = {
   navOpen: false,

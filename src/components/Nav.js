@@ -10,7 +10,7 @@ class Nav extends React.Component {
 
   currentRoute = () => this.props.location.pathname;
 
-  links = () => {
+  links = (): Array<React.Component> => {
     let active = path => path === this.currentRoute() ? "active" : "";
     return Object.entries({
       "/": "Home",
@@ -23,7 +23,7 @@ class Nav extends React.Component {
     ));
   };
 
-  desktopLinks = (): Array<T> => {
+  desktopLinks = (): Array<any> => {
     let sep = k => <li key={k}>/</li>;
     return this.links().reduce( (cur, next) => (
       _.isArray(cur) ? cur.concat(sep(cur), next) : [cur].concat(sep(cur), next)
