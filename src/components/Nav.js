@@ -23,19 +23,19 @@ class Nav extends React.Component {
     ));
   };
 
-  desktopLinks = () => {
+  desktopLinks = (): Array<T> => {
     let sep = k => <li key={k}>/</li>;
     return this.links().reduce( (cur, next) => (
       _.isArray(cur) ? cur.concat(sep(cur), next) : [cur].concat(sep(cur), next)
     ));
   };
 
-  dropdownClass = () => {
+  dropdownClass = (): string => {
     const { navOpen } = this.props;
     return navOpen ? "open" : "closed";
   };
 
-  toggleShowDropdown = () => {
+  toggleShowDropdown = (): void => {
     const {
       navOpen,
       setNavShowState
