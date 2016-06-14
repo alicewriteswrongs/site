@@ -1518,6 +1518,11 @@
         }
       }
     },
+    "eslint-plugin-flowtype": {
+      "version": "2.2.7",
+      "from": "eslint-plugin-flowtype@latest",
+      "resolved": "https://registry.npmjs.org/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.2.7.tgz"
+    },
     "espree": {
       "version": "3.1.4",
       "from": "espree@3.1.4",

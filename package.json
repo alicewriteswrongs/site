@@ -21,6 +21,7 @@
   "homepage": "https://github.com/aliceriot/literate-crypto#readme",
   "dependencies": {
     "babel-core": "^6.9.0",
+    "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-object-assign": "^1.2.1",
     "babel-plugin-transform-flow-strip-types": "^6.8.0",
@@ -33,6 +34,7 @@
     "babel-register": "^6.9.0",
     "css-loader": "^0.23.1",
     "eslint": "^2.12.0",
+    "eslint-plugin-flowtype": "^2.2.7",
     "file-loader": "^0.8.5",
     "flow-bin": "^0.26.0",
     "front-matter": "^2.0.8",
@@ -69,6 +71,9 @@
     ]
   },
   "eslint": {
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "plugins": [
+      "flowtype"
+    ]
   }
 }
