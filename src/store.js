@@ -1,3 +1,4 @@
+// @flow
 import { createStore, compose } from 'redux';
 import { nav, initialState } from './reducers/reducers';
 

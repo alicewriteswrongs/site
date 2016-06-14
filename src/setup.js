@@ -1,3 +1,4 @@
+// @flow
 import entries from 'object.entries';
 import hljs from 'highlight.js';
 
