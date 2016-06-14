@@ -7,7 +7,7 @@ class MatasanoExercises extends React.Component {
     router: React.PropTypes.object.isRequired
   };
 
-  linksToChildren = () => {
+  linksToChildren: Function = () => {
     return this.props.route.childRoutes.map( route => (
       <Link to={`/matasano/${route.path}`} key={route.path}>
         {route.path}

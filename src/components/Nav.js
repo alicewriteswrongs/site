@@ -8,9 +8,9 @@ class Nav extends React.Component {
     router:  React.PropTypes.object
   };
 
-  currentRoute = () => this.props.location.pathname;
+  currentRoute: Function = () => this.props.location.pathname;
 
-  links = (): Array<React.Component> => {
+  links: Function = (): React$Element[] => {
     let active = path => path === this.currentRoute() ? "active" : "";
     return Object.entries({
       "/": "Home",
@@ -23,19 +23,19 @@ class Nav extends React.Component {
     ));
   };
 
-  desktopLinks = (): Array<any> => {
+  desktopLinks: Function = (): Array<any> => {
     let sep = k => <li key={k}>/</li>;
     return this.links().reduce( (cur, next) => (
       _.isArray(cur) ? cur.concat(sep(cur), next) : [cur].concat(sep(cur), next)
     ));
   };
 
-  dropdownClass = (): string => {
+  dropdownClass: Function = (): string => {
     const { navOpen } = this.props;
     return navOpen ? "open" : "closed";
   };
 
-  toggleShowDropdown = (): void => {
+  toggleShowDropdown: Function = (): void => {
     const {
       navOpen,
       setNavShowState
