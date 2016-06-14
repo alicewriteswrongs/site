@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./dev-server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2"
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "lint": "eslint ./src"
   },
   "repository": {
     "type": "git",
@@ -66,5 +67,8 @@
       "transform-object-rest-spread",
       "transform-flow-strip-types"
     ]
+  },
+  "eslint": {
+    "parser": "babel-eslint"
   }
 }
