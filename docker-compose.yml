@@ -1,0 +1,9 @@
+version: '2'
+services:
+  watch:
+    build: .
+    command: npm start
+    volumes:
+      - .:/src
+    ports:
+      - "3000:3000"
