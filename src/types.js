@@ -1,3 +1,3 @@
-export type MatasanoExercise = {
+export type MatasanoRecord = {
   body: string;
 };

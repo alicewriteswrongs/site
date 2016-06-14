@@ -5,9 +5,9 @@ import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 import App from './components/App';
 import MatasanoExercises from './components/MatasanoExercises';
 import MatasanoExercise from './components/MatasanoExercise';
-import type { MatasanoExercise } from './types';
+import type { MatasanoRecord } from './types';
 
-const matasanoExercises = (entries: MatasanoExercise[]) => (
+const matasanoExercises = (entries: MatasanoRecord[]) => (
   Object.keys(entries).map( key => (
     <Route key={key} path={key} component={MatasanoExercise} />
   ))
