@@ -1,8 +1,16 @@
 {
   "parser": "babel-eslint",
+  "extends": [
+    "defaults/configurations/google"
+  ],
+  "rules": {
+    "flow-vars/define-flow-type": 1,
+    "flow-vars/use-flow-type": 1
+  },
   "plugins": [
     "flowtype",
-    "eslint-plugin-flowtype"
+    "eslint-plugin-flowtype",
+    "eslint-plugin-flow-vars"
   ]
 }
 

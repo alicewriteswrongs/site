@@ -1518,6 +1518,16 @@
         }
       }
     },
+    "eslint-config-defaults": {
+      "version": "9.0.0",
+      "from": "eslint-config-defaults@latest",
+      "resolved": "https://registry.npmjs.org/eslint-config-defaults/-/eslint-config-defaults-9.0.0.tgz"
+    },
+    "eslint-plugin-flow-vars": {
+      "version": "0.4.0",
+      "from": "eslint-plugin-flow-vars@latest",
+      "resolved": "https://registry.npmjs.org/eslint-plugin-flow-vars/-/eslint-plugin-flow-vars-0.4.0.tgz"
+    },
     "eslint-plugin-flowtype": {
       "version": "2.2.7",
       "from": "eslint-plugin-flowtype@latest",
