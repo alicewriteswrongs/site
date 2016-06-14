@@ -69,11 +69,5 @@
       "transform-object-rest-spread",
       "transform-flow-strip-types"
     ]
-  },
-  "eslint": {
-    "parser": "babel-eslint",
-    "plugins": [
-      "flowtype"
-    ]
   }
 }
