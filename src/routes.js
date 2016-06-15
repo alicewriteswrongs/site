@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
 import App from './components/App';
 import MatasanoExercises from './components/MatasanoExercises';
