@@ -43,7 +43,7 @@ class Nav extends React.Component {
     setNavShowState(!navOpen);
   };
 
-  render () {
+  render() {
     return (
       <div className="literate-crypto-nav-wrapper">
         <nav className="literate-crypto-nav">

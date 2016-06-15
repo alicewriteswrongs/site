@@ -13,7 +13,7 @@ const matasanoExercises = (entries: MatasanoRecord[]) => (
   ))
 );
 
-export default function routes (matasano) {
+export default function routes(matasano) {
   return (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
