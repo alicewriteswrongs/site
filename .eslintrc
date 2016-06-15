@@ -1,16 +1,19 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "defaults/configurations/google"
+    "defaults/configurations/google",
+    "plugin:react/recommended"
   ],
   "rules": {
     "flow-vars/define-flow-type": 1,
-    "flow-vars/use-flow-type": 1
+    "flow-vars/use-flow-type": 1,
+    "object-curly-spacing": [2, "always"]
   },
   "plugins": [
     "flowtype",
     "eslint-plugin-flowtype",
-    "eslint-plugin-flow-vars"
+    "eslint-plugin-flow-vars",
+    "react"
   ]
 }
 
