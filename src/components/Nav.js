@@ -10,8 +10,20 @@ class Nav extends React.Component {
 
   currentRoute: Function = () => this.props.location.pathname;
 
+  activePath: Function = (): string => {
+    let currentPath = this.currentRoute();
+    if ( currentPath === "/" ) {
+      return "/";
+    } else if ( currentPath.match(/about/) ) {
+      return "/about";
+    } else if ( currentPath.match(/matasano/) ) {
+      return "/matasano"
+    }
+    return "/";
+  };
+
   links: Function = (): React$Element[] => {
-    let active = path => path === this.currentRoute() ? "active" : "";
+    let active = path => path === this.activePath() ? "active" : "";
     return Object.entries({
       "/": "Home",
       "/about": "About",
