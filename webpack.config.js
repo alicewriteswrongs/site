@@ -1,5 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
+const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+
 
 module.exports = {
   devtool: 'eval',

@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-import routes from './routes';
+import { routes } from './routes';
 import setup from './setup';
 import configureStore from './store';
 import { setNavShowState, setMatasanoContents } from './actions/actions';

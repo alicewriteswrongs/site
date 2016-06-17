@@ -3698,6 +3698,11 @@
       "from": "react-router@>=2.4.0 <3.0.0",
       "resolved": "https://registry.npmjs.org/react-router/-/react-router-2.4.1.tgz"
     },
+    "react-router-to-array": {
+      "version": "0.1.1",
+      "from": "react-router-to-array@latest",
+      "resolved": "https://registry.npmjs.org/react-router-to-array/-/react-router-to-array-0.1.1.tgz"
+    },
     "read-all-stream": {
       "version": "3.1.0",
       "from": "read-all-stream@>=3.0.0 <4.0.0",

@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
+import reactRouterToArray from 'react-router-to-array';
 
 import App from './components/App';
 import MatasanoExercises from './components/MatasanoExercises';
@@ -13,14 +14,24 @@ const matasanoExercises = (entries: Object) => (
   ))
 );
 
-export default function routes(matasano: Object) {
+export function routes(matasano: Object) {
   return (
     <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <Route path="matasano" component={MatasanoExercises}>
-          {matasanoExercises(matasano)}
-        </Route>
-      </Route>
+      { subRoutes(matasano) }
     </Router>
   );
 }
+
+function subRoutes(matasano: Object) {
+  return (
+    <Route path="/" component={App}>
+      <Route path="matasano" component={MatasanoExercises}>
+        {matasanoExercises(matasano)}
+      </Route>
+    </Route>
+  );
+}
+
+export function routeArray(matasanoExercises) {
+  return(reactRouterToArray(subRoutes(matasanoExercises)));
+};
