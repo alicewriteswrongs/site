@@ -32,6 +32,6 @@ function subRoutes(matasano: Object) {
   );
 }
 
-export function routeArray(matasanoExercises) {
+export function routeArray(matasanoExercises: Object) {
   return(reactRouterToArray(subRoutes(matasanoExercises)));
 };
