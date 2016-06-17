@@ -7,13 +7,13 @@ import MatasanoExercises from './components/MatasanoExercises';
 import MatasanoExercise from './components/MatasanoExercise';
 import type { MatasanoRecord } from './types';
 
-const matasanoExercises = (entries: MatasanoRecord[]) => (
+const matasanoExercises = (entries: Object) => (
   Object.keys(entries).map( key => (
     <Route key={key} path={key} component={MatasanoExercise} />
   ))
 );
 
-export default function routes(matasano) {
+export default function routes(matasano: Object) {
   return (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
