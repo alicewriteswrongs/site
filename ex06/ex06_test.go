@@ -76,23 +76,33 @@ func byteSliceEquality(b1 [][]byte, b2 [][]byte) bool {
 	return true
 }
 
-func TestChunkOne(t *testing.T) {
-	slices := [][]byte{
-		[]byte("foo"),
-		[]byte("bar"),
-	}
-	if !byteSliceEquality(chunks(3, []byte("foobar")), slices) {
-		t.Error("expected the other thing :(", slices)
-	}
+type chunkTest struct {
+	bytes       []byte
+	expectation [][]byte
+	size        int
 }
 
-func TestChunkTwo(t *testing.T) {
-	slices := [][]byte{
-		[]byte("fo"),
-		[]byte("ob"),
-		[]byte("ar"),
-	}
-	if !byteSliceEquality(chunks(2, []byte("foobar")), slices) {
-		t.Error("expected something else! oops", slices)
+var chunkTestTriples = []chunkTest{
+	{[]byte("foobar"), [][]byte{[]byte("foo"), []byte("bar")}, 3},
+	{[]byte("foobar"), [][]byte{[]byte("fo"), []byte("ob"), []byte("ar")}, 2},
+	{[]byte("flippit"), [][]byte{[]byte("flippit")}, 7},
+	{[]byte("123456789"), [][]byte{
+		[]byte("123"),
+		[]byte("456"),
+		[]byte("789"),
+	}, 3},
+}
+
+func TestChunks(t *testing.T) {
+	for _, pair := range chunkTestTriples {
+		testChunks := chunks(pair.size, pair.bytes)
+		if !byteSliceEquality(testChunks, pair.expectation) {
+			t.Error(
+				"expected",
+				pair.expectation,
+				"got",
+				testChunks,
+			)
+		}
 	}
 }
