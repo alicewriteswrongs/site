@@ -96,6 +96,12 @@ var chunkTestTriples = []chunkTest{
 		[]byte("def"),
 		[]byte("g"),
 	}, 3},
+	{[]byte(""), [][]byte{[]byte("")}, 4},
+	{[]byte("a longer example"), [][]byte{
+		[]byte("a longe"),
+		[]byte("r examp"),
+		[]byte("le"),
+	}, 7},
 }
 
 func TestChunks(t *testing.T) {
