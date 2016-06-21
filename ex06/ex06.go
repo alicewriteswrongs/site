@@ -89,9 +89,15 @@ it up properly!
 
 func chunks(k int, bytes []byte) [][]byte {
 	out := [][]byte{}
-	for i := 0; i < len(bytes)/k; i++ {
-		out = append(out, bytes[i*k:(i+1)*k])
+	tmp := []byte{}
+	for i := 0; i < len(bytes); i++ {
+		if i%k == 0 && i != 0 {
+			out = append(out, tmp)
+			tmp = []byte{}
+		}
+		tmp = append(tmp, bytes[i])
 	}
+	out = append(out, tmp)
 	return out
 }
 
