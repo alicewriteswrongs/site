@@ -117,3 +117,13 @@ func TestChunks(t *testing.T) {
 		}
 	}
 }
+
+// test keysizeDistance
+
+type keysizeTest struct {
+	keysize     int
+	bytes       []byte
+	expectation int
+}
+
+var keysizeTestCases = []keysizeTest{}
