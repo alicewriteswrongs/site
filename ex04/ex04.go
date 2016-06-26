@@ -14,7 +14,7 @@ which one has been encoded with single-byte XOR (as seen in [exercise 3](/matasa
 Should be fun!
 */
 
-package main
+package ex04
 
 import (
 	"bufio"
@@ -204,7 +204,7 @@ and then iterate through and check if `breakXOR` returns anything. If
 it does, we'll print the output:
 */
 
-func main() {
+func solveExercise() {
 	f, _ := os.Open("./exercise_4.txt")
 
 	input := bufio.NewScanner(f)
