@@ -76,14 +76,14 @@ func hamming(b1 []byte, b2 []byte) int {
 }
 
 /*
-So how are we going to use this, anyway? Well, the utility of the Hamming distance
-function rests on a bit of a wager. We assume that, if \\(k\\) is the correct keysize,
-then the average pairwise Hamming distance of the set \\(K\\) of successive chunks of
-length \\(k\\) pulled from our ciphertext will be lower than a randomly-chosen keysize.
-So in order to find the right keysize, we'll need iterate through the range of possible
-keysizes and, for each keysize, chop up our ciphertext into chunks of that size and
-record the average pairwise Hamming distance. Then, the keysize with the lowest average
-should be correct!
+So how are we going to use this, anyway? Well, the utility of the Hamming
+distance function rests on a bit of a wager. We assume that, if \\(k\\) is the
+correct keysize, then the average pairwise Hamming distance of the set \\(K\\)
+of successive chunks of length \\(k\\) pulled from our ciphertext will be lower
+than a randomly-chosen keysize.  So in order to find the right keysize, we'll
+need to iterate through the range of possible keysizes and, for each keysize,
+chop up our ciphertext into chunks of that size and record the average pairwise
+Hamming distance. Then, the keysize with the lowest average should be correct!
 
 First, let's write a little function that takes a keysize and a `[]byte`, and chunks
 it up properly!
