@@ -18,7 +18,7 @@ let's just start running through it!
 
 package main
 
-import "fmt"
+import "../ex04"
 
 /*
 ## Keysize
@@ -151,6 +151,9 @@ ciphertext into blocks which are encrypted under the same `ASCII` value, and
 then find each of those bytes using the same methodology we used to break
 single byte XOR in exercise 04. Then, once we've figured out the correct byte
 for each byte of the key, we can simply decrypt the message! Nice!
+
+First, a little function to split up a byte slice into slices based on the
+index modulo keysize of the elements:
 */
 
 func splitByModulo(size int, bytes []byte) [][]byte {
@@ -166,6 +169,10 @@ func splitByModulo(size int, bytes []byte) [][]byte {
 
 func BreakRepeatingXOR(bytes []byte) {
 	size := keySize(2, 40, bytes)
-	fmt.Println(size)
-
+	splits := splitByModulo(size, bytes)
+	results := []map[byte]string{}
+	for _, split := range splits {
+		keysAndResults, _ := ex04.BreakXOR(split)
+		results = append(keysAndResults, ex04.BreakXOR(split))
+	}
 }
