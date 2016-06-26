@@ -184,7 +184,7 @@ Then using these we can write another helper function that takes
 a possible ciphertext and tries to break it:
 */
 
-func breakXOR(plain []byte) (map[byte]string, bool) {
+func BreakXOR(plain []byte) (map[byte]string, bool) {
 	keysAndResults := make(map[byte]string)
 
 	valid := false
@@ -200,7 +200,7 @@ func breakXOR(plain []byte) (map[byte]string, bool) {
 
 /*
 Great! Now all we really need to do in `main` is read in the file,
-and then iterate through and check if `breakXOR` returns anything. If
+and then iterate through and check if `BreakXOR` returns anything. If
 it does, we'll print the output:
 */
 
@@ -210,7 +210,7 @@ func solveExercise() {
 	input := bufio.NewScanner(f)
 	for input.Scan() {
 		line, _ := hex.DecodeString(input.Text())
-		keysAndResults, ok := breakXOR(line)
+		keysAndResults, ok := BreakXOR(line)
 
 		if ok {
 			for k, plain := range keysAndResults {
