@@ -139,6 +139,11 @@ var splitByModuloTestCases = []splitByModuloTest{
 		[]byte("37"),
 		[]byte("48"),
 	}},
+	{3, []byte("12345678"), [][]byte{
+		[]byte("147"),
+		[]byte("258"),
+		[]byte("36"),
+	}},
 }
 
 func TestSplitByModulo(t *testing.T) {
