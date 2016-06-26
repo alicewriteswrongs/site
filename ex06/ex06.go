@@ -6,11 +6,11 @@ key: "ex06"
 
 # Exercise 6
 
-This problem is a little more involved than what we've dealt with so far.
-We're presented with a base64 encoded ciphertext, and we're tasked with
-breaking the encryption and finidng the plaintext. The ciphertext has been
-encrypted using repeating-key XOR, the same cryptosystem we implemented in our
-last exercise.
+This [problem](http://cryptopals.com/sets/1/challenges/6) is a little more
+involved than what we've dealt with so far.  We're presented with a base64
+encoded ciphertext, and we're tasked with breaking the encryption and finidng
+the plaintext. The ciphertext has been encrypted using repeating-key XOR, the
+same cryptosystem we implemented in our last exercise.
 
 There's a number of things we need to take care of in order to solve the problem,
 let's just start running through it!
