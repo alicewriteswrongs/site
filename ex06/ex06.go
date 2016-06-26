@@ -120,7 +120,7 @@ func keysizeDistance(keysize int, bytes []byte) float64 {
 With the above function we should be able to figure out the correct keysize -
 this is a question of simply iterating though the range of possible keysizes
 (\\(\{a, ..., b\}\\)), determining the `keysizeDistance` score for each, and
-then taking the smallest result to be \\((k\\), our keysize. Let's write another
+then taking the smallest result to be \\(k\\), our keysize. Let's write another
 little function that does that for us:
 */
 
