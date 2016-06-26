@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -59,23 +60,6 @@ func TestHammingDistance(t *testing.T) {
 }
 
 // chunks
-func byteSliceEquality(b1 [][]byte, b2 [][]byte) bool {
-	if len(b1) != len(b2) {
-		fmt.Println("asdf")
-		return false
-	}
-	for i := range b1 {
-		if len(b1[i]) != len(b2[i]) {
-			return false
-		}
-		for j := range b1[i] {
-			if b1[i][j] != b2[i][j] {
-				return false
-			}
-		}
-	}
-	return true
-}
 
 type chunkTest struct {
 	bytes       []byte
@@ -108,7 +92,7 @@ var chunkTestTriples = []chunkTest{
 func TestChunks(t *testing.T) {
 	for _, pair := range chunkTestTriples {
 		testChunks := chunks(pair.size, pair.bytes)
-		if !byteSliceEquality(testChunks, pair.expectation) {
+		if !reflect.DeepEqual(testChunks, pair.expectation) {
 			t.Error(
 				"expected",
 				pair.expectation,
@@ -138,4 +122,35 @@ func TestKeySize(t *testing.T) {
 	keysize := keySize(1, 10, bytes)
 	fmt.Println(keysize)
 
+}
+
+// test splitByModulo
+
+type splitByModuloTest struct {
+	size        int
+	bytes       []byte
+	expectation [][]byte
+}
+
+var splitByModuloTestCases = []splitByModuloTest{
+	{4, []byte("12345678"), [][]byte{
+		[]byte("15"),
+		[]byte("26"),
+		[]byte("37"),
+		[]byte("48"),
+	}},
+}
+
+func TestSplitByModulo(t *testing.T) {
+	for _, testCase := range splitByModuloTestCases {
+		split := splitByModulo(testCase.size, testCase.bytes)
+		if !reflect.DeepEqual(split, testCase.expectation) {
+			t.Error(
+				"expected",
+				testCase.expectation,
+				"got",
+				split,
+			)
+		}
+	}
 }

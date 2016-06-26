@@ -18,7 +18,7 @@ let's just start running through it!
 
 package main
 
-import "../ex04"
+import "fmt"
 
 /*
 ## Keysize
@@ -151,11 +151,21 @@ ciphertext into blocks which are encrypted under the same `ASCII` value, and
 then find each of those bytes using the same methodology we used to break
 single byte XOR in exercise 04. Then, once we've figured out the correct byte
 for each byte of the key, we can simply decrypt the message! Nice!
-
-We declared our solution to exercise four as a module, so we can just import it
-and use the `BreakXOR` function here:
 */
 
-func thing() {
-	ex04.BreakXOR()
+func splitByModulo(size int, bytes []byte) [][]byte {
+	out := [][]byte{}
+	for i := 0; i < size; i++ {
+		out = append(out, []byte{})
+	}
+	for i, b := range bytes {
+		out[i%size] = append(out[i%size], b)
+	}
+	return out
+}
+
+func BreakRepeatingXOR(bytes []byte) {
+	size := keySize(2, 40, bytes)
+	fmt.Println(size)
+
 }
