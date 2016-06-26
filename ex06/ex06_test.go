@@ -42,6 +42,7 @@ var hammingTestPairs = []hammingTestPair{
 	{"foo", "bar", 8},
 	{"foo", "foo", 0},
 	{"fizzbuzz", "fozzbozz", 5},
+	{"this is a test", "wokka wokka!!!", 37},
 }
 
 func TestHammingDistance(t *testing.T) {
@@ -120,10 +121,21 @@ func TestChunks(t *testing.T) {
 
 // test keysizeDistance
 
-type keysizeTest struct {
+type keysizeDistanceTest struct {
 	keysize     int
 	bytes       []byte
 	expectation int
 }
 
-var keysizeTestCases = []keysizeTest{}
+var keysizeTestCases = []keysizeDistanceTest{}
+
+func TestKeysizeDistance(t *testing.T) {
+}
+
+func TestKeySize(t *testing.T) {
+	bytes := []byte("some bytes to test wow bytes wowowowow")
+
+	keysize := keySize(1, 10, bytes)
+	fmt.Println(keysize)
+
+}

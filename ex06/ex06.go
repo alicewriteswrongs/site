@@ -103,26 +103,47 @@ func chunks(k int, bytes []byte) [][]byte {
 
 /*
 Now, a function that takes a keysize and a ciphertext, and returns the average pairwise
-Hamming distance:
+Hamming distance, normalized by `keysize`:
 */
 
-func keysizeDistance(keysize int, bytes []byte) int {
+func keysizeDistance(keysize int, bytes []byte) float64 {
 	chunked := chunks(keysize, bytes)
 	distance := 0
 	for _, chunk := range chunked {
 		distance += hamming(chunk, chunked[0])
 	}
-	return distance
+	average := float64(distance) / float64(len(chunked))
+	return average / float64(keysize)
 }
 
-// func main() {
-// 	f, _ := os.Open("./ex06.txt")
+/*
+With the above function we should be able to figure out the correct keysize -
+this is a question of simply iterating though the range of possible keysizes
+(\\(\{a, ..., b\}\\)), determining the `keysizeDistance` score for each, and
+then taking the smallest result to be \((k\\), our keysize. Let's write another
+little function that does that for us:
+*/
 
-// 	ciphertext := []byte{}
+func keySize(lower, upper int, bytes []byte) int {
+	scores := make(map[int]float64)
+	for i := lower; i <= upper; i++ {
+		scores[i] = keysizeDistance(i, bytes)
+	}
+	lowestScore := 0.0
+	keysize := -1
+	for k, v := range scores {
+		if v < lowestScore || lowestScore == 0.0 {
+			lowestScore = v
+			keysize = k
+		}
+	}
+	return keysize
+}
 
-// 	input := bufio.NewScanner(f)
-// 	for input.Scan() {
+/*
+Ok, so we've now got a function that will (hopefully!) let us figure out the
+length of the key. What can we go with that?
 
-// 	}
-
-// }
+Basically, what we're going to end up taking that keysize, and using it to break
+up our ciphertext into blocks which are encrypted under the same `ASCII` value,
+*/
