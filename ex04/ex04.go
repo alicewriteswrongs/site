@@ -26,47 +26,10 @@ import (
 )
 
 /*
-First off, we're going to be re-using a couple of functions we wrote
-for exercise three. First we'll need our little helper functions to check
-plaintexts, first our `onlyASCII`, which ensures that we're only dealing with
-printable ascii characters:
-*/
+This problem seems daunting at first, but it's really not that bad. Let's get
+going!
 
-func onlyASCII(bytes []byte) bool {
-	for _, c := range bytes {
-		if !asciiCheck(c) {
-			return false
-		}
-	}
-	return true
-}
-
-func asciiCheck(c byte) bool {
-	if c > 31 && c < 127 {
-		return true
-	} else if c == 10 || c == 10 {
-		return true
-	} else {
-		return false
-	}
-}
-
-/*
-Next is spaceCheck, which just checks that our putative plaintext has a space
-somewhere in it:
-*/
-
-func spaceCheck(bytes []byte) bool {
-	for _, c := range string(bytes) {
-		if c == ' ' {
-			return true
-		}
-	}
-	return false
-}
-
-/*
-We'll also need our little `arrayXOR` helper function:
+First off, we're going to be re-using our `arrayXOR` function from exercise 3:
 */
 
 func arrayXOR(in []byte, n byte) []byte {
@@ -78,136 +41,11 @@ func arrayXOR(in []byte, n byte) []byte {
 }
 
 /*
-Next is the most tricky one: scoring based on character count. What we're going
-to want to check is that two of the top four most prevalent characters in a potential
-plaintext are among the characters `AEOT `. First, a function that takes a string and
-returns a `map[rune]int` of characters and their occurences. We'll need to make
-sure that we only pass strings which have been made all lowercase, since we don't
-have any logic for handling that here:
-*/
-
-func charCount(str string) map[rune]int {
-	counts := make(map[rune]int)
-	for _, c := range str {
-		counts[c]++
-	}
-	return counts
-}
-
-/*
-Now we're going to need to create a named struct type for holding the relevant
-data, so that we can then implement methods on it to satisfy the sort interface.
-*/
-
-type sortableCount struct {
-	runeSlice []rune
-	counts    map[rune]int
-}
-
-/*
-So we have `sortableCount` struct, which has a slice of runes and a `map[rune]int`. The
-idea is that `counts` holds the result of calling `charCount` on a particular string,
-and `runeSlice` holds the characters that occur in that string, so that we can then
-sort them based on the number of times they occurred.
-
-Then, following the [sort documentation](https://golang.org/pkg/sort/) we need
-to implement the following methods on `sortableCount`:
-*/
-
-func (s sortableCount) Len() int {
-	return len(s.runeSlice)
-}
-
-func (s sortableCount) Swap(i, j int) {
-	s.runeSlice[i], s.runeSlice[j] = s.runeSlice[j], s.runeSlice[i]
-}
-
-func (s sortableCount) Less(i, j int) bool {
-	return s.counts[s.runeSlice[i]] < s.counts[s.runeSlice[j]]
-}
-
-/*
-After implementing these methods we should be able to use the `sort.Sort` interface
-to sort our array of runes based on the values stored in the map returned by `charCount`.
-Nice!
-
-Then we can do our check. We're basically going to call `charCount` to get the counts
-map, put the characters that we find with charCount into the `[]rune` slice on our
-`sortableCount` struct, sort that slice based on the counts, and then finally check that
-at least 2 of the four most common characters are in the set `AEOT `.
-
-Here we go:
-*/
-
-func aeotCheck(bytes []byte) bool {
-	sorted := sortableCount{
-		runeSlice: []rune{},
-		counts:    charCount(strings.ToLower(string(bytes))),
-	}
-	for c, _ := range sorted.counts {
-		sorted.runeSlice = append(sorted.runeSlice, c)
-	}
-
-	sort.Sort(sorted)
-
-	length := len(sorted.runeSlice)
-	count := 0
-	for i := length - 1; i > length-4; i-- {
-		for _, c := range "aeto " {
-			if sorted.runeSlice[i] == c {
-				count++
-			}
-		}
-	}
-	if count >= 2 {
-		return true
-	}
-	return false
-}
-
-/*
-Whew! That got a little heavy. Interfaces are kind of cool though, we can `sort.Sort()`
-anything at all, and all we have to do is implement these three methods that it looks
-for. I think I'm starting to understand how object oriented programming works in Go,
-and I think I like it.
-
-Anyway, now that we have our character frequency check sorted out, we'll combine that
-with the others to check for valid plaintext:
-*/
-
-func validPlaintext(plain []byte) bool {
-	return onlyASCII(plain) && spaceCheck(plain) && aeotCheck(plain)
-}
-
-/*
-Then using these we can write another helper function that takes
-a possible ciphertext and tries to break it. First we'll write a
-new struct to hold our results, and then we'll make sure it's sortable
-(so we can find the best key):
-*/
-
-type XORResult struct {
-	key    byte
-	score  int
-	result []byte
-}
-
-type XORResults []XORResult
-
-func (x XORResults) Len() int {
-	return len(x)
-}
-
-func (x XORResults) Swap(i, j int) {
-	x[i], x[j] = x[j], x[i]
-}
-
-func (x XORResults) Less(i, j int) bool {
-	return x[i].score < x[j].score
-}
-
-/*
-We'll also write a quick function to compute a score:
+Then we need a function to compute a score. This function will be passed a
+putative plaintext value, and we want to score the 'plaintext-ey-ness' of it.
+This isn't super complicated, basically we have a short list of common letters,
+and we're going to sum the count of those common letters and the number of
+spaces in the plaintext:
 */
 
 func resultScore(result []byte) int {
@@ -221,22 +59,53 @@ func resultScore(result []byte) int {
 }
 
 /*
-And, finally, we can put it all together:
+It sort of seems like it should be harder than that, but this actually works!
+
+Anyway moving on, here we're going to declare a struct which will hold a result
+- a `Key`, a potential plaintext (decrypted with that key), and a `Score`,
+computed with our function above:
 */
 
-func BreakXOR(plain []byte) (XORResults, bool) {
+type XORResult struct {
+	Key    byte
+	Score  int
+	Result []byte
+}
+
+type XORResults []XORResult
+
+/*
+When we solve the problem we're going to be building a big array of `XORResult`
+structs, and we need a way to find the correct one. Since we're already storing
+the `score` of each putative plaintext / key combination, we can implement a few methods
+on the struct to satisfy `sort.Sort`:
+*/
+
+func (x XORResults) Len() int {
+	return len(x)
+}
+
+func (x XORResults) Swap(i, j int) {
+	x[i], x[j] = x[j], x[i]
+}
+
+func (x XORResults) Less(i, j int) bool {
+	return x[j].Score < x[i].Score
+}
+
+/*
+Then, finally, we can put it all together.
+*/
+
+func BreakXOR(input []byte) XORResults {
 	results := XORResults{}
 
-	valid := false
 	for i := byte(0); i < 255; i++ {
-		plain := arrayXOR(plain, i)
-		if validPlaintext(plain) {
-			result := XORResult{i, resultScore(plain), plain}
-			results = append(results, result)
-			valid = true
-		}
+		plain := arrayXOR(input, i)
+		result := XORResult{i, resultScore(plain), plain}
+		results = append(results, result)
 	}
-	return results, valid
+	return results
 }
 
 /*
@@ -249,16 +118,17 @@ func solveExercise() {
 	f, _ := os.Open("./exercise_4.txt")
 
 	input := bufio.NewScanner(f)
+	results := XORResults{}
 	for input.Scan() {
 		line, _ := hex.DecodeString(input.Text())
-		results, ok := BreakXOR(line)
-
-		if ok {
-			for _, result := range results {
-				fmt.Printf("key: %d\tplaintext: %s\n", result.key, result.result)
-			}
+		result := BreakXOR(line)
+		for _, r := range result {
+			results = append(results, r)
 		}
 	}
+	sort.Sort(results)
+
+	fmt.Printf("key: %d\tplaintext: %s\n", results[0].Key, results[0].Result)
 	f.Close()
 }
 

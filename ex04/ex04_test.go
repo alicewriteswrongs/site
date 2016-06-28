@@ -1,7 +1,11 @@
 package ex04
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestExerciseFourSolution(t *testing.T) {
+	fmt.Println("Hey")
 	solveExercise()
 }
