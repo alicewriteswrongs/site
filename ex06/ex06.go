@@ -8,7 +8,7 @@ key: "ex06"
 
 This [problem](http://cryptopals.com/sets/1/challenges/6) is a little more
 involved than what we've dealt with so far.  We're presented with a base64
-encoded ciphertext, and we're tasked with breaking the encryption and finidng
+encoded ciphertext, and we're tasked with breaking the encryption and finding
 the plaintext. The ciphertext has been encrypted using repeating-key XOR, the
 same cryptosystem we implemented in our last exercise.
 
