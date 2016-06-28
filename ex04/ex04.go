@@ -251,11 +251,11 @@ func solveExercise() {
 	input := bufio.NewScanner(f)
 	for input.Scan() {
 		line, _ := hex.DecodeString(input.Text())
-		keysAndResults, ok := BreakXOR(line)
+		results, ok := BreakXOR(line)
 
 		if ok {
-			for k, plain := range keysAndResults {
-				fmt.Printf("key: %d\tplaintext: %s\n", k, plain)
+			for _, result := range results {
+				fmt.Printf("key: %d\tplaintext: %s\n", result.key, result.result)
 			}
 		}
 	}
