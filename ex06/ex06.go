@@ -18,7 +18,14 @@ let's just start running through it!
 
 package main
 
-import "../ex04"
+import (
+	"bufio"
+	"encoding/base64"
+	"fmt"
+	"os"
+
+	"../ex04"
+)
 
 /*
 ## Keysize
@@ -173,6 +180,27 @@ func BreakRepeatingXOR(bytes []byte) {
 	results := []map[byte]string{}
 	for _, split := range splits {
 		keysAndResults, _ := ex04.BreakXOR(split)
-		results = append(keysAndResults, ex04.BreakXOR(split))
+		results = append(results, keysAndResults)
 	}
+	fmt.Println(results)
+}
+
+func solveExercise() {
+	f, _ := os.Open("./ex06.txt")
+
+	input := bufio.NewScanner(f)
+	lines := []byte{}
+	for input.Scan() {
+		line, _ := base64.StdEncoding.DecodeString(input.Text())
+		fmt.Println(line)
+		for _, c := range line {
+			lines = append(lines, byte(c))
+		}
+	}
+	fmt.Println(lines)
+	BreakRepeatingXOR(lines)
+}
+
+func main() {
+	solveExercise()
 }
