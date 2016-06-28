@@ -181,21 +181,62 @@ func validPlaintext(plain []byte) bool {
 
 /*
 Then using these we can write another helper function that takes
-a possible ciphertext and tries to break it:
+a possible ciphertext and tries to break it. First we'll write a
+new struct to hold our results, and then we'll make sure it's sortable
+(so we can find the best key):
 */
 
-func BreakXOR(plain []byte) (map[byte]string, bool) {
-	keysAndResults := make(map[byte]string)
+type XORResult struct {
+	key    byte
+	score  int
+	result []byte
+}
+
+type XORResults []XORResult
+
+func (x XORResults) Len() int {
+	return len(x)
+}
+
+func (x XORResults) Swap(i, j int) {
+	x[i], x[j] = x[j], x[i]
+}
+
+func (x XORResults) Less(i, j int) bool {
+	return x[i].score < x[j].score
+}
+
+/*
+We'll also write a quick function to compute a score:
+*/
+
+func resultScore(result []byte) int {
+	common := "etaoinshrd"
+	score := 0
+	score += strings.Count(string(result), " ")
+	for _, c := range common {
+		score += strings.Count(string(result), string(c))
+	}
+	return score
+}
+
+/*
+And, finally, we can put it all together:
+*/
+
+func BreakXOR(plain []byte) (XORResults, bool) {
+	results := XORResults{}
 
 	valid := false
 	for i := byte(0); i < 255; i++ {
 		plain := arrayXOR(plain, i)
 		if validPlaintext(plain) {
-			keysAndResults[i] = string(plain)
+			result := XORResult{i, resultScore(plain), plain}
+			results = append(results, result)
 			valid = true
 		}
 	}
-	return keysAndResults, valid
+	return results, valid
 }
 
 /*
