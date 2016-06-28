@@ -61,8 +61,8 @@ func resultScore(result []byte) int {
 /*
 It sort of seems like it should be harder than that, but this actually works!
 
-Anyway moving on, here we're going to declare a struct which will hold a result
-- a `Key`, a potential plaintext (decrypted with that key), and a `Score`,
+Anyway moving on, here we're going to declare a struct which will hold a result:
+a `Key`, a potential plaintext (decrypted with that key), and a `Score`,
 computed with our function above:
 */
 
@@ -109,9 +109,10 @@ func BreakXOR(input []byte) XORResults {
 }
 
 /*
-Great! Now all we really need to do in `main` is read in the file,
-and then iterate through and check if `BreakXOR` returns anything. If
-it does, we'll print the output:
+Great! Now all we're going to do in `main` is read in the file,
+and then for each line we'll run our `BreakXOR` function, and then
+merge the output together (in `results`). Then we just need to sort
+`results` and print out the first result!
 */
 
 func solveExercise() {
@@ -126,18 +127,12 @@ func solveExercise() {
 			results = append(results, r)
 		}
 	}
-	sort.Sort(results)
-
-	fmt.Printf("key: %d\tplaintext: %s\n", results[0].Key, results[0].Result)
 	f.Close()
+
+	sort.Sort(results)
+	fmt.Printf("key: %d\tplaintext: %s\n", results[0].Key, results[0].Result)
 }
 
 /*
 And it works! Hooray!
-
-I'm not sure that my approach here is ultimately correct. In particular,
-the `aeotCheck` method is not particularly scientific, but instead based on a
-little bit of fine-tuning in order to get the right answer.
-
-But it works, so who cares!
 */
