@@ -1,4 +1,4 @@
-package main
+package ex06
 
 import (
 	"fmt"
@@ -158,4 +158,16 @@ func TestSplitByModulo(t *testing.T) {
 			)
 		}
 	}
+}
+
+func TestFindKey(t *testing.T) {
+	lines := readExerciseInput()
+	key := FindKey(lines)
+	if !reflect.DeepEqual(string(key), "Terminator X: Bring the noise") {
+		t.Error("something isn't right", string(key))
+	}
+}
+
+func TestExercise(t *testing.T) {
+	solution()
 }

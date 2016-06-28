@@ -16,7 +16,7 @@ There's a number of things we need to take care of in order to solve the problem
 let's just start running through it!
 */
 
-package main
+package ex06
 
 import (
 	"bufio"
@@ -175,26 +175,12 @@ func splitByModulo(size int, bytes []byte) [][]byte {
 	return out
 }
 
-func BreakRepeatingXOR(bytes []byte) {
-	size := keySize(2, 40, bytes)
-	splits := splitByModulo(size, bytes)
+/*
+While we're at it, here's another utility function that just reads in the file
+for the exercise:
+*/
 
-	key := []byte{}
-
-	for _, split := range splits {
-		results, ok := ex04.BreakXOR(split)
-		sort.Sort(results)
-		if ok {
-			key = append(key, results[0].Key)
-		} else {
-			fmt.Println(results)
-		}
-	}
-	fmt.Println(string(key))
-	fmt.Println(len(key))
-}
-
-func solveExercise() {
+func readExerciseInput() []byte {
 	f, _ := os.Open("./ex06.txt")
 
 	input := bufio.NewScanner(f)
@@ -206,9 +192,38 @@ func solveExercise() {
 			lines = append(lines, byte(c))
 		}
 	}
-	BreakRepeatingXOR(lines)
+	return lines
 }
 
-func main() {
-	solveExercise()
+/*
+Then to find the correct key we just need to break single-byte XOR for each
+modulo chunk, and we can build up our key byte-by-byte:
+*/
+
+func FindKey(bytes []byte) []byte {
+	size := keySize(2, 40, bytes)
+	splits := splitByModulo(size, bytes)
+	key := []byte{}
+	for _, split := range splits {
+		results := ex04.BreakXOR(split)
+		sort.Sort(results)
+		key = append(key, results[0].Key)
+	}
+	return key
+}
+
+/*
+Once we can find a key we're on our way! Now all we need to do is XOR the key
+with the ciphertext, and we're golden!
+*/
+
+func solution() {
+	cipherText := readExerciseInput()
+	key := FindKey(cipherText)
+
+	plainText := []byte{}
+	for i, c := range cipherText {
+		plainText = append(plainText, c^key[i%len(key)])
+	}
+	fmt.Println(string(plainText))
 }
