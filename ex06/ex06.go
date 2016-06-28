@@ -225,5 +225,6 @@ func solution() {
 	for i, c := range cipherText {
 		plainText = append(plainText, c^key[i%len(key)])
 	}
+	fmt.Printf("\nthe key was '%s', and the plaintext:\n\n", string(key))
 	fmt.Println(string(plainText))
 }
