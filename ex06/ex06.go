@@ -23,6 +23,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"os"
+	"sort"
 
 	"../ex04"
 )
@@ -177,12 +178,20 @@ func splitByModulo(size int, bytes []byte) [][]byte {
 func BreakRepeatingXOR(bytes []byte) {
 	size := keySize(2, 40, bytes)
 	splits := splitByModulo(size, bytes)
-	results := []map[byte]string{}
+
+	key := []byte{}
+
 	for _, split := range splits {
-		keysAndResults, _ := ex04.BreakXOR(split)
-		results = append(results, keysAndResults)
+		results, ok := ex04.BreakXOR(split)
+		sort.Sort(results)
+		if ok {
+			key = append(key, results[0].Key)
+		} else {
+			fmt.Println(results)
+		}
 	}
-	fmt.Println(results)
+	fmt.Println(string(key))
+	fmt.Println(len(key))
 }
 
 func solveExercise() {
@@ -190,14 +199,13 @@ func solveExercise() {
 
 	input := bufio.NewScanner(f)
 	lines := []byte{}
+
 	for input.Scan() {
 		line, _ := base64.StdEncoding.DecodeString(input.Text())
-		fmt.Println(line)
 		for _, c := range line {
 			lines = append(lines, byte(c))
 		}
 	}
-	fmt.Println(lines)
 	BreakRepeatingXOR(lines)
 }
 
