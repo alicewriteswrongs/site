@@ -160,8 +160,13 @@ then find each of those bytes using the same methodology we used to break
 single byte XOR in exercise 04. Then, once we've figured out the correct byte
 for each byte of the key, we can simply decrypt the message! Nice!
 
-First, a little function to split up a byte slice into slices based on the
-index modulo keysize of the elements:
+## Solving the problem
+
+Now that we can figure out the correct `keySize` we're well on our way!
+Everything else we need to do it pretty straightfoward.
+
+We'll need a few utility functions. First, a little function to split up a byte
+slice into slices based on the index modulo keysize of the elements:
 */
 
 func splitByModulo(size int, bytes []byte) [][]byte {
@@ -197,7 +202,8 @@ func readExerciseInput() []byte {
 
 /*
 Then to find the correct key we just need to break single-byte XOR for each
-modulo chunk, and we can build up our key byte-by-byte:
+modulo chunk, and we can build up our key byte-by-byte. We'll use `BreakXOR`
+from our exercise 04 solution, and then just return the correct key:
 */
 
 func FindKey(bytes []byte) []byte {
