@@ -8,3 +8,7 @@ func TestExerciseInput(t *testing.T) {
 		t.Error("uh oh, input is nil")
 	}
 }
+
+func TestSolution(t *testing.T) {
+	solution()
+}
