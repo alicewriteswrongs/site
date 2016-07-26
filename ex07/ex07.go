@@ -46,26 +46,43 @@ returns the decrypted plaintext.
 
 This is a little wacky overall, because Go doesn't have official support for
 ECB mode in the AES implementation in the standard library. Still, ECB is
-the simplest block cipher mode, and it's not that hard to get it working ourselves:
+the simplest block cipher mode, and it's not that hard to get it working ourselves.
+
+First, a quick little helper that takes two byte slices, and appends the second
+onto the first, returning the mutated first slice:
+*/
+
+func appendbytes(dest, src []byte) []byte {
+	for _, b := range src {
+		dest = append(dest, b)
+	}
+	return dest
+}
+
+/*
+Then we can do the thing! We take in our ciphertext (a byte slice) and
+a key. Then basically all we need to do is create an AES cipher, and then
+move blockwise through the ciphertext, decrypting as we go, and collecting our
+results in another byte slice.
 */
 
 func decrypt(ciphertext []byte, key string) []byte {
 	cipher, _ := aes.NewCipher([]byte(key))
 	bs := cipher.BlockSize()
-	bcount := len(ciphertext) / bs
-
 	plaintext := make([]byte, len(ciphertext))
-	for i := 0; i < bcount; i++ {
+	buffer := make([]byte, bs)
+	for i := 0; i < len(ciphertext)/bs; i++ {
 		start := i * bs
 		end := start + bs
-		buffer := make([]byte, bs)
 		cipher.Decrypt(buffer, ciphertext[start:end])
-		for _, c := range buffer {
-			plaintext = append(plaintext, byte(c))
-		}
+		plaintext = appendbytes(plaintext, buffer)
 	}
 	return plaintext
 }
+
+/*
+Then just print everything!
+*/
 
 func solution() {
 	cipherText := readExerciseInput()
