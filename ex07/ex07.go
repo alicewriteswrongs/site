@@ -42,31 +42,33 @@ const key = "YELLOW SUBMARINE"
 
 /*
 Let's write a little function that takes a ciphertext and a key, and
-returns the decrypted plaintext:
+returns the decrypted plaintext.
+
+This is a little wacky overall, because Go doesn't have official support for
+ECB mode in the AES implementation in the standard library. Still, ECB is
+the simplest block cipher mode, and it's not that hard to get it working ourselves:
 */
 
-func decrypt(cipherText []byte, key string) []byte {
+func decrypt(ciphertext []byte, key string) []byte {
 	cipher, _ := aes.NewCipher([]byte(key))
-	plainText := []byte{}
-	finalPlainText := []byte{}
-	bs := 16
-	i := 0
+	bs := cipher.BlockSize()
+	bcount := len(ciphertext) / bs
 
-	for len(cipherText) > 0 {
-		cipher.Decrypt(plainText, cipherText)
-		cipherText = cipherText[bs:]
-		decryptedBlock := plainText[:bs]
-		for index, element := range decryptedBlock {
-			finalPlainText[(i*bs)+index] = element
+	plaintext := make([]byte, len(ciphertext))
+	for i := 0; i < bcount; i++ {
+		start := i * bs
+		end := start + bs
+		buffer := make([]byte, bs)
+		cipher.Decrypt(buffer, ciphertext[start:end])
+		for _, c := range buffer {
+			plaintext = append(plaintext, byte(c))
 		}
-		i++
-		plainText = plainText[bs:]
 	}
-	return finalPlainText[:len(finalPlainText)-5]
+	return plaintext
 }
 
 func solution() {
 	cipherText := readExerciseInput()
 	plainText := decrypt(cipherText, key)
-	fmt.Println(plainText)
+	fmt.Println(string(plainText))
 }
