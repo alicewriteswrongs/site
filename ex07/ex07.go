@@ -10,8 +10,6 @@ Here we want to decrypt the Base64 encoded contents of a file which has been
 encrypted with AES-128 in [ECB (electronic code
 book)](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) mode. Should be
 fun!
-
-First, let's write a utility function to read in the data:
 */
 
 package ex07
@@ -22,6 +20,10 @@ import (
 	"fmt"
 	"io/ioutil"
 )
+
+/*
+First, let's write a utility function to read in the data:
+*/
 
 func readExerciseInput() []byte {
 	lines, _ := ioutil.ReadFile("./ex07.txt")
