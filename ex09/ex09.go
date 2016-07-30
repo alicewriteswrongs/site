@@ -38,14 +38,14 @@ padded `[]byte`!
 
 func padPKCS7(msg []byte, k int) []byte {
 	l := len(msg)
-	n := k - (l % k)
-	if n != k {
-		out := make([]byte, l+n)
-		copy(out, msg)
-		for i := l; i < n+l; i++ {
-			out[i] = byte(n)
-		}
-		return out
+	if l%k == 0 {
+		return msg
 	}
-	return msg
+	n := k - (l % k)
+	out := make([]byte, l+n)
+	copy(out, msg)
+	for i := l; i < n+l; i++ {
+		out[i] = byte(n)
+	}
+	return out
 }
