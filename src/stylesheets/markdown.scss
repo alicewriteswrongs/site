@@ -6,9 +6,22 @@
 
   p {
     text-align: justify;
+
+    code {
+      background-color: $code-background;
+      padding: 2px;
+    }
   }
 
   img {
     width: 100%;
+  }
+
+  pre {
+    background-color: $code-background;
+
+    code {
+      padding: 15px;
+    }
   }
 }
