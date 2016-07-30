@@ -32,18 +32,17 @@ ciphertext will also have identical blocks (in the corresponding
 positions).
 
 This is not good. This means you're vulnerable to some chosen-ciphertext
-attacks, and in particular we're going to leak information about the
-plaintext contents. An attacker could use the pattern of repeated blocks
-to gain information about what type of file is being transmitted, or could
-even again information about file contents. Yikes!
+attacks, and in particular we're going to leak information about the plaintext
+contents. An attacker could use the pattern of repeated blocks to gain
+information about what type of file is being transmitted, or could even again
+information about file contents. Yikes!
 
 
 ## Solution
 
-This should be pretty straightforward. A major failing of ECB mode (and what
-allows for chosen-plaintext type attack on it and so on) is that a given
-16-byte block in the input (assuming AES-128) will always produce the same
-output in the ciphertext.
+This should be pretty straightforward. A major failing of ECB mode is that a
+given 16-byte block in the input (assuming AES-128) will always produce the
+same output in the ciphertext.
 
 So we'll just look for that pattern! We're going to basically read in the data,
 and then we'll look for the line which has the highest number of repeated
