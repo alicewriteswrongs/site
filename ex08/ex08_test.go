@@ -9,6 +9,14 @@ func TestExerciseInput(t *testing.T) {
 	}
 }
 
+func TestfindECBString(t *testing.T) {
+	strings := readExerciseInput()
+	scores := findECBString(strings)
+	if scores == nil {
+		t.Error("oh no something is bad")
+	}
+}
+
 func TestSolution(t *testing.T) {
-	findECBString()
+	solveExercise()
 }
