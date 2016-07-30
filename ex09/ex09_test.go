@@ -27,7 +27,7 @@ var paddingTestCases = []padTest{
 
 func TestPadPKCS7(t *testing.T) {
 	for _, testCase := range paddingTestCases {
-		padded := padPKCS7(testCase.message, testCase.blocksize)
+		padded := PadPKCS7(testCase.message, testCase.blocksize)
 		if !reflect.DeepEqual(padded, testCase.expectation) {
 			fmt.Println(padded)
 			fmt.Println(testCase.expectation)

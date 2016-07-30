@@ -36,7 +36,7 @@ Let's write a function that takes a `[]byte` and a block size and returns a
 padded `[]byte`!
 */
 
-func padPKCS7(msg []byte, k int) []byte {
+func PadPKCS7(msg []byte, k int) []byte {
 	l := len(msg)
 	if l%k == 0 {
 		return msg
