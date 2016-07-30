@@ -1,7 +1,7 @@
 /*
 ---
-title: "Exercise 6"
-key: "ex06"
+title: "Exercise 7"
+key: "ex07"
 ---
 
 # Exercise 7
