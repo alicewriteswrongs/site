@@ -1,0 +1,234 @@
+/*
+---
+title: "Exercise 6"
+key: "ex06"
+---
+
+# Exercise 6
+
+This [problem](http://cryptopals.com/sets/1/challenges/6) is a little more
+involved than what we've dealt with so far.  We're presented with a base64
+encoded ciphertext, and we're tasked with breaking the encryption and finding
+the plaintext. The ciphertext has been encrypted using repeating-key XOR, the
+same cryptosystem we implemented in our last exercise.
+
+There's a number of things we need to take care of in order to solve the problem,
+let's just start running through it!
+*/
+
+package ex06
+
+import (
+	"bufio"
+	"encoding/base64"
+	"fmt"
+	"os"
+	"sort"
+
+	"../ex04"
+)
+
+/*
+## Keysize
+
+The first thing we'll need to figure out it is the correct `keysize`, defined as
+the length of the `[]byte` serving as our key. We have it narrowed down somewhat by
+the question text, which tells us we only have to worry about keys with lengths
+ranging from 2 to 40.
+
+We'll need one thing before we can get started:
+
+### Hamming distance
+
+The Hamming distance of two `ASCII` strings is defined as the number of bits
+at which those two strings differ. We'll need to calculate this metric when we're
+trying to figure out the correct keysize.
+
+First, though, here's a little function that takes a byte and returns a count of
+the ones in it's binary representation:
+*/
+
+func bitCount(b byte) int {
+	count := 0
+	notOne := ^byte(1)
+	for i := byte(0); i < 8; i++ {
+		count += int((b >> i) &^ notOne)
+	}
+	return count
+}
+
+/*
+This just takes a byte (`b`), and then we do some bit-twiddling to check
+whether each bit in the byte is a one. First, we negate one (`^byte(1)`) to
+get a mask `11111110`. Then we can use the `AND NOT` operator (`&^`) to check
+the leftmost bit of `b`. `&^` will return `0` when there is a `1` in it's second
+operand, so our mask `11111110` will return `0` everywhere except in the leftmost
+position. For `&^`, when the bit in the second argument is `0`, it returns the
+corresponding value in the first operand. So if that's a `1`, the value of the
+whole expression will be one, and otherwise it will be zero. Then we can convert
+that result to an integer, and add that to `count`, and we can loop from 0 to 8
+and bit-shift our byte to check each bit. Nice!
+
+How are we going to use that to calculate Hamming distance? Well, we can use bitwise
+`XOR` to obtain, for two bytes `b1` and `b2`, the byte `b3` where bits are set to `1`
+if `b1` and `b2` had a different value at a given position. Then we can just use
+our `bitCount` function to count those up!
+*/
+
+func hamming(b1 []byte, b2 []byte) int {
+	count := 0
+	for i := range b1 {
+		count += bitCount(b1[i] ^ b2[i])
+	}
+	return count
+}
+
+/*
+So how are we going to use this, anyway? Well, the utility of the Hamming
+distance function rests on a bit of a wager. We assume that, if \\(k\\) is the
+correct keysize, then the average pairwise Hamming distance of the set \\(K\\)
+of successive chunks of length \\(k\\) pulled from our ciphertext will be lower
+than a randomly-chosen keysize.  So in order to find the right keysize, we'll
+need to iterate through the range of possible keysizes and, for each keysize,
+chop up our ciphertext into chunks of that size and record the average pairwise
+Hamming distance. Then, the keysize with the lowest average should be correct!
+
+First, let's write a little function that takes a keysize and a `[]byte`, and chunks
+it up properly!
+*/
+
+func chunks(k int, bytes []byte) [][]byte {
+	out := [][]byte{}
+	tmp := []byte{}
+	for i := 0; i < len(bytes); i++ {
+		if i%k == 0 && i != 0 {
+			out = append(out, tmp)
+			tmp = []byte{}
+		}
+		tmp = append(tmp, bytes[i])
+	}
+	out = append(out, tmp)
+	return out
+}
+
+/*
+Now, a function that takes a keysize and a ciphertext, and returns the average pairwise
+Hamming distance, normalized by `keysize`:
+*/
+
+func keysizeDistance(keysize int, bytes []byte) float64 {
+	chunked := chunks(keysize, bytes)
+	distance := 0
+	for _, chunk := range chunked {
+		distance += hamming(chunk, chunked[0])
+	}
+	average := float64(distance) / float64(len(chunked))
+	return average / float64(keysize)
+}
+
+/*
+With the above function we should be able to figure out the correct keysize -
+this is a question of simply iterating though the range of possible keysizes
+(\\(\{a, ..., b\}\\)), determining the `keysizeDistance` score for each, and
+then taking the smallest result to be \\(k\\), our keysize. Let's write another
+little function that does that for us:
+*/
+
+func keySize(lower, upper int, bytes []byte) int {
+	scores := make(map[int]float64)
+	for i := lower; i <= upper; i++ {
+		scores[i] = keysizeDistance(i, bytes)
+	}
+	lowestScore := 0.0
+	keysize := -1
+	for k, v := range scores {
+		if v < lowestScore || lowestScore == 0.0 {
+			lowestScore = v
+			keysize = k
+		}
+	}
+	return keysize
+}
+
+/*
+Ok, so we've now got a function that will (hopefully!) let us figure out the
+length of the key. What can we go with that?
+
+## Solving the problem
+
+Basically, what we're going to take that keysize, use it to break up our
+ciphertext into blocks which are encrypted under the same byte, and then find
+each of those bytes using the same methodology we used to break single byte XOR
+in exercise 04. Then, once we've figured out the correct byte for each byte of
+the key, we can simply decrypt the message! Nice!
+
+
+We'll need a few utility functions. First, a little function to split up a byte
+slice into slices based on the index modulo keysize of the elements:
+*/
+
+func splitByModulo(size int, bytes []byte) [][]byte {
+	out := [][]byte{}
+	for i := 0; i < size; i++ {
+		out = append(out, []byte{})
+	}
+	for i, b := range bytes {
+		out[i%size] = append(out[i%size], b)
+	}
+	return out
+}
+
+/*
+While we're at it, here's another utility function that just reads in the file
+for the exercise:
+*/
+
+func readExerciseInput() []byte {
+	f, _ := os.Open("./ex06.txt")
+
+	input := bufio.NewScanner(f)
+	lines := []byte{}
+
+	for input.Scan() {
+		line, _ := base64.StdEncoding.DecodeString(input.Text())
+		for _, c := range line {
+			lines = append(lines, byte(c))
+		}
+	}
+	return lines
+}
+
+/*
+Then to find the correct key we just need to break single-byte XOR for each
+modulo chunk, and we can build up our key byte-by-byte. We'll use `BreakXOR`
+from our exercise 04 solution, and then just return the correct key:
+*/
+
+func FindKey(bytes []byte) []byte {
+	size := keySize(2, 40, bytes)
+	splits := splitByModulo(size, bytes)
+	key := []byte{}
+	for _, split := range splits {
+		results := ex04.BreakXOR(split)
+		sort.Sort(results)
+		key = append(key, results[0].Key)
+	}
+	return key
+}
+
+/*
+Once we can find a key we're on our way! Now all we need to do is XOR the key
+with the ciphertext, and we're golden!
+*/
+
+func solution() {
+	cipherText := readExerciseInput()
+	key := FindKey(cipherText)
+
+	plainText := []byte{}
+	for i, c := range cipherText {
+		plainText = append(plainText, c^key[i%len(key)])
+	}
+	fmt.Printf("\nthe key was '%s', and the plaintext:\n\n", string(key))
+	fmt.Println(string(plainText))
+}

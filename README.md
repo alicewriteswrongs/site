@@ -1,4 +1,4 @@
-#Literate Crypto
+# Literate Crypto
 
 This is a web project I started to document my progress in learning Go by
 doing the Matasano crypto problemset. Really, this is just a way to
@@ -11,3 +11,9 @@ There's a Rakefile to automate building markdown files from the Go source
 also pulls the most recent commits on the submodule, and then takes the
 formatted Markdown, renders it to HTMl, and then saves it all to JSON (for
 easy use in JS).
+
+## Matasano challenges in Go
+
+I'm working through the Matasano crypto challenges
+([again](https://github.com/aliceriot/CryptoPals)...) to learn Go in this
+same repo.
