@@ -8,16 +8,28 @@ var cp = require('cp');
 var routeArray = require('../src/routes').routeArray;
 
 // load matasano exercises
-var matasanoPath = path.join(__dirname, '../src/data/matasano.json')
-var matasanoContents = JSON.parse(fs.readFileSync(matasanoPath));
+let matasanoPath = path.join(__dirname, '../src/data/matasano.json')
+let matasanoContents = JSON.parse(fs.readFileSync(matasanoPath));
 
 // get an array of the routes we care about
-var matasanoRoutes = routeArray(matasanoContents);
+let matasanoRoutes = routeArray(matasanoContents);
 
-let routePath = route => (
-  path.join(__dirname, '../dist', route)
-);
+let dist = path.join(__dirname, '../dist');
+
+let routePath = route => path.join(dist, route);
+
+fs.mkdir(path.join(dist, 'matasano'));
 
 matasanoRoutes.forEach(route => {
-  cp.sync('index.html', routePath(route));
+  let fullPath = routePath(route);
+  console.log(fullPath);
+
+  if ( fs.existsSync(fullPath) && fs.lstatSync(fullPath).isDirectory() ) {
+    console.log(fullPath);
+    let copyPath = fullPath + "/index.html"
+    cp.sync('index.html', copyPath);
+  } else {
+    // console.log(fullPath);
+    cp.sync('index.html', fullPath);
+  }
 });
