@@ -69,7 +69,7 @@ results in another byte slice.
 func DecryptAESECB(ciphertext []byte, key string) []byte {
 	cipher, _ := aes.NewCipher([]byte(key))
 	bs := cipher.BlockSize()
-	plaintext := make([]byte, len(ciphertext))
+	plaintext := []byte{}
 	buffer := make([]byte, bs)
 	for i := 0; i < len(ciphertext)/bs; i++ {
 		start := i * bs
