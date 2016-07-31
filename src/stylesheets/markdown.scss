@@ -19,9 +19,10 @@
 
   pre {
     background-color: $code-background;
+    padding: 15px;
 
     code {
-      padding: 15px;
+      padding: 0;
     }
   }
 }
