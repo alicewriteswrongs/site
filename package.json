@@ -7,7 +7,9 @@
     "start": "node ./dev-server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "flow": "flow check",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "build": "webpack --progress -p",
+    "publish": "./build/puplish.sh"
   },
   "repository": {
     "type": "git",
