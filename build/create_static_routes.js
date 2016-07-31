@@ -18,7 +18,9 @@ let dist = path.join(__dirname, '../dist');
 
 let routePath = route => path.join(dist, route);
 
-fs.mkdir(path.join(dist, 'matasano'));
+if ( ! fs.existsSync(path.join(dist, 'matasano')) ) {
+  fs.mkdirSync(path.join(dist, 'matasano'));
+}
 
 matasanoRoutes.forEach(route => {
   let fullPath = routePath(route);
@@ -28,8 +30,8 @@ matasanoRoutes.forEach(route => {
     console.log(fullPath);
     let copyPath = fullPath + "/index.html"
     cp.sync('index.html', copyPath);
-  } else {
-    // console.log(fullPath);
+  }
+  if ( !fs.existsSync(fullPath) ) {
     cp.sync('index.html', fullPath);
   }
 });
