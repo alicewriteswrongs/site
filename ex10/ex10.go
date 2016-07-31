@@ -54,7 +54,7 @@ Then let's write a function that takes a ciphertext, a key, and an IV and
 decrypts a message encrypted with AES-CBC. What we're going to want to do
 is iterate through \\(d\\), the decrypted bytes, and:
 
-\\[ \forall n \in \{0..len(d)\} \\]
+\\[ \forall n \in \\{0..len(d) \\} \\]
 */
 
 func decryptAESCBC(ciphertext []byte, key string, iv []byte) []byte {
