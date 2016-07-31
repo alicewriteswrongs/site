@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "flow": "flow check",
     "lint": "eslint ./src",
-    "build": "webpack --progress -p",
+    "build": "NODE_ENV=production webpack --progress -p",
     "publish": "./build/publish.sh"
   },
   "repository": {
