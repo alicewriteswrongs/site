@@ -55,6 +55,13 @@ decrypts a message encrypted with AES-CBC. What we're going to want to do
 is iterate through \\(d\\), the decrypted bytes, and:
 
 \\[ \forall n \in \\\{0..len(d) \\\} \\]
+
+if \\( n < 16 \\) we'll set `output[n]` to be `d[n] ^ iv[n]`, and if \\(n > 16\\)
+we'll set `output[n]` to be `d[n] ^ ciphertext[n-16]`. This will take care of XORing
+each byte of each block with the proper byte in either the preceeding block or
+the IV.
+
+Here we go:
 */
 
 func decryptAESCBC(ciphertext []byte, key string, iv []byte) []byte {
