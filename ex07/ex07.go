@@ -66,7 +66,7 @@ move blockwise through the ciphertext, decrypting as we go, and collecting our
 results in another byte slice.
 */
 
-func decrypt(ciphertext []byte, key string) []byte {
+func DecryptAESECB(ciphertext []byte, key string) []byte {
 	cipher, _ := aes.NewCipher([]byte(key))
 	bs := cipher.BlockSize()
 	plaintext := make([]byte, len(ciphertext))
@@ -86,6 +86,6 @@ Then just print everything!
 
 func solution() {
 	cipherText := readExerciseInput()
-	plainText := decrypt(cipherText, key)
+	plainText := DecryptAESECB(cipherText, key)
 	fmt.Println(string(plainText))
 }

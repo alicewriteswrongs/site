@@ -1,8 +1,8 @@
 package ex09
 
 import (
+	"bytes"
 	"fmt"
-	"reflect"
 	"testing"
 )
 
@@ -28,7 +28,7 @@ var paddingTestCases = []padTest{
 func TestPadPKCS7(t *testing.T) {
 	for _, testCase := range paddingTestCases {
 		padded := PadPKCS7(testCase.message, testCase.blocksize)
-		if !reflect.DeepEqual(padded, testCase.expectation) {
+		if !bytes.Equal(padded, testCase.expectation) {
 			fmt.Println(padded)
 			fmt.Println(testCase.expectation)
 			t.Error("whoops")

@@ -33,6 +33,7 @@ package ex10
 
 import (
 	"encoding/base64"
+	"fmt"
 	"io/ioutil"
 
 	"../ex07"
@@ -55,15 +56,17 @@ decrypts a message encrypted with AES-CBC:
 */
 
 func decryptAESCBC(ciphertext []byte, key string, iv []byte) []byte {
-	decrypted := ex07.DecryptAESECB(ciphertext, key)
-	for i := range decrypted {
+	buffer := ex07.DecryptAESECB(ciphertext, key)
+	out := make([]byte, len(buffer))
+	for i := range buffer {
+		fmt.Println(i)
 		if i < 16 {
-			decrypted[i] = decrypted[i] ^ iv[i]
+			out[i] = buffer[i] ^ iv[i]
 		} else {
-			decrypted[i] = decrypted[i] ^ decrypted[i-16]
+			out[i] = buffer[i] ^ ciphertext[i-16]
 		}
 	}
-	return decrypted
+	return out
 }
 
 const key = "YELLOW SUBMARINE"
