@@ -9,7 +9,7 @@
     "flow": "flow check",
     "lint": "eslint ./src",
     "build": "webpack --progress -p",
-    "publish": "./build/puplish.sh"
+    "publish": "./build/publish.sh"
   },
   "repository": {
     "type": "git",
