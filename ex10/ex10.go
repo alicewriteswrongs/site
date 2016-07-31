@@ -33,6 +33,7 @@ package ex10
 
 import (
 	"encoding/base64"
+	"fmt"
 	"io/ioutil"
 
 	"../ex07"
@@ -77,6 +78,24 @@ func decryptAESCBC(ciphertext []byte, key string, iv []byte) []byte {
 	return out
 }
 
+/*
+Then all we need to do is declare our key and IV:
+*/
+
 const key = "YELLOW SUBMARINE"
 
 var iv = []byte{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+
+/*
+and we can write a little function that solves the problem!
+*/
+
+func solution() {
+	ciphertext := readExerciseInput()
+	plaintext := decryptAESCBC(ciphertext, key, iv)
+	fmt.Println(string(plaintext))
+}
+
+/*
+Nice!
+*/

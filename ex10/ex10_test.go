@@ -1,7 +1,9 @@
 package ex10
 
 import (
-	"fmt"
+	"bytes"
+	"crypto/aes"
+	"crypto/cipher"
 	"testing"
 )
 
@@ -13,7 +15,21 @@ func TestExerciseInput(t *testing.T) {
 }
 
 func TestAESCBCDecryption(t *testing.T) {
-	input := readExerciseInput()
-	plaintext := decryptAESCBC(input, key, iv)
-	fmt.Println(string(plaintext))
+	ciphertext := readExerciseInput()
+	ourPlaintext := decryptAESCBC(ciphertext, key, iv)
+
+	// test that the decryption is correct
+
+	block, _ := aes.NewCipher([]byte(key))
+	mode := cipher.NewCBCDecrypter(block, iv)
+	stdlibPlaintext := make([]byte, len(ciphertext))
+	mode.CryptBlocks(stdlibPlaintext, ciphertext)
+
+	if !bytes.Equal(stdlibPlaintext, ourPlaintext) {
+		t.Error("we didn't do something quite right")
+	}
+}
+
+func TestSolution(t *testing.T) {
+	solution()
 }
