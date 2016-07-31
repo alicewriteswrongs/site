@@ -24,14 +24,12 @@ if ( ! fs.existsSync(path.join(dist, 'matasano')) ) {
 
 matasanoRoutes.forEach(route => {
   let fullPath = routePath(route);
-  console.log(fullPath);
 
   if ( fs.existsSync(fullPath) && fs.lstatSync(fullPath).isDirectory() ) {
-    console.log(fullPath);
     let copyPath = fullPath + "/index.html"
-    cp.sync('index.html', copyPath);
+    cp.sync('index-production.html', copyPath);
   }
   if ( !fs.existsSync(fullPath) ) {
-    cp.sync('index.html', fullPath);
+    cp.sync('index-production.html', fullPath);
   }
 });
