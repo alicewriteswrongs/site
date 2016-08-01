@@ -23,7 +23,7 @@ if ( ! fs.existsSync(path.join(dist, 'matasano')) ) {
 }
 
 matasanoRoutes.forEach(route => {
-  let fullPath = routePath(route);
+  let fullPath = routePath(route.replace("/literate-crypto", ""));
 
   if ( fs.existsSync(fullPath) && fs.lstatSync(fullPath).isDirectory() ) {
     let copyPath = fullPath + "/index.html"

@@ -18,7 +18,7 @@ class Nav extends React.Component {
 
   activePath: Function = (): string => {
     let currentPath = this.currentRoute();
-    if ( currentPath === "/literate-crypto" ) {
+    if ( currentPath.match(/literate-crypto\/?$/) ) {
       return "/literate-crypto";
     } else if ( currentPath.match(/about/) ) {
       return "/literate-crypto/about";
