@@ -1,12 +1,18 @@
 // @flow
 import React from 'react';
-import { Router, Route, browserHistory } from 'react-router';
+import {
+  Router,
+  Route,
+  browserHistory,
+  IndexRedirect,
+  IndexRoute,
+} from 'react-router';
 import reactRouterToArray from 'react-router-to-array';
 
 import App from './components/App';
 import MatasanoExercises from './components/MatasanoExercises';
 import MatasanoExercise from './components/MatasanoExercise';
-import type { MatasanoRecord } from './types';
+import Home from './components/Home';
 
 const matasanoExercises = (entries: Object) => (
   Object.keys(entries).map( key => (
@@ -24,9 +30,13 @@ export function routes(matasano: Object) {
 
 function subRoutes(matasano: Object) {
   return (
-    <Route path="/" component={App}>
-      <Route path="matasano" component={MatasanoExercises}>
-        {matasanoExercises(matasano)}
+    <Route path="/">
+      <IndexRedirect to="/literate-crypto" />
+      <Route path="/literate-crypto" component={App}>
+        <IndexRoute component={Home} />
+        <Route path="matasano" component={MatasanoExercises}>
+          {matasanoExercises(matasano)}
+        </Route>
       </Route>
     </Route>
   );
@@ -34,4 +44,4 @@ function subRoutes(matasano: Object) {
 
 export function routeArray(matasanoExercises: Object) {
   return(reactRouterToArray(subRoutes(matasanoExercises)));
-};
+}

@@ -4,6 +4,12 @@ import { Link } from 'react-router';
 import _ from 'lodash';
 
 class Nav extends React.Component {
+  props: {
+    location:         Object,
+    navOpen:          boolean,
+    setNavShowState:  (b: boolean) => void,
+  };
+
   static contextTypes = {
     router:  React.PropTypes.object
   };
@@ -12,12 +18,12 @@ class Nav extends React.Component {
 
   activePath: Function = (): string => {
     let currentPath = this.currentRoute();
-    if ( currentPath === "/" ) {
-      return "/";
+    if ( currentPath === "/literate-crypto" ) {
+      return "/literate-crypto";
     } else if ( currentPath.match(/about/) ) {
-      return "/about";
+      return "/literate-crypto/about";
     } else if ( currentPath.match(/matasano/) ) {
-      return "/matasano"
+      return "/literate-crypto/matasano"
     }
     return "/";
   };
@@ -25,9 +31,9 @@ class Nav extends React.Component {
   links: Function = (): React$Element[] => {
     let active = path => path === this.activePath() ? "active" : "";
     return Object.entries({
-      "/": "Home",
-      "/about": "About",
-      "/matasano": "Matasano Exercises"
+      "/literate-crypto": "Home",
+      "/literate-crypto/about": "About",
+      "/literate-crypto/matasano": "Matasano Exercises"
     }).map( ([path, label]) => (
       <li key={path} className={active(path)}>
         <Link to={path}>{label}</Link>
