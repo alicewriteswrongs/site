@@ -1,6 +1,11 @@
 // @flow
 import React from 'react';
-import { Router, Route, browserHistory } from 'react-router';
+import {
+  Router,
+  Route,
+  browserHistory,
+  IndexRedirect,
+} from 'react-router';
 import reactRouterToArray from 'react-router-to-array';
 
 import App from './components/App';
@@ -25,8 +30,12 @@ export function routes(matasano: Object) {
 function subRoutes(matasano: Object) {
   return (
     <Route path="/" component={App}>
-      <Route path="matasano" component={MatasanoExercises}>
-        {matasanoExercises(matasano)}
+      <IndexRedirect to="/literate-crypto" />
+      <Route path="/literate-crypto">
+        <IndexRoute component={Home} />
+        <Route path="matasano" component={MatasanoExercises}>
+          {matasanoExercises(matasano)}
+        </Route>
       </Route>
     </Route>
   );
