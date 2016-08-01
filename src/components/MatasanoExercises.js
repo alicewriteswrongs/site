@@ -21,9 +21,12 @@ class MatasanoExercises extends React.Component {
     ));
   };
 
+  pathRegex = /literate-crypto\/matasano\/?$/;
+
   render() {
+    const { location: { pathname } } = this.props;
     let body;
-    if ( this.props.location.pathname === "/literate-crypto/matasano" ) {
+    if ( pathname.match(this.pathRegex) ) {
       body = this.linksToChildren();
     } else {
       body = this.props.children;
