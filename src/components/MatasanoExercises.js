@@ -3,6 +3,12 @@ import React from 'react';
 import { Link } from 'react-router';
 
 class MatasanoExercises extends React.Component {
+  props: {
+    route:    Object,
+    location: Object,
+    children: React$Element,
+  };
+
   static contextTypes = {
     router: React.PropTypes.object.isRequired
   };
@@ -15,9 +21,9 @@ class MatasanoExercises extends React.Component {
     ));
   };
 
-  render () {
+  render() {
     let body;
-    if ( this.props.location.pathname === "/matasano" ) {
+    if ( this.props.location.pathname === "/literate-crypto/matasano" ) {
       body = this.linksToChildren();
     } else {
       body = this.props.children;
