@@ -25,11 +25,11 @@ if ( ! fs.existsSync(path.join(dist, 'matasano')) ) {
 matasanoRoutes.forEach(route => {
   let fullPath = routePath(route.replace("/literate-crypto", ""));
 
+  let copyPath = fullPath + "/index.html"
   if ( fs.existsSync(fullPath) && fs.lstatSync(fullPath).isDirectory() ) {
-    let copyPath = fullPath + "/index.html"
     cp.sync('index-production.html', copyPath);
-  }
-  if ( !fs.existsSync(fullPath) ) {
-    cp.sync('index-production.html', fullPath);
+  } else {
+    fs.mkdirSync(fullPath);
+    cp.sync('index-production.html', copyPath);
   }
 });
