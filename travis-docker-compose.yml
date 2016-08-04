@@ -1,4 +1,4 @@
-golangtest:
+golang:
   build: .
   dockerfile: Dockerfile-go
   working_dir: /src
