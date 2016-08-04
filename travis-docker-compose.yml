@@ -1,0 +1,5 @@
+golangtest:
+  build: .
+  dockerfile: Dockerfile-go
+  working_dir: /src
+  command: ./test.sh
