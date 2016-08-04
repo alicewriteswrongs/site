@@ -1,5 +1,9 @@
 # Literate Crypto
 
+
+[![Build
+Status](https://travis-ci.org/aliceriot/literate-crypto.svg?branch=master)](https://travis-ci.org/aliceriot/literate-crypto)
+
 This is a web project I started to document my progress in learning Go by
 doing the Matasano crypto problemset. Really, this is just a way to
 combine my three great areas of CS enthusiasm: literate programming,
