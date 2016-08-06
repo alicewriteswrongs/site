@@ -6,7 +6,7 @@ class MatasanoExercises extends React.Component {
   props: {
     route:    Object,
     location: Object,
-    children: React$Element,
+    children: React$Element<*>,
   };
 
   static contextTypes = {

@@ -28,7 +28,7 @@ class Nav extends React.Component {
     return "/";
   };
 
-  links: Function = (): React$Element[] => {
+  links: Function = (): React$Element<*>[] => {
     let active = path => path === this.activePath() ? "active" : "";
     return Object.entries({
       "/literate-crypto": "Home",

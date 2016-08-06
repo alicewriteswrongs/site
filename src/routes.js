@@ -8,17 +8,16 @@ import {
   IndexRoute,
 } from 'react-router';
 import reactRouterToArray from 'react-router-to-array';
+import R from 'ramda';
 
 import App from './components/App';
 import MatasanoExercises from './components/MatasanoExercises';
 import MatasanoExercise from './components/MatasanoExercise';
 import Home from './components/Home';
 
-const matasanoExercises = (entries: Object) => (
-  Object.keys(entries).map( key => (
-    <Route key={key} path={key} component={MatasanoExercise} />
-  ))
-);
+const matasanoExercises = R.map(key => (
+  <Route key={key} path={key} component={MatasanoExercise} />
+));
 
 export function routes(matasano: Object) {
   return (
@@ -35,7 +34,7 @@ function subRoutes(matasano: Object) {
       <Route path="/literate-crypto" component={App}>
         <IndexRoute component={Home} />
         <Route path="matasano" component={MatasanoExercises}>
-          {matasanoExercises(matasano)}
+          { matasanoExercises(Object.keys(matasano)) }
         </Route>
       </Route>
     </Route>

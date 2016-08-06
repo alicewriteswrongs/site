@@ -1,12 +1,14 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
+import { markdown } from '../shared/markdown';
 
 class MatasanoExercise extends React.Component {
   static propTypes = {
     title:    React.PropTypes.string,
     body:     React.PropTypes.string,
     matasano: React.PropTypes.object,
+    route:    Object,
   }
 
   getBody = () => {
@@ -14,15 +16,11 @@ class MatasanoExercise extends React.Component {
     return matasano[this.props.route.path].body
   };
 
-  render () {
-    return (
-      <div 
-        className="markdown"
-        dangerouslySetInnerHTML={{ __html: this.getBody() }}>
-      </div>
-    );
+  render() {
+    return markdown(this.getBody());
   }
 }
+
 const mapStateToProps = state => ({
   matasano: state.matasano
 });
