@@ -1,7 +1,50 @@
 // @flow
 import React from 'react';
 import { Link } from 'react-router';
-import _ from 'lodash';
+import R from 'ramda';
+
+const navRecords = [
+  { path: "/",
+    label: "Home",
+    regex: /\/?$/,
+  },
+  {
+    path: "/about",
+    label: "About",
+    regex: /about\/?$/,
+  }, 
+  {
+    path: "/matasano",
+    label: "Matasano Exercises",
+    regex: /matasano\/?$/,
+  }
+];
+
+const navLink = navRecord => (
+  <li key={navRecord.path} className={navRecord.active}>
+    <Link to={navRecord.path}>{navRecord.label}</Link>
+  </li>
+);
+
+let setActive = R.curry((cur, record) => {
+  if ( cur.match(record.regex) ) {
+    return Object.assign({}, record, {
+      active: 'active'
+    });
+  } else {
+    return Object.assign({}, record, {
+      active: ''
+    });
+  }
+});
+
+const navLinks = R.curry((current) => (
+  R.pipe(R.map(setActive(current)), R.map(navLink))(navRecords)
+));
+
+const liSep = R.curry((sep, item, index) => [item, <li key={index}>{sep}</li>]);
+const separatedLinks = R.addIndex(R.chain)(liSep("/"));
+const desktopLinks = R.pipe(separatedLinks, R.dropLast(1));
 
 class Nav extends React.Component {
   props: {
@@ -15,38 +58,6 @@ class Nav extends React.Component {
   };
 
   currentRoute: Function = () => this.props.location.pathname;
-
-  activePath: Function = (): string => {
-    let currentPath = this.currentRoute();
-    if ( currentPath.match(/literate-crypto\/?$/) ) {
-      return "/literate-crypto";
-    } else if ( currentPath.match(/about/) ) {
-      return "/literate-crypto/about";
-    } else if ( currentPath.match(/matasano/) ) {
-      return "/literate-crypto/matasano"
-    }
-    return "/";
-  };
-
-  links: Function = (): React$Element<*>[] => {
-    let active = path => path === this.activePath() ? "active" : "";
-    return Object.entries({
-      "/literate-crypto": "Home",
-      "/literate-crypto/about": "About",
-      "/literate-crypto/matasano": "Matasano Exercises"
-    }).map( ([path, label]) => (
-      <li key={path} className={active(path)}>
-        <Link to={path}>{label}</Link>
-      </li>
-    ));
-  };
-
-  desktopLinks: Function = (): Array<any> => {
-    let sep = k => <li key={k}>/</li>;
-    return this.links().reduce( (cur, next) => (
-      _.isArray(cur) ? cur.concat(sep(cur), next) : [cur].concat(sep(cur), next)
-    ));
-  };
 
   dropdownClass: Function = (): string => {
     const { navOpen } = this.props;
@@ -66,7 +77,7 @@ class Nav extends React.Component {
       <div className="literate-crypto-nav-wrapper">
         <nav className="literate-crypto-nav">
           <ul className="nav-link-list">
-            { this.desktopLinks() }
+            { desktopLinks(navLinks(this.currentRoute())) }
           </ul>
           <div 
             className="nav-link-sidebar-switch"
@@ -76,7 +87,7 @@ class Nav extends React.Component {
         </nav>
         <div className={`nav-link-sidebar ${this.dropdownClass()}`}>
           <ul>
-            { this.links() }
+            { navLinks(this.currentRoute()) }
           </ul>
         </div>
       </div>
