@@ -3,40 +3,22 @@ import React from 'react';
 import { Link } from 'react-router';
 import R from 'ramda';
 
+type NavRecord = { path: string, label: string, regex: RegExp, active: ?string };
 const navRecords = [
-  { path: "/",
-    label: "Home",
-    regex: /\/?$/,
-  },
-  {
-    path: "/about",
-    label: "About",
-    regex: /about\/?$/,
-  }, 
-  {
-    path: "/matasano",
-    label: "Matasano Exercises",
-    regex: /matasano\/?$/,
-  }
+  { path: "/", label: "Home", regex: /\/?$/ },
+  { path: "/about", label: "About", regex: /about\/?$/ },
+  { path: "/matasano", label: "Matasano Exercises", regex: /matasano\/?$/ },
 ];
 
-const navLink = navRecord => (
-  <li key={navRecord.path} className={navRecord.active}>
-    <Link to={navRecord.path}>{navRecord.label}</Link>
+const navLink = (rec: NavRecord) => (
+  <li key={rec.path} className={rec.active}>
+    <Link to={rec.path}>{rec.label}</Link>
   </li>
 );
 
-let setActive = R.curry((cur, record) => {
-  if ( cur.match(record.regex) ) {
-    return Object.assign({}, record, {
-      active: 'active'
-    });
-  } else {
-    return Object.assign({}, record, {
-      active: ''
-    });
-  }
-});
+let setActive = R.curry((cur, record) => (
+  Object.assign({}, record, { active: cur.match(record.regex) ? "active" : "" })
+));
 
 const navLinks = R.curry((current) => (
   R.pipe(R.map(setActive(current)), R.map(navLink))(navRecords)
@@ -73,11 +55,12 @@ class Nav extends React.Component {
   };
 
   render() {
+    const { location : { pathname } } = this.props;
     return (
       <div className="literate-crypto-nav-wrapper">
         <nav className="literate-crypto-nav">
           <ul className="nav-link-list">
-            { desktopLinks(navLinks(this.currentRoute())) }
+            { desktopLinks(navLinks(pathname)) }
           </ul>
           <div 
             className="nav-link-sidebar-switch"
@@ -87,7 +70,7 @@ class Nav extends React.Component {
         </nav>
         <div className={`nav-link-sidebar ${this.dropdownClass()}`}>
           <ul>
-            { navLinks(this.currentRoute()) }
+            { navLinks(pathname) }
           </ul>
         </div>
       </div>
