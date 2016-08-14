@@ -4,7 +4,6 @@ import {
   Router,
   Route,
   browserHistory,
-  IndexRedirect,
   IndexRoute,
 } from 'react-router';
 import reactRouterToArray from 'react-router-to-array';
@@ -29,13 +28,10 @@ export function routes(matasano: Object) {
 
 function subRoutes(matasano: Object) {
   return (
-    <Route path="/">
-      <IndexRedirect to="/literate-crypto" />
-      <Route path="/literate-crypto" component={App}>
-        <IndexRoute component={Home} />
-        <Route path="matasano" component={MatasanoExercises}>
-          { matasanoExercises(Object.keys(matasano)) }
-        </Route>
+    <Route path="/" component={App}>
+      <IndexRoute component={Home} />
+      <Route path="matasano" component={MatasanoExercises}>
+        { matasanoExercises(Object.keys(matasano)) }
       </Route>
     </Route>
   );

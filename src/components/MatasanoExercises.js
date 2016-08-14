@@ -15,13 +15,13 @@ class MatasanoExercises extends React.Component {
 
   linksToChildren: Function = () => {
     return this.props.route.childRoutes.map( route => (
-      <Link to={`/literate-crypto/matasano/${route.path}`} key={route.path}>
+      <Link to={`/matasano/${route.path}`} key={route.path}>
         {route.path}
       </Link>
     ));
   };
 
-  pathRegex = /literate-crypto\/matasano\/?$/;
+  pathRegex = /matasano\/?$/;
 
   render() {
     const { location: { pathname } } = this.props;
