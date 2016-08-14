@@ -5,7 +5,7 @@ import R from 'ramda';
 
 type NavRecord = { path: string, label: string, regex: RegExp, active: ?string };
 const navRecords = [
-  { path: "/", label: "Home", regex: /\/?$/ },
+  { path: "/", label: "Home", regex: /\/$/ },
   { path: "/about", label: "About", regex: /about\/?$/ },
   { path: "/matasano", label: "Matasano Exercises", regex: /matasano\/?$/ },
 ];
