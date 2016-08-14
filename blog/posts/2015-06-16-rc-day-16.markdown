@@ -1,0 +1,17 @@
+---
+title: RC Day 16
+date: 2015-06-16T22:24:51-04:00
+layout: post
+---
+
+It's day 16 already? Yikes! Time has really been flying by here. It's easy
+to sort of let it slide by, and feel like I haven't been doing too much,
+but when I look back at my blog posts I realize that I've done quite a bit
+of stuff since I got here!
+
+Today I read some more of the Rust book, and got through the first two
+example programs. They are fairly simple things, but throw in some wacky
+Rust stuff that I don't understand yet. I'm liking it so far!
+
+I also read some K&R, did some of the Stanford cryptography course, and
+worked on Eudyptula task 04. Good stuff!

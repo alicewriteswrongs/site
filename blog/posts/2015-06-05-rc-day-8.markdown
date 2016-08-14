@@ -1,0 +1,32 @@
+---
+layout: post
+title: RC Day 8!
+date: 2015-06-05T10:14:12-04:00
+---
+
+My blog entries are getting later and later...
+
+On day 8 (yesterday) I worked on a couple of things. When I got to RC my
+laptop decided it really didn't want to connect to the wireless network.
+After 45 minutes of restarting the machine, stopping and restarting
+NetworkManager.service, and staring at dmesg and journalctl I gave up and
+just used my phone as a hotspot (luckily I didn't have to download
+anything large). Then when I tried connecting to the RC wireless again
+a couple hours later, it mysteriously worked. Ghosts in my computer? The
+NSA? No idea.
+
+Anyway, I mainly worked on C related things. I designed a solution to the
+Matasano challenge no. 3, and wrote most of the library I need for it.
+I hope to finish that up today! It's kind of a fun thing, but if I get it
+working I want to present on it next week so I don't want to spoil.
+
+I also resubmitted Eudyptula task 03 (oopsie I didn't format my email
+correctly), and read the section about pointers and arrays in K&R. I feel
+like I'm getting a much better handle on how to write C code in a way that
+uses the potential of the language more, rather than just translating
+design patterns that would be appropriate for OOP into it. 
+
+Today I hope to finish Cryptopals task 03 (and have someone take a look at
+the design of my solution), read more K&R, and start the Stanford
+cryptography Coursera course (I signed up on Monday but haven't forced
+myself to start watching videos yet). We'll see!

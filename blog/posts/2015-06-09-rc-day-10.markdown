@@ -1,0 +1,35 @@
+---
+title: RC Days 10 and 11
+date: 2015-06-09T14:43:50-04:00
+layout: post
+---
+
+Late again! Oh well.
+
+Yesterday I started working on solving cryptopals problem 4, which has
+proved tricky so far. I tried an approach yesterday, which hasn't worked
+yet, and I also tried another strategy today. Hopefully tomorrow I'll make
+it work! It's encouraging to think that during the first week I struggled
+to just get the XOR program working!
+
+Yesterday I also watched some of the videos for the crypto course, and
+spent a ton of time trying to compile and run TextSecure from source.
+I was trying to get it to use a build option for a debug mode, so that
+I can try out the
+[TextSecure](https://github.com/WhisperSystems/TextSecure-Browser)
+chromium extension which is currently under development. I think I might
+need to do this on real hardware? I need access to the camera in order to
+pair the two things. It also turns out that you can't install two versions
+of the same app on one phone (I think) so the debugTest build won't
+install to my phone over the release TextSecure build from the Play store.
+Which is probably good, things that keep me from messing up the devices
+I actually need to use are kind of helpful!
+
+On Tuesday I watched more crypto course videos, worked on Matasano task04,
+and also picked back up my git visualization project. Initially my goal
+with that was to print out the commit tree without depending on any
+libraries or other programs (besides git) but I may try to be a little
+more pragmatic - I'm thinking of writing it in Python to make it easier on
+myself too.
+
+That's it!

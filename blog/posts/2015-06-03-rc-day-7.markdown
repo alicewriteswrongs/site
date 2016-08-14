@@ -1,0 +1,23 @@
+---
+layout: post
+title: RC Day 7
+date: 2015-06-03T20:14:55-04:00
+tags:
+    - recurse center
+    - crypto
+---
+
+I passed Eudyptula task 02! Nice! So now I have to compile a custom kernel
+that has '-eudyptula' in the version string. I compiled the kernel with
+this option, and I made a patch (following the mailing list conventions)
+and sent it off! We'll see when I get it back if that was good.
+
+Frank also ran another workshop today, which was about finding exploits in
+unsafe C code. Buffer overflows and the like! Fun stuff. So I worked on
+a couple of those problems today, and then also started working on the 2nd
+Matasano challenge (which has us implement 'fixed xor'). I ended up
+finishing the XOR problem, because I could reuse a good deal of the code
+from the first challenge. Nice!
+
+Tomorrow I hope to do the next matasano problem, work on solving some of
+the exploits from today, and (hopefully!) do the next eudyptula challenge.

@@ -1,0 +1,16 @@
+---
+title: RC Day 17
+date: 2015-06-17T19:01:01-04:00
+layout: post
+---
+
+This is a bit late! oops.
+
+Yesterday (day 17) I read a bunch of the rust book, did a few exercises
+from K&R, and worked on the fourth Matasano problem. Specifically,
+I decided to reimplement the solution I was working on in Python, so I can
+test out different approaches a little bit more quickly. We'll see how
+that goes!
+
+Plans for today include more Rust, more work on the above-mentioned Python
+stuff, and some videos from the cryptography course.

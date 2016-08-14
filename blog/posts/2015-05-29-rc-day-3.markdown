@@ -1,0 +1,17 @@
+---
+layout: post
+title: RC day 3
+date: 2015-05-29T14:31:59-04:00
+tags:
+    - git
+    - crypto
+    - haskell 
+    - recurse center
+---
+
+What did I do today? Mainly I worked on the gitViz project I've started.
+I have several of the functions I need for it to function working. I'm
+understanding more and more why people don't use C for string processing!
+
+I also made some progress on the CryptoPals stuff, read some more K&R, and
+finished chapter 3 in Real World Haskell. 

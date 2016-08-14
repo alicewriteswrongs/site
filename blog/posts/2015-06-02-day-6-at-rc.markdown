@@ -1,0 +1,17 @@
+---
+layout: post
+title: Day 6 at RC
+date: 2015-06-02T18:21:38-04:00
+---
+
+Today I successfully finished the first Matasano challenge! Yes! It
+requires you to build a hex -> base64 translator, which works
+successfully! I didn't yet implement what to do if there aren't enough
+bytes for base64 (e.g. if the last set of three bytes is only two) but
+that's ok!
+
+I also attended the cryptography workshop that Frank hosted today, which
+was really great. I think I'm going to start doing a coursera course on
+cryptography.
+
+Also, I bought a fender for my bike! Dry(ish) ride home!
