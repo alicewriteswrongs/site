@@ -11,9 +11,9 @@ const About = () => (
     Node scripts and a Rakefile to build it and deploy it.
     </p>
     <p>
-      The code can be found 
+      {"The code can be found "}
         <a href="https://github.com/aliceriot/site">
-          here
+           here
         </a>
       . It's deployed on github-pages.
     </p>
