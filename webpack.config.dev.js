@@ -12,9 +12,9 @@ module.exports = Object.assign({}, shared, {
   ],
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.definePlugin({
+    new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': '"development"'
+        'NODE_ENV': 'development'
       }
     })
   ],
