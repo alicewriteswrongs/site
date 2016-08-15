@@ -4,7 +4,7 @@ var path = require('path');
 var shared = require(path.resolve("./webpack.config.shared.js"));
 
 module.exports = Object.assign({}, shared, {
-  entry: [ "./src/app" ],
+  entry: ["babel-polyfill", "./src/app" ],
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
