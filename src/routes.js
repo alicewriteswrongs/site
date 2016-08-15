@@ -17,7 +17,7 @@ import {
 } from './components/Matasano';
 import Home from './components/Home';
 import { BlogPage, BlogPost } from './components/Blog';
-
+import About from './components/About';
 
 const generateRoute = R.curry((component, [key, object]) => (
   <Route key={key} path={key} component={component(object)} />
@@ -37,6 +37,7 @@ export function generateRoutes(matasano, blog) {
   return (
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
+      <Route path="about" component={About} />
       <Route path="matasano" component={MatasanoExercises}>
         { matasanoRoutes(_.entries(matasano)) }
       </Route>
