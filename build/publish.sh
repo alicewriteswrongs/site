@@ -2,6 +2,8 @@
 
 rm -rf dist/*
 
+rake
+
 npm run build
 
 node ./build/create_static_routes.js
