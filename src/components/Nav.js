@@ -8,6 +8,7 @@ const navRecords = [
   { path: "/", label: "Home", regex: /\/$/ },
   { path: "/about", label: "About", regex: /about\/?$/ },
   { path: "/matasano", label: "Matasano Exercises", regex: /matasano\/?/ },
+  { path: "/blog", label: "Blog", regex: /blog\/?/ },
 ];
 
 const navLink = (rec: NavRecord) => (

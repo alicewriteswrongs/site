@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import { markdown } from '../shared/markdown';
+import { markdown } from '../../shared/markdown';
 
 class MatasanoExercise extends React.Component {
   static propTypes = {
