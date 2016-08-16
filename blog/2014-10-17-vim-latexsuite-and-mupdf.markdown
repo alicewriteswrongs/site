@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Vim-LaTeXsuite and Mupdf"
+key: "vim-latexsuite_and_mupdf"
 date: 2014-10-17T12:56:14-04:00
 tags:
     - vim

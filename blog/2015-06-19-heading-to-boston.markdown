@@ -1,5 +1,6 @@
 ---
 title: Heading to Boston!
+key: "heading_to_boston"
 date: 2015-06-19T05:16:22-04:00
 layout: post
 ---

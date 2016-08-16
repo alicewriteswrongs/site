@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Day 6 at RC
+key: "day_6_at_rc"
 date: 2015-06-02T18:21:38-04:00
 ---
 

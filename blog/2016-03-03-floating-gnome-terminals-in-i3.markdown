@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Floating Gnome Terminals in i3
+key: "floating_gnome_terminals_in_i3"
 date: 2016-03-03T12:17:12-05:00
 ---
 

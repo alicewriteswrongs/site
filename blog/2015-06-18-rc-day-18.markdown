@@ -1,5 +1,6 @@
 ---
 title: RC day 18
+key: "rc_day_18"
 date: 2015-06-18T13:27:17-04:00
 layout: post
 ---

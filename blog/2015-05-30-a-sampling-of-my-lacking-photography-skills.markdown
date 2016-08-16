@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A sampling of my (lacking) photography skills
+key: "a_sampling_of_my_lacking_photography_skills"
 date: 2015-05-30T22:18:17-04:00
 tags:
     - photos

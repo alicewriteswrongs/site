@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Complete screenlocking solution for i3
+key: "complete_screenlocking_solution_for_i3"
 date: 2015-05-14T12:50:41-04:00
 tags:
     - security

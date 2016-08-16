@@ -1,5 +1,6 @@
 ---
 title: Data Structures
+key: "data_structures"
 date: 2015-08-07T10:12:52-04:00
 layout: post
 ---

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Open pull requests on Github from the command line
+key: "open_pull_requests_on_github_from_the_command_line"
 date: 2016-02-25T17:00:39-05:00
 ---
 

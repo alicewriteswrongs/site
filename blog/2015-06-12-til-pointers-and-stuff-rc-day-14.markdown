@@ -1,5 +1,6 @@
 ---
 title: 'TIL: pointers and stuff (RC day 14?)'
+key: "til_pointers_and_stuff_rc_day_14"
 date: 2015-06-12T14:57:31-04:00
 layout: post
 ---

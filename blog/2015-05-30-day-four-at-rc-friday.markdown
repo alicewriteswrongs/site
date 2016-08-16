@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Day Four at RC (friday!)
+key: "day_four_at_rc"
 date: 2015-05-30T00:29:01-04:00
 tags:
     - GnuPG

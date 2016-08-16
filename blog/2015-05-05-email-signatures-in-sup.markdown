@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Email signatures in Sup"
+key: "email_signatures_in_sup"
 date: 2015-05-05T12:41:50-04:00
 tags:
     - sup

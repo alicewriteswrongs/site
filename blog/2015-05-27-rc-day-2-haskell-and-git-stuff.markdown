@@ -1,6 +1,7 @@
 ---
 layout: post
 title: RC, day 2! Haskell and Git stuff
+key: "rc_day_2_haskell_and_git_stuff"
 date: 2015-05-27T23:10:03-04:00
 tags:
     - haskell

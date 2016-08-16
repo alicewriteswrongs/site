@@ -1,6 +1,7 @@
 ---
 layout: post
 title: RC Day 8!
+key: "rc_day_8"
 date: 2015-06-05T10:14:12-04:00
 ---
 

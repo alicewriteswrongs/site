@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "I made a zine about GPG"
+key: "i_made_a_zine_about_gpg"
 date: 2015-05-19T09:26:54-04:00
 tags:
     - GnuPG

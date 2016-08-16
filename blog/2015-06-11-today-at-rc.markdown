@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Today at RC!
+key: "today_at_rc"
 date: 2015-06-11T19:33:36-04:00
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: First night in NYC
+key: "first_night_in_nyc"
 date: 2015-05-25T21:08:33-04:00
 tags:
     - cecurse center

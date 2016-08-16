@@ -1,5 +1,6 @@
 ---
 title: Literate programming in Python
+key: "literate_programming_in_python"
 date: 2015-08-11T18:03:01-04:00
 layout: post
 ---

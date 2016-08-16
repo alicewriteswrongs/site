@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A post-RC update
+key: "a_post-rc_update"
 date: 2015-08-30T16:16:56-04:00
 ---
 

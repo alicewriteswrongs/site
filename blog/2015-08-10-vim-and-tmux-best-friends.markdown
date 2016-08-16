@@ -1,5 +1,6 @@
 ---
 title: 'Vim and tmux: best friends'
+key: 'vim_and_tmux_best_friends'
 date: 2015-08-10T11:05:48-04:00
 layout: post
 ---

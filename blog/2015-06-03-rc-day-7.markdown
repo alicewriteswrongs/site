@@ -1,6 +1,7 @@
 ---
 layout: post
 title: RC Day 7
+key: "rc_day_7"
 date: 2015-06-03T20:14:55-04:00
 tags:
     - recurse center

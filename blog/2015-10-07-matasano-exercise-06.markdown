@@ -1,5 +1,6 @@
 ---
 title: Matasano Exercise 06
+key: "matasano_exercise_06"
 date: 2015-10-07T22:58:44-04:00
 layout: post
 ---

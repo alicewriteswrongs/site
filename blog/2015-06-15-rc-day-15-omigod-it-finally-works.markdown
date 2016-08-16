@@ -1,5 +1,6 @@
 ---
 title: 'RC Day 15: omigod it finally works'
+key: 'rc_day_15_omigod_it_finally_works'
 date: 2015-06-15T16:54:16-04:00
 layout: post
 ---

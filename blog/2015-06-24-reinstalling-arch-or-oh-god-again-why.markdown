@@ -1,5 +1,6 @@
 ---
 title: 'Reinstalling Arch: Or, oh god, again, why?'
+key: 'reinstalling_arch_or_oh_god_again_why'
 date: 2015-06-24T21:37:46-04:00
 layout: post
 ---

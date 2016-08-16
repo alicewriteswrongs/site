@@ -1,6 +1,7 @@
 ---
 layout: post
 title: First day at RC
+key: "first_day_at_rc"
 date: 2015-05-26T23:02:30-04:00
 tags:
     - recurse center

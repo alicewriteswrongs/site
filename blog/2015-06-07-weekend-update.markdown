@@ -1,5 +1,6 @@
 ---
 title: Weekend update!
+key: "weekend_update"
 date: 2015-06-07T20:37:33-04:00
 layout: post
 ---

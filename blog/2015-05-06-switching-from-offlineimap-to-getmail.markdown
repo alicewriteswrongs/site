@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Switching from Offlineimap to Getmail"
+key: "switching_from_offlineimap_to_getmail"
 date: 2015-05-06T10:36:31-04:00
 tags:
     - offlineimap

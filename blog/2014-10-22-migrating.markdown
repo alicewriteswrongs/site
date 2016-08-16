@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Migrating Arch Linux install to an SSD"
+key: "migrating_arch_linux_install_to_an_ssd"
 date: 2014-10-22T13:44:56-04:00
 tags:
     - archlinux

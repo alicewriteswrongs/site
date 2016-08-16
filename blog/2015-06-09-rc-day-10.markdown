@@ -1,5 +1,6 @@
 ---
 title: RC Days 10 and 11
+key: "rc_days_10_and_11"
 date: 2015-06-09T14:43:50-04:00
 layout: post
 ---
