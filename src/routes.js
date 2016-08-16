@@ -10,9 +10,10 @@ import reactRouterToArray from 'react-router-to-array';
 import R from 'ramda';
 
 import App from './components/App';
-import MatasanoExercises from './components/MatasanoExercises';
-import MatasanoExercise from './components/MatasanoExercise';
+import MatasanoExercises from './components/matasano/MatasanoExercises';
+import MatasanoExercise from './components/matasano/MatasanoExercise';
 import Home from './components/Home';
+import Blog from './components/blog/Blog';
 
 const matasanoExercises = R.map(key => (
   <Route key={key} path={key} component={MatasanoExercise} />
@@ -39,6 +40,7 @@ function subRoutes(matasano: Object) {
       <Route path="matasano" component={MatasanoExercises}>
         { matasanoExercises(Object.keys(matasano)) }
       </Route>
+      <Route path="blog" component={Blog} />
     </Route>
   );
 }
