@@ -8,7 +8,7 @@ tags:
     - latex
 ---
 
-#Using muPDF with Vim-LaTeXSuite
+# Using muPDF with Vim-LaTeXSuite
 
 I thought to start off this new blog I would share a small tip I recently discovered
 for editing LaTeX files on Linux systems using Vim, in particular I'm running Arch Linux.
@@ -21,15 +21,17 @@ I also like to use [muPDF](http://mupdf.com/) to read PDFs and view images on my
 it's a simple GUI-free application that is fast and has vim-like keybindings. I often
 found myself hitting `ctrl-z` and running:
 
-    $ mupdf myLaTeXProject.pdf &
+```bash
+$ mupdf myLaTeXProject.pdf &
+```
 
 but I recently discovered that by adding the following to your `.vimrc`:
 
-    {% highlight latex %}
-    let g:Tex_DefaultTargetFormat='pdf'
-    let g:Tex_Flavor='latex'
-    let g:Tex_ViewRule_pdf='mupdf'
-    {% endhighlight %}
+```
+let g:Tex_DefaultTargetFormat='pdf'
+let g:Tex_Flavor='latex'
+let g:Tex_ViewRule_pdf='mupdf'
+```
 
 we can automate this process! Now when we hit `<Leader>ll` the `.tex` file currently
 opened will be automatically compiled to pdf, and by hitting `<Leader>lv` we can open

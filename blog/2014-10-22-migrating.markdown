@@ -8,6 +8,8 @@ tags:
     - linux
 ---
 
+# Migrating an Arch Linux install
+
 Today I got a new 60GB mSATA ssd in the mail and set about migrating
 my root partition from the HDD on which it resided to the new shiny
 SSD. This turned out to be a little more complicated than I thought it
@@ -15,16 +17,20 @@ should be!
 
 First off, my initial partition layout looked like this, on a 320GB HDD:
 
-    /dev/sda1: /, 30G
-    /dev/sda2: swap, 8G
-    /dev/sda3: /home, 260G
+```
+/dev/sda1: /, 30G
+/dev/sda2: swap, 8G
+/dev/sda3: /home, 260G
+```
 
 We'll be adding a new device, sdb, and what we want, ultimately, is:
 
-    /dev/sdb1: /, 30G
-    /dev/sdb2: /home/user/fast_home, 28G
-    /dev/sda1: swap, 8G
-    /dev/sda2: /home. 290G
+```
+/dev/sdb1: /, 30G
+/dev/sdb2: /home/user/fast_home, 28G
+/dev/sda1: swap, 8G
+/dev/sda2: /home. 290G
+```
 
 Right! So the first thing we want to do is create a new partition table and
 a partition on sdb. I'm using GUID for my partition table, and I'll be sticking
@@ -38,7 +44,9 @@ need to do for partitioning! Now on to copying files.
 We can use dd to copy over everything in the root directory (except for stuff we
 don't want) pretty easily. With the `/dev/sdb1` partition unmounted we do:
 
-    sudo dd if=/dev/sda1 of=/dev/sdb1
+```bash
+sudo dd if=/dev/sda1 of=/dev/sdb1
+```
 
 This will take a good bit of time, depending on how much stuff you have. I had around
 15G in / and it took about 5 minutes.
@@ -47,33 +55,43 @@ When it's done, we need to do a couple of things to make `/dev/sdb1` into a bona
 bootable partition. We'll start by editing `/etc/fstab`, which tells Arch which 
 partitions to mount where. Start by mounting the partition:
 
-    sudo mount /dev/sdb1 /mnt
+```bash
+sudo mount /dev/sdb1 /mnt
+```
 
 (create /mnt if you don't have it already) and then open `fstab` in your favorite text
 editor:
 
-    sudo vim /mnt/etc/fstab
+```bash
+sudo vim /mnt/etc/fstab
+```
 
 We can find the UUIDs of all partitions on our system
 by running:
 
-    lsblk -o NAME,UUID
+```bash
+lsblk -o NAME,UUID
+```
 
 you should get something like 
 
-    NAME   UUID
-    sda    
-    ├─sda1 15027501-e241-4b6c-b04d-02f27e3ee55e
-    ├─sda2 c5fcc964-af01-41e3-a9ef-489f8e4e2829
-    └─sda3 c96a3307-3a8b-4f1f-a52a-baeda4cf27c0
-    sdb    
-    └─sdb1 15027501-e241-4b6c-b04d-02f27e3ee55e
-    sr0    
+```bash
+NAME   UUID
+sda    
+├─sda1 15027501-e241-4b6c-b04d-02f27e3ee55e
+├─sda2 c5fcc964-af01-41e3-a9ef-489f8e4e2829
+└─sda3 c96a3307-3a8b-4f1f-a52a-baeda4cf27c0
+sdb    
+└─sdb1 15027501-e241-4b6c-b04d-02f27e3ee55e
+sr0    
+```
 
 wait, `/dev/sda1` and `/dev/sdb1` share the same UUID! ehhhh? This gets copied over when
 we use `dd` to clone `/dev/sda1`. Never fear though, we can run:
 
-    sudo tune2fs -U random /dev/sdb1
+```bash
+sudo tune2fs -U random /dev/sdb1
+```
 
 Which we'll give us a new UUID for `/dev/sdb1`.
 Now we'll change the first line of `/etc/fstab`, which should 
@@ -86,16 +104,22 @@ move on to editing our bootloader!
 I use syslinux on my machine, so I'm not sure what to do here if you use GRUB or something
 else. For syslinux we need to do a couple things. First we:
 
-    sudo vim /mnt/boot/syslinux/syslinux.cfg
+```bash
+sudo vim /mnt/boot/syslinux/syslinux.cfg
+```
 
 and we search for `LABEL arch`. After `APPEND` you should see:
-    
-    root=/dev/sda1
+
+```
+root=/dev/sda1
+```
 
 which we just change to `/dev/sdb1`. Next we need to install syslinux to the MBR of 
 `/dev/sdb`. First off, lets check that we set the bootable flag by running:
 
-    sudo sgdisk /dev/sdb --attributes=1:show
+```bash
+sudo sgdisk /dev/sdb --attributes=1:show
+```
 
 you should see something saying `legacy BIOS bootable`. If we're all good here we can
 run:

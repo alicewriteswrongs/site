@@ -9,4 +9,6 @@ const linkToRoute = R.curry((parentPath, route) => (
   </Link>
 ));
 
-export const linksToRoutes = parentPath => R.map(linkToRoute(parentPath));
+export const linksToRoutes = (parentPath: string) => (
+  R.map(linkToRoute(parentPath))
+);
