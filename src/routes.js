@@ -15,7 +15,7 @@ import {
   MatasanoExercise,
 } from './components/Matasano';
 import Home from './components/Home';
-import { BlogPage, BlogPost } from './components/blog/Blog';
+import { BlogPage, BlogPost } from './components/Blog';
 
 const matasano = require('json!./data/matasano.json');
 const blogPosts = require('json!./data/blog.json');

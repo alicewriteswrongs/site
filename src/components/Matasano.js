@@ -1,44 +1,25 @@
 // @flow
 import React from 'react';
-import { Link } from 'react-router';
 import { markdown } from '../shared/markdown';
+import { linksToRoutes } from '../shared/routing';
 
-export class MatasanoExercises extends React.Component {
-  props: {
-    route:    Object,
-    location: Object,
-    children: React$Element<*>,
-  };
+const pathRegex = /matasano\/?$/;
 
-  static contextTypes = {
-    router: React.PropTypes.object.isRequired
-  };
+const mlinks = linksToRoutes('matasano');
 
-  linksToChildren: Function = () => {
-    return this.props.route.childRoutes.map( route => (
-      <Link to={`/matasano/${route.path}`} key={route.path}>
-        {route.path}
-      </Link>
-    ));
-  };
+export const MatasanoExercises = (props) => {
+  const {
+    location: { pathname },
+    children,
+    route: { childRoutes }
+  } = props;
 
-  pathRegex = /matasano\/?$/;
-
-  render() {
-    const { location: { pathname } } = this.props;
-    let body;
-    if ( pathname.match(this.pathRegex) ) {
-      body = this.linksToChildren();
-    } else {
-      body = this.props.children;
-    }
-    return (
-      <div>
-        {body}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      { pathname.match(pathRegex) ? mlinks(childRoutes) : children }
+    </div>
+  );
+};
 
 export const MatasanoExercise = (matasano: Object) => {
   const MatasanoExercise = () => markdown(matasano.body);
