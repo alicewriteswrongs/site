@@ -6,5 +6,5 @@ layout: post
 ---
 
 Today I'm heading to Boston for the weekend! I'm up way too early to go
-get a very early bus. I probably won't write any code today (cars
-+ screens = motion sickness for me). Back on Sunday!
+get a very early bus. I probably won't write any code today (cars +
+screens = motion sickness for me). Back on Sunday!

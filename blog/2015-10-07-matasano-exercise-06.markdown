@@ -1,11 +1,11 @@
 ---
 title: Matasano Exercise 06
-key: "matasano_exercise_06"
+key: "mata_exercise_06"
 date: 2015-10-07T22:58:44-04:00
 layout: post
 ---
 
-#Matasano exercise 06
+# Matasano exercise 06
 
 This is a literate Python explanation of [my
 solution](https://github.com/aliceriot/CryptoPals/tree/master/set1/Python/ex06)
@@ -16,7 +16,7 @@ Needless to say, if you are doing the challenges yourself, you should not
 read this! It will make it far too easy. If, however, you've been stuck on
 this question, you may find this helpful!
 
-##The Problem
+## The Problem
 
 Here we have a message which has been encrypted with repeating-key XOR
 (which is, more or less, the Vigenere's cipher). It's encoded in Base64,
@@ -29,19 +29,17 @@ intersperse the code that performs that step. Cool!
 First off, we'll read in the ciphertext:
 
 
-{% highlight python %}
+```python
 from base64 import b64decode
 
 with open("./ex06.txt") as f:
     ciphertext = b64decode(''.join([l.strip() for l in f.readlines()]))
-{% endhighlight %}
-
-
+```
 
 We read in the file line-by-line, strip off newlines, and join all the
 cleaned lines together. The `b64decode` function returns a `bytes` object.
 
-##KEYSIZE
+## KEYSIZE
 
 Keysize is the length of the key. Since this is the repeating-key XOR
 cryptosystem this is basically the number of bytes in a key. A message is
@@ -55,7 +53,7 @@ Matasano lets us know that we only have to worry about keysize ranging between
 to figure out the most appropriate keysize - once we know that we can get to
 the business of figuring out the key.
 
-##Hamming Distance
+## Hamming Distance
 
 Hamming distance is a metric for *string difference*, and in this case we want
 to essentially count the number of bits where two strings (C-style bytestrings)
@@ -63,20 +61,17 @@ are different.
 
 Here's a little function to do that:
 
-
-{% highlight python %}
+```python
 def distance(s1, s2):
     return sum(bin(x^y).count('1') for x,y in zip(s1,s2))
-{% endhighlight %}
-
-
+```
 
 Ok, so we zip string one and string two together, then we XOR them (which
 will leave ones wherever they differ), use `bin` to get a string
 representation of that, and then count the number of ones. If we sum this
 across `zip(s1,s2)` we get our difference. Nice!
 
-##Finding the right KEYSIZE
+## Finding the right KEYSIZE
 
 OK, now that we've defined the Hamming distance, we can use that to find
 an appropriate keysize with which to move forward. Basically, we expect
@@ -89,7 +84,7 @@ been XORed against the same block, and so will have that in common. Great!
 This is a class named `Keysieve` which does this for us:
 
 
-{% highlight python %}
+```python
 from statistics import mean
 
 class Keysieve(object):
@@ -106,7 +101,7 @@ class Keysieve(object):
             scores = [distance(first, i)/ksize for i in chunks]
             self.scores.append((ksize, mean(scores)))
         self.scores.sort(key = lambda x: x[1])
-{% endhighlight %}
+```
 
 The constructor for `Keysieve` takes a minkey and a maxkey, which are the
 bounds on our keysize search space. We also need to have a ciphertext to
@@ -114,9 +109,9 @@ work on.
 
 Lets instantiate a `Keysieve` object now:
 
-{% highlight python %}
+```python
 keysieve = Keysieve(ciphertext, 2,40)
-{% endhighlight %}
+```
 
 Great! When we instantiate the object the `sieve` method gets called
 automatically. This is going to iterate through the possible keysizes and,
@@ -127,11 +122,11 @@ call the `sort` method on `keysieve.scores`.
 
 Then we can get our putative best keysize by doing:
 
-{% highlight python %}
+```python
 keysize = keysieve.scores[0][0]
-{% endhighlight %}
+```
 
-##Breaking up the Ciphertext
+## Breaking up the Ciphertext
 
 Now that we know the `keysize` we can get on with solving the problem.
 First we want to split the ciphertext up into `keysize` different blocks,
@@ -146,12 +141,12 @@ Then we can take those blocks and, since they've all been XORed with the
 same byte of the key, we can solve them each independently as if they were
 separate ciphertexts encrypted with single byte XOR. Great!
 
-###Making the blocks
+### Making the blocks
 
 Here's how we'll make the blocks (naturally, with a class called
 `Blocks`):
 
-{% highlight python %}
+```python
 class Blocks(object):
     """takes ciphertext and best keysizes, makes blocks"""
     def __init__(self, ciphertext, keysize):
@@ -164,17 +159,17 @@ class Blocks(object):
         for tup in enumerate(self.ciphertext):
             self.blocks[tup[0] % self.keysize].append(tup[1])
         map(bytearray, self.blocks)
-{% endhighlight %}
+```
 
 Now we can make the blocks! Weee!
 
-{% highlight python %}
+```python
 blocks = Blocks(ciphertext, keysize)
-{% endhighlight %}
+```
 
 Cool, we have `blocks`.
 
-##Solving the Blocks
+## Solving the Blocks
 
 As we said above, we now have a bunch of blocks, each of which we can
 solve in the same way we solved single byte XOR. Basically we're going to
@@ -187,7 +182,7 @@ consist of ASCII characters like letters, spaces, and so on.
 I tried out a bunch of different scoring schemes for this step, and this
 is what gave me the best result:
 
-{% highlight python %}
+```python
 from collections import Counter
 
 class Singlebyte(object):
@@ -205,7 +200,7 @@ class Singlebyte(object):
             upper = sum(plain.count(c) for c in common.upper())
             lower = sum(plain.count(c) for c in common)
             self.keys.append((key, spaces + upper + lower))
-{% endhighlight %}
+```
 
 So our `scorekeys` method will score a key by adding the number of
 spaces to the number of upper and lower case examples of the letters
@@ -215,23 +210,23 @@ Seems random right? I thought so too, but it does work!
 
 Anyway, to get a key we do this:
 
-{% highlight python %}
+```python
 key = bytearray()
 for block in blocks.blocks:
     temp = Singlebyte(block)
     key.append(temp.bestkey[0])
-{% endhighlight %}
+```
 
 So we iterate through our blocks, solving each one using `Singlebyte`, and
 appending the best key to a master key. We're almost there now!
 
-##Decrypting the Ciphertext
+## Decrypting the Ciphertext
 
 Now that we have the correct key we want to use it to get the plaintext
 for our ciphertext. I promise this is the last class definition you need
 to read:
 
-{% highlight python %}
+```python
 class Decrypt(object):
     def __init__(self, ciphertext, key):
         self.ctext = ciphertext
@@ -244,7 +239,7 @@ class Decrypt(object):
         for i in enumerate(self.ctext):
             temp.append(i[1] ^ self.key[i[0] % len(self.key)])
         self.plaintext = ''.join(map(chr, temp))
-{% endhighlight %}
+```
 
 So we pass in the ciphertext and the newly minted key. Then we have
 a `decrypt` method which is going to iterate through the ciphertext and
@@ -253,16 +248,17 @@ a plaintext message waiting for us!
 
 Here's how we'd find the final answer:
 
-{% highlight python %}
+```python
 decrypt = Decrypt(ciphertext, key)
-{% endhighlight %}
-
+```
 
 Then we could get the plaintext out by doing:
 
-    print("The key was: {}".format(''.join(map(chr, key))))
-    print("Plaintext:")
-    print(decrypt.plaintext)
+```python
+print("The key was: {}".format(''.join(map(chr, key))))
+print("Plaintext:")
+print(decrypt.plaintext)
+```
 
 but I don't want to spoil *everything* for you, at least go run this code
 yourself!

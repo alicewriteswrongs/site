@@ -17,14 +17,14 @@ out the program
 I'm using a package called Pweave to make this all work together. It's
 pretty easy, but there are a couple of rough edges. So, how does it work?
 
-##Writing literate Python
+## Writing literate Python
 
 I'm doing a pretty simple approach, which is to write the
 documentation/markup in Markdown. Pweave also supports LaTeX, ReST, and
 a couple of other text formatting languages if you have a strong
 preference. Basically what we do is write something like this:
 
-{% highlight bash %}
+```
 #My program
 
 This is my great program. Its great!
@@ -40,7 +40,7 @@ def functionone(myarg):
 @
 
 What a great program!
-{% endhighlight %}
+```
 
 OK, so basically you just write a Markdown file, and any code you write in
 between a `<<>>=` opener and the `@` closer will be the source code. The
@@ -58,20 +58,20 @@ of the documentation.
 With Pweave, if we have a really interesting `myprogram.mdw`, we can get
 a clean .md file with:
 
-{% highlight bash %}
+```bash
 Pweave -f pandoc myprogram.mdw
-{% endhighlight %}
+```
 
 The `-f` flag is our output format, so we could also pick html or PDF or
 something stranger here. If we want to do a tangle, we do this:
 
-{% highlight bash %}
+```bash
 Ptangle myprogram.mdw
-{% endhighlight %}
+```
 
 This will give us a nice clean `myprogram.py` in the same directory. Cool!
 
-##Vim strangeness
+## Vim strangeness
 
 So that's great! It's pretty easy to write your documentation and program
 at the same time, and it really makes you ensure that you're keeping the
@@ -84,10 +84,10 @@ that intelligently.
 I ended up adding a couple of bindings to Vim to switch the filetype
 between Markdown and Python:
 
-{% highlight vim %}
+```vimrc
 nnoremap <Leader>lp :setlocal ft=python<cr>
 nnoremap <Leader>md :setlocal ft=markdown<cr>
-{% endhighlight %}
+```
 
 So I can hit `<Leader>lp` (literate Python) to get to Python mode, and
 `<Leader>md` to get to Markdown. It works decently well!
@@ -96,15 +96,15 @@ I also added a couple of super handy shell aliases. Since I'm basically
 writing the Markdown portion of the project for Github I want to really
 frequently check how things are rendering. This alias is handy:
 
-{% highlight bash %}
+```zsh
 alias litpush='Pweave -f pandoc *.mdw && git commit -a && git push origin master'
-{% endhighlight %}
+```
 
 This will weave (produce clean markdown) any `.mdw` files in the
 directory, commit any changes (for previously committed files), and push
 the commit to Github. Nice!
 
-##Limitations
+## Limitations
 
 Where you can split up the source code in your main file is somewhat
 limited. I discovered, for instance, that there isn't a good way to have

@@ -16,7 +16,7 @@ export const BlogPage = props => {
   } = props;
 
   return (
-    <div>
+    <div className="blog-page">
       { pathname.match(pathRegex) ? blogLinks(childRoutes) : children }
     </div>
   );

@@ -8,6 +8,8 @@ tags:
     - i3wm
 ---
 
+# Complete screenlocking solution for i3
+
 I've been using [i3](https://i3wm.org) for a while now, and while I'm
 a complete tiling window manager convert, I've had trouble with a couple
 small things which are mostly 'automatic' on heavier desktop environments.
@@ -18,7 +20,7 @@ instance), and lets you switch accounts, etc. While my user account is the
 only one on my machine, I wanted to have a complete solution for keeping
 my laptop secure.
 
-##i3lock
+## i3lock
 
 Thankfully, i3 ships with a utility called i3lock, which is what it sounds
 like (a lightweight screenlocker to use with i3). Basically you just call:
@@ -47,12 +49,12 @@ I think this is pretty slick! It's really fast, and the unlock effect of
 the pixelated image giving way to your desktop is pretty nice (I'm not
 tired of it yet, anyway!).
 
-##Activating i3lock
+## Activating i3lock
 
 OK, so if we've got a nice little shellscript written, how do we actually
 lock the screen? I do it three different ways to cover all my bases.
 
-###Key combo
+### Key combo
 
 In my `i3config`:
 
@@ -63,7 +65,7 @@ so this works. I like having a key command because sometimes if I'm
 getting up from my desk I'd like to lock the screen, but I don't
 necessarily want to suspend the machine.
 
-###Xautolock
+### Xautolock
 
 Sometimes, though, I do a bad thing and walk away from my open, running
 laptop. Oh no, anyone can get in!
@@ -74,20 +76,20 @@ closed) I use
 [xautolock](https://www.archlinux.org/packages/community/x86_64/xautolock/),
 with the following in my .xinitrc:
 
-    {% highlight bash %}
-    xautolock -time 10 -locker "i3lock.sh" &
-    {% endhighlight %}
+```bash
+xautolock -time 10 -locker "i3lock.sh" &
+```
 
 I also do:
 
-    {% highlight bash %}
-    xset dpms 300 600 0 &
-    {% endhighlight %}
+```bash
+xset dpms 300 600 0 &
+```
 
 So the computer is set to blank the screen after 5 minutes (the 300 is in
 seconds) and then lock after 10 minutes. 
 
-###Systemd service
+### Systemd service
 
 So that covers two ways of starting the locker, but I'd also like to make
 sure that the screen is locked anytime I close the lid or suspend the

@@ -5,32 +5,34 @@ date: 2015-06-18T13:27:17-04:00
 layout: post
 ---
 
+# RC day 18
+
 Today I learned some fun stuff about Rust - it turns out it supports a lot
 of functional programming! This post centers around the `iterator` type,
 which we can create in a couple ways. We can directly create an iterator
 by doing something like:
 
-{% highlight rust %}
+```rust
 let myiterator = (0..100);
-{% endhighlight %}
+```
 
 This creates an iterator object, which describes the process of iterating
 from 0 to 99 (or something like that). This is (as far as I can tell)
 essentially identical to doing something like
 
-{% highlight haskell %}
+```haskell
 [0..99]
-{% endhighlight %}
+```
 
 in Haskell, in that the rust iterator is lazy - we don't actually have all
 the values from 0 to 99 stored in that iterator object, but instead we can
 get them from it if we want. We can also get an iterator from other sorts
 of objects, e.g. if we had:
 
-{% highlight rust %}
+```rust
 let myvector = vec![1,2,3];
 let myiter = myvector.iter();
-{% endhighlight %}
+```
 
 Which gives us an iterator containing the items in that vector. I'm not
 sure if this is lazy in the same way - does the iterator store references
@@ -38,18 +40,18 @@ to the objects in the vector, so it can get the values only when it needs
 to? Not sure. I'm also not sure what the difference is between the above
 and doing something like:
 
-{% highlight rust %} 
+```rust
 for v in &myvector {
     do_something_with(v);
 }
-{% endhighlight %}
+```
 
 is a temporary iterator created on the fly and destroyed when the loop
 exits? No idea. Anyway, what can we do with these things? Well, so far
 I've learned about two classes of functions which can operate on
 iterators: consumers and iterator adapters.
 
-##Consumers
+## Consumers
 
 Consumers are functions which take an iterator as an argument and return
 something else - this could be an number computed with the contents of the
@@ -59,9 +61,9 @@ consumer is `collect`, which takes an iterator and returns a collection of
 the items described by the iterator. To get a vector of ints from an
 iterator we could do something like:
 
-{% highlight rust %} 
+```rust
 let myvector = (1..100).collect::<Vec<i32>>();
-{% endhighlight %}
+```
 
 More exciting is `find`, which also returns a collection, but accepts an
 argument consisting of a Rust-style boolean lambda function (which we call
@@ -69,9 +71,9 @@ a closure - I think this is a lambda function and the context in which it
 is declared? Something along those lines). Here's one which will give us
 a collection of all the even numbers from 0 to 100:
 
-{% highlight rust %} 
+```rust
 let evens = (0..101).find(|x| x % 2 == 0);
-{% endhighlight %}
+```
 
 Here the `|` pipes delimit the arguments to our lambda function, and the
 function body is what follows in the rest of the argument to `find`. Nice!
@@ -82,9 +84,9 @@ right away. This is very similar to how fold works in Haskell - it takes
 a base, and a closure with two arguments, an accumulator and an element.
 Here's how we could sum the elements of an iterator using fold:
 
-{% highlight rust %} 
+```rust
 let exciting_sum = (0..1000).fold(0, |sum, x| sum + x);
-{% endhighlight %}
+```
 
 So we have 0 as an accumulator, and our closure takes two arguments, `sum`
 and `x`. Essentially 0 starts off the process, so for the first element
@@ -92,7 +94,7 @@ from the iterator we add 0 (sum) to the element (x), which produces the
 new value for sum. This is added to the second element of the list, and so
 on. Cool! 
 
-##Adapters
+## Adapters
 
 Adapters also operate on iterators, but instead of returning any kind of
 object they are restricted to returning other iterators. These are like
@@ -104,10 +106,10 @@ a closure, and will return an iterator consisting of the values produced
 by applying that function to the elements of our original iterator. What's
 this look like? Ok, we'll calculate the first 20 squares:
 
-{% highlight rust %} 
+```rust
 let mynums = (1..21);
 let squares = mynums.map(|x| x*x);
-{% endhighlight %}
+```
 
 Nice! That's not too bad. Another cool one is `filter`, which works
 basically just like filter in Haskell - we pass it a closure that returns
@@ -115,9 +117,9 @@ a boolean value. This is analogous to the consumer `find`, but it returns
 another iterator instead of a collection. We could use it to get an
 iterator of all the numbers which are pretty:
 
-{% highlight rust %} 
+```rust
 let prettynums = (1..).filter(|&x| x == 17);
-{% endhighlight %}
+```
 
 Cool! Note that because this is not a consumer we need to pass a reference
 to `x` into the closure. Also we have support in Rust for lazy infinite

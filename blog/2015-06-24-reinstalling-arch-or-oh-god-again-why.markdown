@@ -5,6 +5,8 @@ date: 2015-06-24T21:37:46-04:00
 layout: post
 ---
 
+# 'Reinstalling Arch: Or, oh god, again, why?'
+
 So on Monday I got a new computer, which is great! But new computer means
 it's time to reinstall Arch. Which is not great. I think that
 on a properly set-up Arch system you don't need to do too much more
@@ -27,7 +29,9 @@ Having solved that I just had to deal with the HiDPI screen. Since I spend
 most of my time in the terminal I just cranked up the font size for
 `urxvt` to 16, which is nice and readable. For `chromium` we can do
 
-    chromium --force-device-scale-factor=1.5
+```bash
+chromium --force-device-scale-factor=1.5
+```
 
 to activate the HiDPI scaling support which was added fairly recently.
 I like 1.5, which makes the UI elements small but the page text is still
@@ -42,12 +46,12 @@ it's kind of nice to read an article with the keyboard tucked away.
 I wrote two little shellscripts to make this work. The first is
 `tablet_mode`:
 
-{% highlight bash %}
+```bash
 #!/bin/sh
 
 xrandr --output eDP1 --rotate left
 synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')
-{% endhighlight %}
+```
 
 This rotates the screen to one of the possible portrait layouts, and the
 second line toggles the touchpad off. A quirk of the Yoga design is that
@@ -60,12 +64,12 @@ in that case.
 
 The second script is really similar! Here's `laptop_mode`:
 
-{% highlight bash %}
+```bash
 #!/bin/sh
 
 xrandr --output eDP1 --rotate normal
 synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0') 
-{% endhighlight %}
+```
 
 In order for this to work properly you also need to have the
 [xrandr-align](https://github.com/wolneykien/xrandr-align) program

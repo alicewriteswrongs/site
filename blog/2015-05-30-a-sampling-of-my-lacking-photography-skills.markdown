@@ -8,11 +8,13 @@ tags:
     - nyc
 ---
 
+# A sampling of my (lacking) photography skills
+
 I've been in New York now for about a week, and I've been taking a bunch
 of pictures to send over TextSecure to folks in Boston. Here are some
 highlights:
 
-###Bloomberg Tower
+### Bloomberg Tower
 
 I went to a talk about GnuPG last night that was in the Bloomberg Tower.
 I thought it was a bit strange to hold an event about a piece of
@@ -26,7 +28,7 @@ Anyway, it's a tall building and we could see central park:
 
 ![Bloomberg View](/images/nyc_pictures/bloombergtower.jpg)
 
-###Brooklyn Botanical Garden
+### Brooklyn Botanical Garden
 
 Today I visited the Brooklyn Botanical Garden, which was a really awesome
 place. Lots of really nice landscaping! 
@@ -76,7 +78,7 @@ There are also indoor (greenhouse) gardens:
 Great place overall! I had a lot of fun just walking around. Also on Saturdays
 if you get there between 10 and noon it's free!
 
-###Bridges!
+### Bridges!
 
 I took some pictures of the bridges (I'm so ashamed of doing this in public,
 I feel I've been forever marked a tourist)

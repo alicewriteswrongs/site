@@ -8,6 +8,8 @@ tags:
     - email
 ---
 
+# Email signatures in Sup
+
 I'm a big fan of the [Sup](http://supmua.org/) email client. I've been
 using it for around a year now, and I only just recently realized I didn't
 have my email signatures properly configured! I had a little trouble
@@ -22,17 +24,17 @@ formality, etc).
 
 This is pretty easy to do! This is what my `signature.rb` file looks like:
 
-    {% highlight ruby %}
-    if from_email == 'alice.writes.wrongs@gmail.com'
-        "~*~ alice ~*~
-    PGP fingerprint: 43D1 4BEF 39F7 4027 B02A DC4D 3D47 670F 4226 9A83"
-    elsif from_email == 'axyridis@riseup.net'
-        "~*~ alice ~*~
-    PGP fingerprint: 43D1 4BEF 39F7 4027 B02A DC4D 3D47 670F 4226 9A83"
-    else
-        "~*~ alice ~*~"
-    end
-    {% endhighlight %}
+```ruby
+if from_email == 'alice.writes.wrongs@gmail.com'
+    "~*~ alice ~*~
+PGP fingerprint: 43D1 4BEF 39F7 4027 B02A DC4D 3D47 670F 4226 9A83"
+elsif from_email == 'axyridis@riseup.net'
+    "~*~ alice ~*~
+PGP fingerprint: 43D1 4BEF 39F7 4027 B02A DC4D 3D47 670F 4226 9A83"
+else
+    "~*~ alice ~*~"
+end
+```
 
 which handles it pretty nicely! I've also set mine up the include the PGP
 key that is relevant to the particular email address in question.
