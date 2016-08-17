@@ -4,5 +4,6 @@ export const BlogPage = () => (
   <span>blog</span>
 );
 
-// export const BlogPost = body => (
-// );
+export const BlogPost = post => (
+  () => markdown(post.body)
+);

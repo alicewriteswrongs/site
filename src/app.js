@@ -29,7 +29,7 @@ let domElement = document.getElementById("literate-crypto-app");
 
 render(
   <Provider store={store}>
-    { routes(matasano) }
+    { routes() }
   </Provider>,
   domElement
 );

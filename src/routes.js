@@ -13,10 +13,13 @@ import App from './components/App';
 import MatasanoExercises from './components/matasano/MatasanoExercises';
 import MatasanoExercise from './components/matasano/MatasanoExercise';
 import Home from './components/Home';
-import Blog from './components/blog/Blog';
+import { BlogPage, BlogPost } from './components/blog/Blog';
 
-const matasanoExercises = R.map(key => (
-  <Route key={key} path={key} component={MatasanoExercise} />
+const matasano = require('json!./data/matasano.json');
+const blogPosts = require('json!./data/blog.json');
+
+const generateRoute = R.curry((component, object) => (
+  <Route key={object.key} path={object.key} component={component(object)} />
 ));
 
 const mathJax = () => {
@@ -25,26 +28,34 @@ const mathJax = () => {
   }
 };
 
-export function routes(matasano: Object) {
+const matasanoRoutes = R.map(generateRoute(MatasanoExercise));
+
+const blogRoutes = R.map(generateRoute(BlogPost));
+
+export function generateRoutes(matasano, blog) {
+  console.log(matasano);
+
+  let matasanoEntries = Object.entries(matasano);
+
+  console.log(matasanoRoutes(matasano));
+
   return (
     <Router history={browserHistory} onUpdate={mathJax}>
-      { subRoutes(matasano) }
+      <Route path="/" component={App}>
+        <IndexRoute component={Home} />
+        <Route path="matasano" component={MatasanoExercises}>
+          { matasanoRoutes(Object.entries(matasano)) }
+        </Route>
+        <Route path="blog" component={BlogPage}>
+          { blogRoutes(Object.entries(blog)) }
+        </Route>
+      </Route>
     </Router>
   );
 }
 
-function subRoutes(matasano: Object) {
-  return (
-    <Route path="/" component={App}>
-      <IndexRoute component={Home} />
-      <Route path="matasano" component={MatasanoExercises}>
-        { matasanoExercises(Object.keys(matasano)) }
-      </Route>
-      <Route path="blog" component={Blog} />
-    </Route>
-  );
-}
+export const routes = () => generateRoutes(matasano, blogPosts);
 
-export function routeArray(matasanoExercises: Object) {
-  return(reactRouterToArray(subRoutes(matasanoExercises)));
-}
+export const routeArray = (matasano: Object, blog: Object) => (
+  reactRouterToArray(generateRoutes(matasano, blog))
+);
