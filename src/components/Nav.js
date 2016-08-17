@@ -26,7 +26,9 @@ const navLinks = R.curry((current) => (
 ));
 
 const liSep = R.curry((sep, item, index) => [item, <li key={index}>{sep}</li>]);
+
 const separatedLinks = R.addIndex(R.chain)(liSep("/"));
+
 const desktopLinks = R.pipe(separatedLinks, R.dropLast(1));
 
 class Nav extends React.Component {
