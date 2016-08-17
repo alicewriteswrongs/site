@@ -11,18 +11,29 @@ var routeArray = require('../src/routes').routeArray;
 let matasanoPath = path.join(__dirname, '../src/data/matasano.json')
 let matasanoContents = JSON.parse(fs.readFileSync(matasanoPath));
 
+// load blog posts
+let blogPath = path.join(__dirname, '../src/data/blog.json')
+let blogContents = JSON.parse(fs.readFileSync(blogPath));
+
 // get an array of the routes we care about
-let matasanoRoutes = routeArray(matasanoContents);
+let siteRoutes = routeArray(matasanoContents, blogContents);
 
 let dist = path.join(__dirname, '../dist');
 
 let routePath = route => path.join(dist, route);
 
-if ( ! fs.existsSync(path.join(dist, 'matasano')) ) {
-  fs.mkdirSync(path.join(dist, 'matasano'));
-}
+let topLevelDirs = [
+  'matasano',
+  'blog',
+];
 
-matasanoRoutes.forEach(route => {
+topLevelDirs.forEach(dir => {
+  if ( ! fs.existsSync(path.join(dist, dir)) ) {
+    fs.mkdirSync(path.join(dist, dir));
+  }
+});
+
+siteRoutes.forEach(route => {
   let fullPath = routePath(route.replace("/literate-crypto", ""));
 
   let copyPath = fullPath + "/index.html"

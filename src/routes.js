@@ -35,24 +35,26 @@ const blogRoutes = R.map(generateRoute(BlogPost));
 
 export function generateRoutes(matasano, blog) {
   return (
-    <Router history={browserHistory} onUpdate={mathJax}>
-      <Route path="/" component={App}>
-        <IndexRoute component={Home} />
-        <Route path="matasano" component={MatasanoExercises}>
-          { matasanoRoutes(_.entries(matasano)) }
-        </Route>
-        <Route path="blog" component={BlogPage}>
-          { blogRoutes(_.entries(blog)) }
-        </Route>
+    <Route path="/" component={App}>
+      <IndexRoute component={Home} />
+      <Route path="matasano" component={MatasanoExercises}>
+        { matasanoRoutes(_.entries(matasano)) }
       </Route>
-    </Router>
+      <Route path="blog" component={BlogPage}>
+        { blogRoutes(_.entries(blog)) }
+      </Route>
+    </Route>
   );
 }
 
 export const routes = () => {
   const matasano = require('json!./data/matasano.json');
   const blogPosts = require('json!./data/blog.json');
-  generateRoutes(matasano, blogPosts);
+  return (
+    <Router history={browserHistory} onUpdate={mathJax}>
+      { generateRoutes(matasano, blogPosts) }
+    </Router>
+  );
 };
 
 export const routeArray = (matasano: Object, blog: Object) => (
