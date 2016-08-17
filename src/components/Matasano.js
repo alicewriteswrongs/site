@@ -40,6 +40,7 @@ export class MatasanoExercises extends React.Component {
   }
 }
 
-export const MatasanoExercise = (matasano: Object) => (
-  () => markdown(matasano.body)
-);
+export const MatasanoExercise = (matasano: Object) => {
+  const MatasanoExercise = () => markdown(matasano.body);
+  return MatasanoExercise;
+};
