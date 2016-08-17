@@ -8,6 +8,7 @@ import {
 } from 'react-router';
 import reactRouterToArray from 'react-router-to-array';
 import R from 'ramda';
+import _ from 'lodash';
 
 import App from './components/App';
 import {
@@ -17,8 +18,6 @@ import {
 import Home from './components/Home';
 import { BlogPage, BlogPost } from './components/Blog';
 
-const matasano = require('json!./data/matasano.json');
-const blogPosts = require('json!./data/blog.json');
 
 const generateRoute = R.curry((component, [key, object]) => (
   <Route key={key} path={key} component={component(object)} />
@@ -40,17 +39,21 @@ export function generateRoutes(matasano, blog) {
       <Route path="/" component={App}>
         <IndexRoute component={Home} />
         <Route path="matasano" component={MatasanoExercises}>
-          { matasanoRoutes(Object.entries(matasano)) }
+          { matasanoRoutes(_.entries(matasano)) }
         </Route>
         <Route path="blog" component={BlogPage}>
-          { blogRoutes(Object.entries(blog)) }
+          { blogRoutes(_.entries(blog)) }
         </Route>
       </Route>
     </Router>
   );
 }
 
-export const routes = () => generateRoutes(matasano, blogPosts);
+export const routes = () => {
+  const matasano = require('json!./data/matasano.json');
+  const blogPosts = require('json!./data/blog.json');
+  generateRoutes(matasano, blogPosts);
+};
 
 export const routeArray = (matasano: Object, blog: Object) => (
   reactRouterToArray(generateRoutes(matasano, blog))

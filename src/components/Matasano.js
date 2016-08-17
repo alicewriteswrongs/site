@@ -7,7 +7,7 @@ const pathRegex = /matasano\/?$/;
 
 const mlinks = linksToRoutes('matasano');
 
-export const MatasanoExercises = (props) => {
+export const MatasanoExercises = (props: Object) => {
   const {
     location: { pathname },
     children,

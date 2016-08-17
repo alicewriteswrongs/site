@@ -8,7 +8,7 @@ const pathRegex = /blog\/?$/;
 
 const blogLinks = linksToRoutes('blog');
 
-export const BlogPage = props => {
+export const BlogPage = (props: Object) => {
   const {
     location: { pathname },
     children,
