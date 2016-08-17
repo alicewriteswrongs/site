@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { Link } from 'react-router';
-import { markdown } from '../../shared/markdown';
+import { markdown } from '../shared/markdown';
 
 export class MatasanoExercises extends React.Component {
   props: {
@@ -40,8 +40,6 @@ export class MatasanoExercises extends React.Component {
   }
 }
 
-const MatasanoExercise = body => markdown(body);
-
-export const GenerateMatasanoExercise = matasano => (
-  MatasanoExercise(matasano.body)
+export const MatasanoExercise = (matasano: Object) => (
+  () => markdown(matasano.body)
 );

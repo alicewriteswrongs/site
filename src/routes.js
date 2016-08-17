@@ -12,7 +12,7 @@ import R from 'ramda';
 import App from './components/App';
 import {
   MatasanoExercises,
-  GenerateMatasanoExercise,
+  MatasanoExercise,
 } from './components/Matasano';
 import Home from './components/Home';
 import { BlogPage, BlogPost } from './components/blog/Blog';
