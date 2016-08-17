@@ -1,7 +1,8 @@
 import React from 'react';
 
-const Blog = () => (
+export const BlogPage = () => (
   <span>blog</span>
 );
 
-export default Blog;
+// export const BlogPost = body => (
+// );

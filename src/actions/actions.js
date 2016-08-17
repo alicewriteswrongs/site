@@ -11,3 +11,8 @@ export const SET_MATASANO_CONTENTS = 'SET_MATASANO_CONTENTS';
 export const setMatasanoContents = (contents: {}): Action => (
   { type: SET_MATASANO_CONTENTS, payload: contents }
 );
+
+export const SET_BLOG_CONTENTS = 'SET_BLOG_CONTENTS';
+export const setBlogContents = (contents: {}): Action => (
+  { type: SET_BLOG_CONTENTS, payload: contents }
+);
