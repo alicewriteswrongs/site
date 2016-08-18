@@ -29,7 +29,7 @@ const mathJax = () => {
   }
 };
 
-const matasanoRoutes = R.map(generateRoute(GenerateMatasanoExercise));
+const matasanoRoutes = R.map(generateRoute(MatasanoExercise));
 
 const blogRoutes = R.map(generateRoute(BlogPost));
 
