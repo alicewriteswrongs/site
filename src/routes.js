@@ -18,7 +18,11 @@ const matasanoExercises = R.map(key => (
   <Route key={key} path={key} component={MatasanoExercise} />
 ));
 
-const mathJax = () => window.MathJax.Hub.Typeset();
+const mathJax = () => {
+  if ( window.MathJax !== undefined ) {
+    window.MathJax.Hub.Typeset();
+  }
+};
 
 export function routes(matasano: Object) {
   return (
