@@ -4183,6 +4183,11 @@
       "from": "ripemd160@0.2.0",
       "resolved": "https://registry.npmjs.org/ripemd160/-/ripemd160-0.2.0.tgz"
     },
+    "rss": {
+      "version": "1.2.1",
+      "from": "rss@latest",
+      "resolved": "https://registry.npmjs.org/rss/-/rss-1.2.1.tgz"
+    },
     "run-async": {
       "version": "0.1.0",
       "from": "run-async@>=0.1.0 <0.2.0",
@@ -5082,6 +5087,11 @@
       "version": "0.2.1",
       "from": "write@>=0.2.1 <0.3.0",
       "resolved": "https://registry.npmjs.org/write/-/write-0.2.1.tgz"
+    },
+    "xml": {
+      "version": "1.0.1",
+      "from": "xml@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/xml/-/xml-1.0.1.tgz"
     },
     "xml-char-classes": {
       "version": "1.0.0",
