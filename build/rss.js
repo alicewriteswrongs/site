@@ -16,7 +16,7 @@ Object.keys(blogContents).forEach(key => {
 
   feed.item({
     title: entry.title,
-    description: entry.body,
+    description: entry.title,
     url: "https://aliceriot.github.io/blog/" + key,
     guid: key,
     author: "Alice Pote",
