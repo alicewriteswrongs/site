@@ -4,9 +4,11 @@
   margin: auto;
   padding: 10px;
 
-  p {
+  p, li {
     text-align: justify;
+  }
 
+  p {
     code {
       background-color: $code-background;
       padding: 2px;
