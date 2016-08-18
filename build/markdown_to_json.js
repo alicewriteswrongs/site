@@ -44,6 +44,7 @@ if ( process.argv.length === 2 ) {
     markdownCollection[contents.attributes.key] = {
       title: contents.attributes.title,
       body: md.render(contents.body),
+      date: contents.attributes.date,
     };
   });
 

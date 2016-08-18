@@ -12,4 +12,6 @@ cp -R ./images dist/
 
 node ./build/gh-pages.js
 
+node ./build/rss.js > dist/feed.xml
+
 rm -rf dist/*
