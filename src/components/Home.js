@@ -12,7 +12,7 @@ const Home = () => (
         functional programming.
       </p>
       <p>
-        This site contains my blog, projects I've worked on
+        This site contains my blog and some projects I've worked on.
       </p>
 
     </div>

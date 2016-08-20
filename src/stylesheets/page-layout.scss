@@ -18,4 +18,24 @@
   .sidebar {
     width: 33%;
   }
+
+  @media (max-width: 899px) {
+    .main-column {
+      width: 100%;
+    }
+
+    .sidebar {
+      display: none;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .main-column {
+      width: 66%;
+    }
+
+    .sidebar {
+      width: 33%;
+    }
+  }
 }
