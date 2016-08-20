@@ -12,9 +12,7 @@ import {
   setMatasanoContents,
   setBlogContents,
 } from './actions/actions';
-
-let matasano = require('json!./data/matasano.json');
-let blogPosts = require('json!./data/blog.json');
+import { matasano, blogPosts } from './data';
 
 require("./stylesheets/main.scss");
 setup();
