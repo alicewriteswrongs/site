@@ -18,7 +18,7 @@ type State = {
   blogPosts: {};
 };
 
-export function nav (state: State = initialState, action: Action) {
+export function nav(state: State = initialState, action: Action) {
   switch (action.type) {
   case SET_NAV_SHOW_STATE:
     return { ...state, navOpen: action.payload };

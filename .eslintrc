@@ -13,7 +13,7 @@
       "anonymous": "always",
       "named": "never"
     }],
-    "comma-dangle": 0
+    "comma-dangle": 0,
   },
   "plugins": [
     "flowtype",

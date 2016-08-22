@@ -1,14 +1,42 @@
 // @flow
 import React from 'react';
-import { Link } from 'react-router';
 import R from 'ramda';
+import { Route, IndexRoute } from 'react-router';
+import reactRouterToArray from 'react-router-to-array';
+import _ from 'lodash';
 
-const linkToRoute = R.curry((parentPath, route) => (
-  <Link to={`/${parentPath}/${route.path}`} key={route.path}>
-    {route.path}
-  </Link>
+import {
+  MatasanoExercises,
+  MatasanoExercise,
+} from '../components/Matasano';
+import Home from '../components/Home';
+import { BlogPage, BlogPost } from '../components/Blog';
+import About from '../components/About';
+import App from '../components/App';
+
+const generateRoute = R.curry((component, [key, object]) => (
+  <Route key={key} path={key} component={component(object)} />
 ));
 
-export const linksToRoutes = (parentPath: string) => (
-  R.map(linkToRoute(parentPath))
+const matasanoRoutes = R.map(generateRoute(MatasanoExercise));
+
+const blogRoutes = R.map(generateRoute(BlogPost));
+
+export function generateRoutes(matasano: Object, blog: Object) {
+  return (
+    <Route path="/" component={App}>
+      <IndexRoute component={Home} />
+      <Route path="about" component={About} />
+      <Route path="matasano" component={MatasanoExercises}>
+        { matasanoRoutes(_.entries(matasano)) }
+      </Route>
+      <Route path="blog" component={BlogPage}>
+        { blogRoutes(_.entries(blog)) }
+      </Route>
+    </Route>
+  );
+}
+
+export const routeArray = (matasano: Object, blog: Object) => (
+  reactRouterToArray(generateRoutes(matasano, blog))
 );

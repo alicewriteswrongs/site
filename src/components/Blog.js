@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { markdown } from '../shared/markdown';
-import { linksToRoutes } from '../shared/routing';
+import { linksToRoutes } from '../shared/link_utils';
 
 const pathRegex = /blog\/?$/;
 
