@@ -5,7 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var cp = require('cp');
 
-var routeArray = require('../src/shared/routing').routeArray;
+var routeArray = require('../src/lib/routing').routeArray;
 
 var util = require("./util");
 

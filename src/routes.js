@@ -5,7 +5,7 @@ import {
   browserHistory,
 } from 'react-router';
 import { matasano, blogPosts } from './data';
-import { generateRoutes } from './shared/routing';
+import { generateRoutes } from './lib/routing';
 
 const mathJax = () => {
   if ( window.MathJax !== undefined ) {

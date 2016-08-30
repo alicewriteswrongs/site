@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
 
-import { markdown } from '../shared/markdown';
-import { linksToRoutes } from '../shared/link_utils';
+import { markdown } from '../lib/markdown';
+import { linksToRoutes } from '../lib/link_utils';
 
 const pathRegex = /blog\/?$/;
 
