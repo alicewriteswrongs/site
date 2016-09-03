@@ -1,7 +1,6 @@
-// @flow
 import React from 'react';
 
-import { markdown } from '../lib/markdown';
+import { Markdown } from '../lib/markdown';
 import { linksToRoutes } from '../lib/link_utils';
 
 const pathRegex = /blog\/?$/;
@@ -22,7 +21,7 @@ export const BlogPage = (props: Object) => {
   );
 };
 
-export const BlogPost = (post: Object) => {
-  const BlogPost = () => markdown(post.body);
+export const BlogPost = (post) => {
+  const BlogPost = () => <Markdown md={post.body} />;
   return BlogPost;
 };

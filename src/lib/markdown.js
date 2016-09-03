@@ -1,6 +1,7 @@
 import React from 'react';
+import { pages } from '../data';
 
-export const markdown = (md: string): React$Element<string> => {
+export const Markdown = ({ md }) => {
   return (
     <div
       className="markdown"
@@ -8,3 +9,5 @@ export const markdown = (md: string): React$Element<string> => {
     />
   );
 };
+
+export const Page = ({ pageName }) => <Markdown md={pages[pageName].body} />

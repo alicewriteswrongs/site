@@ -1,16 +1,15 @@
-#!/usr/bin/env node
-
-require('babel-register');
 var fs = require('fs');
 var path = require('path');
 var cp = require('cp');
 
-var routeArray = require('../src/lib/routing').routeArray;
+// var util = require("./util");
 
-var util = require("./util");
+var routes = require('../src/routes').routes;
+
+var reactRouterToArray = require('react-router-to-array')
 
 // get an array of the routes we care about
-let siteRoutes = routeArray(util.matasanoContents, util.blogContents);
+// let siteRoutes = routeArray(util.matasanoContents, util.blogContents);
 
 let dist = path.join(__dirname, '../dist');
 
@@ -22,12 +21,15 @@ let topLevelDirs = [
 ];
 
 topLevelDirs.forEach(dir => {
-  if ( ! fs.existsSync(path.join(dist, dir)) ) {
-    fs.mkdirSync(path.join(dist, dir));
+  if ( ! fs.existsSync(path.join(__dirname, dir)) ) {
+    fs.mkdirSync(path.join(".", dir));
   }
 });
 
-siteRoutes.forEach(route => {
+let routeArray = reactRouterToArray(routes());
+console.log(routeArray);
+
+routeArray.forEach(route => {
   let fullPath = routePath(route.replace("/literate-crypto", ""));
 
   let copyPath = fullPath + "/index.html"

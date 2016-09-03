@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import { Link } from 'react-router';
 import R from 'ramda';

@@ -9,6 +9,7 @@
     "flow": "flow check",
     "lint": "eslint ./src",
     "build": "NODE_ENV=production webpack --progress -p --config webpack.config.prod.js",
+    "build_routes": "NODE_ENV=production webpack --progress -p --config webpack.config.build.js",
     "publish": "./build/publish.sh"
   },
   "repository": {
