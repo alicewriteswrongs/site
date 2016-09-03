@@ -27,7 +27,12 @@ end
 task :build_blog_json do
   sh "node ./build/markdown_to_json.js ./blog ./src/data/blog.json"
 end
-task :build_json => [:build_matasano_json, :build_blog_json]
+
+task :build_pages_json do
+  sh "node ./build/markdown_to_json.js ./src/pages ./src/data/pages.json"
+end
+
+task :build_json => [:build_matasano_json, :build_blog_json, :build_pages_json]
 
 task :clean do |t|
   sh "rm -rf matasano"
