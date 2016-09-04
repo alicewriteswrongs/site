@@ -2,9 +2,10 @@
 import React from 'react';
 import R from 'ramda';
 
-import { Markdown } from '../lib/markdown';
+import { Markdown, Page } from '../lib/markdown';
 import { linksToRoutes } from '../lib/link_utils';
 import { matasano } from '../data';
+
 
 const pathRegex = /matasano\/?$/;
 
@@ -22,6 +23,14 @@ const matasanoLinks = children => (
   </div>
 );
 
+const MatasanoPage = childRoutes => (
+  <div>
+    <Page pageName="matasano" />
+    { matasanoLinks(childRoutes) }
+  </div>
+);
+
+
 export const MatasanoExercises = (props: Object) => {
   const {
     location: { pathname },
@@ -31,7 +40,7 @@ export const MatasanoExercises = (props: Object) => {
 
   return (
     <div className="single-column">
-      { pathname.match(pathRegex) ? matasanoLinks(childRoutes) : children }
+      { pathname.match(pathRegex) ? MatasanoPage(childRoutes) : children }
     </div>
   );
 };
