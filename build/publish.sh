@@ -6,7 +6,15 @@ rake
 
 npm run build
 
-node ./build/create_static_routes.js
+npm run build_routes
+
+cd dist
+
+node ./create_static_routes.js
+
+rm ./create_static_routes.js
+
+cd ..
 
 cp -R ./images dist/
 

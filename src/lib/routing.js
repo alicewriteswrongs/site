@@ -5,6 +5,7 @@ import { Route, IndexRoute } from 'react-router';
 import reactRouterToArray from 'react-router-to-array';
 import _ from 'lodash';
 
+import { matasano, blogPosts } from '../data';
 import {
   MatasanoExercises,
   MatasanoExercise,
@@ -37,6 +38,6 @@ export function generateRoutes(matasano: Object, blog: Object) {
   );
 }
 
-export const routeArray = (matasano: Object, blog: Object) => (
-  reactRouterToArray(generateRoutes(matasano, blog))
+export const routeArray = () => (
+  reactRouterToArray(generateRoutes(matasano, blogPosts))
 );

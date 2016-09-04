@@ -2,18 +2,11 @@ var fs = require('fs');
 var path = require('path');
 var cp = require('cp');
 
-// var util = require("./util");
-
-var routes = require('../src/routes').routes;
-
-var reactRouterToArray = require('react-router-to-array')
-
-// get an array of the routes we care about
-// let siteRoutes = routeArray(util.matasanoContents, util.blogContents);
+const routing  = require('../src/lib/routing');
 
 let dist = path.join(__dirname, '../dist');
 
-let routePath = route => path.join(dist, route);
+let routePath = route => path.join(".", route);
 
 let topLevelDirs = [
   'matasano',
@@ -26,17 +19,13 @@ topLevelDirs.forEach(dir => {
   }
 });
 
-let routeArray = reactRouterToArray(routes());
-console.log(routeArray);
-
-routeArray.forEach(route => {
-  let fullPath = routePath(route.replace("/literate-crypto", ""));
-
+routing.routeArray().forEach(route => {
+  let fullPath = routePath(route);
   let copyPath = fullPath + "/index.html"
   if ( fs.existsSync(fullPath) && fs.lstatSync(fullPath).isDirectory() ) {
-    cp.sync('index-production.html', copyPath);
+    cp.sync('../index-production.html', copyPath);
   } else {
     fs.mkdirSync(fullPath);
-    cp.sync('index-production.html', copyPath);
+    cp.sync('../index-production.html', copyPath);
   }
 });
