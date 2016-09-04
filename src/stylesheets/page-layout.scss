@@ -4,6 +4,11 @@
   padding: 10px;
 }
 
+.link-list {
+  display: flex;
+  flex-direction: column;
+}
+
 .two-column {
   max-width: 1200px;
   margin: auto;

@@ -1,9 +1,10 @@
 // @flow
 import React from 'react';
+import R from 'ramda';
+
 import { Markdown } from '../lib/markdown';
 import { linksToRoutes } from '../lib/link_utils';
 import { matasano } from '../data';
-import R from 'ramda';
 
 const pathRegex = /matasano\/?$/;
 
@@ -13,7 +14,13 @@ const formatLinkProps = R.map(key => ({ path: key, label: matasano[key].title })
 
 const childrenToKeys = R.map(child => child.path);
 
-const matasanoLinks = R.compose(linksToRoutes('matasano'), formatLinkProps, childrenToKeys);
+const linksToChildren = R.compose(mlinks, formatLinkProps, childrenToKeys);
+
+const matasanoLinks = children => (
+  <div className="link-list">
+    { linksToChildren(children) }
+  </div>
+);
 
 export const MatasanoExercises = (props: Object) => {
   const {
@@ -22,14 +29,8 @@ export const MatasanoExercises = (props: Object) => {
     route: { childRoutes }
   } = props;
 
-  console.log(childrenToKeys(childRoutes));
-
-  console.log(formatLinkProps(childrenToKeys(childRoutes)));
-
-  console.log(matasanoLinks(childRoutes));
-
   return (
-    <div>
+    <div className="single-column">
       { pathname.match(pathRegex) ? matasanoLinks(childRoutes) : children }
     </div>
   );

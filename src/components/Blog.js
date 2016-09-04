@@ -1,11 +1,25 @@
 import React from 'react';
+import R from 'ramda';
 
 import { Markdown } from '../lib/markdown';
 import { linksToRoutes } from '../lib/link_utils';
+import { blogPosts } from '../data';
 
 const pathRegex = /blog\/?$/;
 
-const blogLinks = linksToRoutes('blog');
+const blinks = linksToRoutes('blog');
+
+const formatLinkProps = R.map(key => ({ path: key, label: blogPosts[key].title }));
+
+const childrenToKeys = R.map(child => child.path);
+
+const linksToChildren = R.compose(blinks, formatLinkProps, childrenToKeys);
+
+const blogLinks = children => (
+  <div className="link-list">
+    { linksToChildren(children) }
+  </div>
+);
 
 export const BlogPage = (props: Object) => {
   const {
@@ -15,7 +29,7 @@ export const BlogPage = (props: Object) => {
   } = props;
 
   return (
-    <div className="blog-page">
+    <div className="single-column">
       { pathname.match(pathRegex) ? blogLinks(childRoutes) : children }
     </div>
   );
