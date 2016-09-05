@@ -1,7 +1,7 @@
 # Website
 
 [![Build
-Status](https://travis-ci.org/aliceriot/literate-crypto.svg?branch=master)](https://travis-ci.org/aliceriot/literate-crypto)
+Status](https://travis-ci.org/aliceriot/site.svg?branch=master)](https://travis-ci.org/aliceriot/site)
 
 This is my personal website. It's hosted
 [here](https://aliceriot.github.io/).
