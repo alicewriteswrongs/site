@@ -62,7 +62,7 @@ npm run publish
 
 This builds the JavaScript bundles for the site (`bundle.js`) and the
 static routing script (`create_static_routes.js`). Then it runs the static
-routing script, copies in the images, deploys to
-[](https://github.com/aliceriot/aliceriot.github.io) using
+routing script, copies in the images, deploys to [another
+repo](https://github.com/aliceriot/aliceriot.github.io) using
 [gh-pages](https://github.com/tschaub/gh-pages), and then cleans out the
 build directory.
