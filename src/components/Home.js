@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { Link } from 'react-router';
 
 const Home = () => (
   <div className="home two-column">
@@ -12,7 +13,9 @@ const Home = () => (
         functional programming.
       </p>
       <p>
-        This site contains my blog and some projects I've worked on.
+        { "This site contains my " }
+          <Link to="/blog">blog</Link>
+        { " and some projects I've worked on." }
       </p>
 
     </div>
