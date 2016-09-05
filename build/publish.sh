@@ -6,6 +6,8 @@ rake
 
 npm run build
 
+rm dist/bundle.js.map
+
 npm run build_routes
 
 cd dist
