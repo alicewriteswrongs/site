@@ -9,7 +9,7 @@ import { matasano } from '../data';
 
 const pathRegex = /matasano\/?$/;
 
-const ui = R.map(e => <ui>{ e }</ui>);
+const li = R.map(e => <li>{ e }</li>);
 
 const mlinks = linksToRoutes('matasano');
 
@@ -17,7 +17,7 @@ const formatLinkProps = R.map(key => ({ path: key, label: matasano[key].title })
 
 const childrenToKeys = R.map(child => child.path);
 
-const linksToChildren = R.compose(ui, mlinks, formatLinkProps, childrenToKeys);
+const linksToChildren = R.compose(li, mlinks, formatLinkProps, childrenToKeys);
 
 const matasanoLinks = children => (
   <ul className="link-list">

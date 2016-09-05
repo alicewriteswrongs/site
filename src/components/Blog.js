@@ -7,7 +7,7 @@ import { blogPosts } from '../data';
 
 const pathRegex = /blog\/?$/;
 
-const ui = R.map(i => <ui>{ i }</ui>);
+const li = R.map(i => <li>{ i }</li>);
 
 const blinks = linksToRoutes('blog');
 
@@ -15,7 +15,7 @@ const formatLinkProps = R.map(key => ({ path: key, label: blogPosts[key].title }
 
 const childrenToKeys = R.map(child => child.path);
 
-const linksToChildren = R.compose(ui, blinks, formatLinkProps, childrenToKeys);
+const linksToChildren = R.compose(li, blinks, formatLinkProps, childrenToKeys);
 
 const blogLinks = children => (
   <div className="link-list">
