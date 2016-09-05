@@ -35,8 +35,10 @@ a docker container. There are also some dev-related scripts in
 `package.json`:
 
 ```sh
-npm run test    # run the tests
-npm run lint    # run the linter
+npm run test               # run the tests
+npm run lint               # run the linter
+npm run singleTest ${path} # run a single test file
+npm run watchTest ${path}  # run a single test file in watch mode
 ```
 
 ### Building
