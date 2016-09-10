@@ -1,13 +1,16 @@
 package ex11
 
-import (
-	"fmt"
-	"testing"
-)
+import "testing"
 
 func TestRandomAESKey(t *testing.T) {
+	m := make(map[string]int)
 	for i := 0; i < 10; i++ {
-		bytes := randomAESKey()
-		fmt.Println(bytes)
+		m[string(randomAESKey())]++
+	}
+
+	for _, v := range m {
+		if v != 1 {
+			t.Error("DUPLICATE!")
+		}
 	}
 }
