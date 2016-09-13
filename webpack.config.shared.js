@@ -1,4 +1,4 @@
-var path = require('path');
+var path = require('path')
 
 module.exports = {
   devtool: 'eval',
@@ -18,9 +18,9 @@ module.exports = {
       loaders: ['react-hot', 'babel'],
       include: path.join(__dirname, 'src')
     },
-    { test: /\.scss$/, loader: "style!css!sass" },
-    { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$/, loader: "file" },
-    { test: /\.json$/, loader: "json", include: "src/data" },
+    { test: /\.scss$/, loader: 'style!css!sass' },
+    { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$/, loader: 'file' },
+    { test: /\.json$/, loader: 'json', include: 'src/data' }
     ]
   }
-};
+}

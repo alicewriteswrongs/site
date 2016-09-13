@@ -1,11 +1,11 @@
-var webpack = require('webpack');
-var path = require('path');
+var webpack = require('webpack')
+var path = require('path')
 
-var shared = require(path.resolve("./webpack.config.shared.js"));
+var shared = require(path.resolve('./webpack.config.shared.js'))
 
 module.exports = Object.assign({}, shared, {
   context: __dirname,
-   entry: [
+  entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
     './src/app'
@@ -18,5 +18,5 @@ module.exports = Object.assign({}, shared, {
       }
     })
   ],
-  devtool: 'source-map',
-});
+  devtool: 'source-map'
+})

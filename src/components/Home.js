@@ -1,10 +1,10 @@
 // @flow
-import React from 'react';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
 
 const Home = () => (
-  <div className="home two-column">
-    <div className="main-column">
+  <div className='home two-column'>
+    <div className='main-column'>
       <h1>
         Alice Pote
       </h1>
@@ -14,12 +14,12 @@ const Home = () => (
       </p>
       <p>
         { "This site contains my " }
-          <Link to="/blog">blog</Link>
+          <Link to='/blog'>blog</Link>
         { " and some projects I've worked on." }
       </p>
 
     </div>
-    <div className="sidebar">
+    <div className='sidebar'>
       <span>
         Recent Posts
       </span>
@@ -28,6 +28,6 @@ const Home = () => (
       </span>
     </div>
   </div>
-);
+)
 
-export default Home;
+export default Home
