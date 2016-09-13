@@ -1,4 +1,5 @@
 var path = require('path')
+var webpack = require('webpack')
 
 var shared = require(path.resolve('./webpack.config.shared.js'))
 
