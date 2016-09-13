@@ -4,8 +4,6 @@ var cp = require('cp')
 
 const routing = require('../src/lib/routing')
 
-let dist = path.join(__dirname, '../dist')
-
 let routePath = route => path.join('.', route)
 
 let topLevelDirs = [

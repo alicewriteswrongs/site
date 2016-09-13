@@ -1,8 +1,8 @@
-const rss = require('rss')
+const RSS = require('rss')
 
 const blogContents = require('./util').blogContents
 
-var feed = new rss({
+var feed = new RSS({
   title: "Alice Pote's blog",
   description: 'Yet Another Programming Blog',
   feed_url: 'https://aliceriot.github.io/rss.xml',
@@ -11,8 +11,6 @@ var feed = new rss({
 
 Object.keys(blogContents).forEach(key => {
   let entry = blogContents[key]
-
-  let url = key
 
   feed.item({
     title: entry.title,

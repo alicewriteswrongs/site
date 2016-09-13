@@ -29,12 +29,12 @@ var md = new Remarkable({
 
 if (process.argv.length === 2) {
   console.log('not enough arguments, give me a path to read from, a path to write to, and a filename to write.')
-  exit(1)
+  process.exit(1)
 } else {
   var markdownCollection = {}
   var dir = path.resolve(process.argv[2])
   if (!fs.existsSync(dir)) {
-    exit(1)
+    process.exit(1)
   }
   fs.readdirSync(process.argv[2]).forEach(file => {
     var filePath = path.join(dir, file)
