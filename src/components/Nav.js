@@ -30,11 +30,11 @@ const separatedLinks = R.addIndex(R.chain)(liSep("/"));
 const desktopLinks = R.pipe(separatedLinks, R.dropLast(1));
 
 class Nav extends React.Component {
-  props: {
-    location:         Object,
-    navOpen:          boolean,
-    setNavShowState:  (b: boolean) => void,
-  };
+  // props: {
+  //   location:         Object,
+  //   navOpen:          boolean,
+  //   setNavShowState:  (b: boolean) => void,
+  // };
 
   static contextTypes = {
     router:  React.PropTypes.object
