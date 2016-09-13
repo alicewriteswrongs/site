@@ -9,7 +9,7 @@
     "singleTest": "mocha-webpack --webpack-config webpack.config.dev.js",
     "watchTest": "mocha-webpack --watch --webpack-config webpack.config.dev.js",
     "flow": "flow check",
-    "lint": "eslint ./src",
+    "lint": "standard",
     "build": "NODE_ENV=production webpack --progress -p --config webpack.config.prod.js",
     "build_routes": "NODE_ENV=production webpack --progress -p --config webpack.config.build.js",
     "publish": "./build/publish.sh"
