@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import R from 'ramda';
 
-type NavRecord = { path: string, label: string, regex: RegExp, active: ?string };
 const navRecords = [
   { path: "/", label: "Home", regex: /\/$/ },
   { path: "/about", label: "About", regex: /about\/?$/ },
@@ -10,7 +9,7 @@ const navRecords = [
   { path: "/blog", label: "Blog", regex: /blog\/?/ },
 ];
 
-const navLink = (rec: NavRecord) => (
+const navLink = rec => (
   <li key={rec.path} className={rec.active}>
     <Link to={rec.path}>{rec.label}</Link>
   </li>
@@ -41,14 +40,14 @@ class Nav extends React.Component {
     router:  React.PropTypes.object
   };
 
-  currentRoute: Function = () => this.props.location.pathname;
+  currentRoute = () => this.props.location.pathname;
 
-  dropdownClass: Function = (): string => {
+  dropdownClass = () => {
     const { navOpen } = this.props;
     return navOpen ? "open" : "closed";
   };
 
-  toggleShowDropdown: Function = (): void => {
+  toggleShowDropdown = () => {
     const {
       navOpen,
       setNavShowState
