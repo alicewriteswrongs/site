@@ -3,9 +3,12 @@ sudo: required
 services:
   - docker
 
+install:
+  - docker-compose -f travis-docker-compose.yml run watch npm install --silent
+
+
 script:
   - docker-compose -f travis-docker-compose.yml run golang
-  - docker-compose -f travis-docker-compose.yml run watch npm install --silent
   - docker-compose -f travis-docker-compose.yml run watch npm run lint
   - docker-compose -f travis-docker-compose.yml run watch npm test
   - docker-compose -f travis-docker-compose.yml run watch npm run build_test
