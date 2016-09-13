@@ -5,7 +5,7 @@ services:
 
 script:
   - docker-compose -f travis-docker-compose.yml run golang
-  - docker-compose -f travis-docker-compose.yml run watch npm install
+  - docker-compose -f travis-docker-compose.yml run watch npm install --quiet
   - docker-compose -f travis-docker-compose.yml run watch npm run lint
   - docker-compose -f travis-docker-compose.yml run watch npm test
   - docker-compose -f travis-docker-compose.yml run watch npm run build
