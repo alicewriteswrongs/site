@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import { connect } from 'react-redux';
 import { setNavShowState } from '../actions/actions';
@@ -6,11 +5,6 @@ import { setNavShowState } from '../actions/actions';
 import Nav from './Nav';
 
 class App extends React.Component {
-  props: {
-    dispatch: Function,
-    children: React$Element<*>
-  };
-
   setNavShowState = bool => {
     const { dispatch } = this.props;
     dispatch(setNavShowState(bool));
