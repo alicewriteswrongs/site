@@ -11,7 +11,7 @@ module.exports = Object.assign({}, shared, {
         'NODE_ENV': '"production"'
       }
     }),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
     new webpack.optimize.DedupePlugin()
   ],
   devtool: 'source-map'

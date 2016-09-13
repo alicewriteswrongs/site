@@ -12,6 +12,8 @@
     "lint": "standard",
     "build": "NODE_ENV=production webpack --progress -p --config webpack.config.prod.js",
     "build_routes": "NODE_ENV=production webpack --progress -p --config webpack.config.build.js",
+    "build_test": "NODE_ENV=production webpack  -p --config webpack.config.prod.js",
+    "build_routes_test": "NODE_ENV=production webpack -p --config webpack.config.build.js",
     "publish": "./build/publish.sh"
   },
   "repository": {
