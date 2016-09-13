@@ -14,7 +14,7 @@ const Home = () => (
       </p>
       <p>
         { "This site contains my " }
-          <Link to='/blog'>blog</Link>
+        <Link to='/blog'>blog</Link>
         { " and some projects I've worked on." }
       </p>
 
