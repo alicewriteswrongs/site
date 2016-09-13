@@ -81,5 +81,10 @@
       "transform-object-rest-spread",
       "transform-flow-strip-types"
     ]
+  },
+  "standard": {
+    "plugins": [
+      "flowtype"
+    ]
   }
 }
