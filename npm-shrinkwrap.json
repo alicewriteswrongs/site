@@ -1550,6 +1550,11 @@
       "from": "eslint-config-standard-jsx@3.0.0",
       "resolved": "https://registry.npmjs.org/eslint-config-standard-jsx/-/eslint-config-standard-jsx-3.0.0.tgz"
     },
+    "eslint-plugin-flowtype": {
+      "version": "2.17.1",
+      "from": "eslint-plugin-flowtype@latest",
+      "resolved": "https://registry.npmjs.org/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.17.1.tgz"
+    },
     "eslint-plugin-promise": {
       "version": "2.0.1",
       "from": "eslint-plugin-promise@>=2.0.0 <3.0.0",
