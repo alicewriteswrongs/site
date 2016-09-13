@@ -2,7 +2,7 @@ FROM node:6.2
 
 WORKDIR /src
 
-RUN apt-get update && apt-get install libelf1
+RUN apt-get -qq update && apt-get -qq install libelf1
 
 ADD ./package.json /src
 
