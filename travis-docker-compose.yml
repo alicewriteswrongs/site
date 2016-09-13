@@ -3,3 +3,10 @@ golang:
   dockerfile: Dockerfile-go
   working_dir: /src
   command: ./test.sh
+
+watch:
+  build: .
+  volumes:
+    - .:/src
+  ports:
+    - "3000:3000"
