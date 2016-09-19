@@ -3829,6 +3829,11 @@
         }
       }
     },
+    "react-page-click": {
+      "version": "3.0.0",
+      "from": "react-page-click@latest",
+      "resolved": "https://registry.npmjs.org/react-page-click/-/react-page-click-3.0.0.tgz"
+    },
     "react-redux": {
       "version": "4.4.5",
       "from": "react-redux@>=4.4.5 <5.0.0",

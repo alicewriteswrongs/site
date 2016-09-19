@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import R from 'ramda'
+import ReactPageClick from 'react-page-click';
 
 const navRecords = [
   { path: '/', label: 'Home', regex: /\/$/ },
@@ -29,7 +30,19 @@ const separatedLinks = R.addIndex(R.chain)(liSep('/'))
 
 const desktopLinks = R.pipe(separatedLinks, R.dropLast(1))
 
-const dropdownClass = navOpen => navOpen ? 'open' : 'closed'
+const sidebar = (setNavShowState, pathname, open) => {
+  if (open) {
+    return (
+      <ReactPageClick notify={() => setNavShowState(false)}>
+        <div className='nav-link-sidebar open'>
+          { navLinks(pathname) }
+        </div>
+      </ReactPageClick>
+    );
+  }
+  return <div className='nav-link-sidebar closed'>
+  </div>
+};
 
 const Nav = ({
   location: { pathname },
@@ -46,11 +59,7 @@ const Nav = ({
         onClick={() => setNavShowState(!navOpen)}
       />
     </nav>
-    <div className={`nav-link-sidebar ${dropdownClass(navOpen)}`}>
-      <ul>
-        { navLinks(pathname) }
-      </ul>
-    </div>
+    { sidebar(setNavShowState, pathname, navOpen) }
   </div>
 )
 
