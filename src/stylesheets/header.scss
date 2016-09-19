@@ -59,34 +59,45 @@
     .nav-link-sidebar {
       display: none;
     }
+
     .literate-crypto-nav {
-      height: 6vh;
+      height: 60px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
       .nav-link-list {
         margin: auto;
-        padding-top: 1.5vh;
         text-align: center;
+
         .sep {
           font-size: 8px;
           vertical-align: middle;
         }
+
         li {
           text-transform: lowercase;
           display: inline;
           padding-right: 5px;
         }
       }
+
       .nav-link-sidebar-switch {
         display: none;
       }
     }
+
     i {
       color: black;
     }
+
     .nav-link-list {
       margin-top: 0;
+
       li {
         margin-right: 5px;
       }
+
       a {
         font-size: 20px;
       }
