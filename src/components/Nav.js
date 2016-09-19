@@ -29,34 +29,18 @@ const separatedLinks = R.addIndex(R.chain)(liSep("/"));
 
 const desktopLinks = R.pipe(separatedLinks, R.dropLast(1));
 
+const dropdownClass = (navOpen) => navOpen ? 'open' : 'closed';
+
 class Nav extends React.Component {
-  // props: {
-  //   location:         Object,
-  //   navOpen:          boolean,
-  //   setNavShowState:  (b: boolean) => void,
+  // static contextTypes = {
+  //   router:  React.PropTypes.object
   // };
-
-  static contextTypes = {
-    router:  React.PropTypes.object
-  };
-
-  currentRoute = () => this.props.location.pathname;
-
-  dropdownClass = () => {
-    const { navOpen } = this.props;
-    return navOpen ? "open" : "closed";
-  };
-
-  toggleShowDropdown = () => {
-    const {
-      navOpen,
-      setNavShowState
-    } = this.props;
-    setNavShowState(!navOpen);
-  };
-
   render() {
-    const { location : { pathname } } = this.props;
+    const {
+      location : { pathname },
+      navOpen,
+      setNavShowState,
+    } = this.props;
     return (
       <div className="literate-crypto-nav-wrapper">
         <nav className="literate-crypto-nav">
@@ -65,11 +49,11 @@ class Nav extends React.Component {
           </ul>
           <div 
             className="nav-link-sidebar-switch"
-            onClick={this.toggleShowDropdown}
+            onClick={() => setNavShowState(!navOpen)}
           >
           </div>
         </nav>
-        <div className={`nav-link-sidebar ${this.dropdownClass()}`}>
+        <div className={`nav-link-sidebar ${dropdownClass(navOpen)}`}>
           <ul>
             { navLinks(pathname) }
           </ul>
