@@ -18,8 +18,11 @@ const childrenToKeys = R.map(child => child.path)
 const linksToChildren = R.compose(li, blinks, formatLinkProps, childrenToKeys)
 
 const blogLinks = children => (
-  <div className='link-list'>
-    { linksToChildren(children) }
+  <div>
+    <Page pageName='blog' />
+    <div className='link-list'>
+      { linksToChildren(children) }
+    </div>
   </div>
 )
 
