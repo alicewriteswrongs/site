@@ -2,7 +2,6 @@
   max-width: 800px;
   font-size: 16px;
   margin: auto;
-  padding: 10px;
 
   p, li {
     text-align: justify;
@@ -31,6 +30,6 @@
 
 @media (max-width: 899px) {
   .markdown {
-    width: calc(100% - 20px);
+    // width: calc(100% - 20px);
   }
 }

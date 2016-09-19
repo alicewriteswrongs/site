@@ -4,5 +4,7 @@ title: blog
 date: "empty date"
 ---
 
-# BLOG
+## My blog
+
+Some more or less random stuff about programming. Enjoy!
 

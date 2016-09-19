@@ -1,7 +1,7 @@
 import React from 'react'
 import R from 'ramda'
 
-import { Markdown } from '../lib/markdown'
+import { Markdown, Page } from '../lib/markdown'
 import { linksToRoutes } from '../lib/link_utils'
 import { blogPosts } from '../data'
 

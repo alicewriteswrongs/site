@@ -4,6 +4,12 @@
   padding: 10px;
 }
 
+@media (max-width: 899px) {
+  .single-column, .main-column {
+    width: calc(100% - 30px);
+  }
+}
+
 .link-list {
   display: flex;
   flex-direction: column;
@@ -23,19 +29,11 @@
   display: flex;
   flex-direction: row;
 
-  .main-column {
-    width: 66%;
-  }
-
   .sidebar {
     width: 33%;
   }
 
   @media (max-width: 899px) {
-    .main-column {
-      width: 100%;
-    }
-
     .sidebar {
       display: none;
     }

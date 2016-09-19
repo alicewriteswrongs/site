@@ -18,9 +18,9 @@ const childrenToKeys = R.map(child => child.path)
 const linksToChildren = R.compose(li, mlinks, formatLinkProps, childrenToKeys)
 
 const matasanoLinks = children => (
-  <ul className='link-list'>
+  <div className='link-list'>
     { linksToChildren(children) }
-  </ul>
+  </div>
 )
 
 const MatasanoPage = childRoutes => (
