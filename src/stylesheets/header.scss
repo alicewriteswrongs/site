@@ -4,15 +4,18 @@
       border-bottom: 3px solid $green;
     }
   }
+
   .literate-crypto-nav {
     box-shadow: 0 0 4px rgba(0,0,0,0.25);
     width: 100%;
   }
+
   a {
     color: #34495e;
     text-decoration: none;
     font-size: 18px;
   }
+
   @media (max-width: 899px) {
     .literate-crypto-nav {
       position: fixed;
@@ -21,9 +24,11 @@
       left: 0;
       z-index: 10;
       background-color: #fff;
+
       .nav-link-list {
         display: none;
       }
+
       .nav-link-sidebar-switch {
         position: absolute;
         width: 24px;
@@ -34,6 +39,7 @@
         background-size: 24px;
       }
     }
+
     .nav-link-sidebar {
       box-shadow: 0 0 4px rgba(0,0,0,0.25);
       position: fixed;
@@ -43,13 +49,16 @@
       width: 70%;
       background-color: #f9f9f9;
       overflow: auto;
+
       ul {
         list-style-type: none;
       }
+
       li {
         padding-bottom: 5px;
       }
     }
+
     .nav-link-sidebar.closed {
       display: none;
     }
