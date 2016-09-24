@@ -30,38 +30,39 @@ const separatedLinks = R.addIndex(R.chain)(liSep('/'))
 
 const desktopLinks = R.pipe(separatedLinks, R.dropLast(1))
 
-const sidebar = (setNavShowState, pathname, open) => {
-  if (open) {
-    return (
-      <ReactPageClick notify={() => setNavShowState(false)}>
-        <div className='nav-link-sidebar open'>
-          { navLinks(pathname) }
-        </div>
-      </ReactPageClick>
-    );
+const pageClick = (open, setNavShowState) => {
+  if ( open ) {
+    setNavShowState(false);
   }
-  return (
-    <div className='nav-link-sidebar closed'></div>
-  );
 };
+
+const sidebarClass = open => open ? "open" : ""
+
+const sidebar = (pathname, open) => (
+    <div className={`nav-link-sidebar ${sidebarClass(open)}`}>
+      { navLinks(pathname) }
+    </div>
+);
 
 const Nav = ({
   location: { pathname },
   navOpen,
   setNavShowState
 }) => (
-  <div className='literate-crypto-nav-wrapper'>
-    <nav className='literate-crypto-nav'>
-      <ul className='nav-link-list'>
-        { desktopLinks(navLinks(pathname)) }
-      </ul>
-      <div
-        className='nav-link-sidebar-switch'
-        onClick={() => setNavShowState(!navOpen)}
-      />
-    </nav>
-    { sidebar(setNavShowState, pathname, navOpen) }
-  </div>
+  <ReactPageClick notify={() => pageClick(navOpen, setNavShowState)}>
+    <div className='literate-crypto-nav-wrapper'>
+      <nav className='literate-crypto-nav'>
+        <ul className='nav-link-list'>
+          { desktopLinks(navLinks(pathname)) }
+        </ul>
+        <div
+          className='nav-link-sidebar-switch'
+          onClick={() => setNavShowState(!navOpen)}
+        />
+      </nav>
+      { sidebar(pathname, navOpen) }
+    </div>
+  </ReactPageClick>
 )
 
 export default Nav
