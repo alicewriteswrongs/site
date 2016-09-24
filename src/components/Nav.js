@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import R from 'ramda'
-import { ReactPageClick } from 'react-page-click';
+import { ReactPageClick } from 'react-page-click'
 
 const navRecords = [
   { path: '/', label: 'Home', regex: /\/$/ },
@@ -31,18 +31,18 @@ const separatedLinks = R.addIndex(R.chain)(liSep('/'))
 const desktopLinks = R.pipe(separatedLinks, R.dropLast(1))
 
 const pageClick = (open, setNavShowState) => {
-  if ( open ) {
-    setNavShowState(false);
+  if (open) {
+    setNavShowState(false)
   }
-};
+}
 
-const sidebarClass = open => open ? "open" : ""
+const sidebarClass = open => open ? 'open' : ''
 
 const sidebar = (pathname, open) => (
-    <div className={`nav-link-sidebar ${sidebarClass(open)}`}>
-      { navLinks(pathname) }
-    </div>
-);
+  <div className={`nav-link-sidebar ${sidebarClass(open)}`}>
+    { navLinks(pathname) }
+  </div>
+)
 
 const Nav = ({
   location: { pathname },
