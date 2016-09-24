@@ -41,7 +41,6 @@
     }
 
     .nav-link-sidebar {
-      box-shadow: 0 0 4px rgba(0,0,0,0.25);
       position: fixed;
       height: calc(100% - 40px);
       top: 40px;
@@ -60,10 +59,11 @@
       }
 
       transition: transform 0.5s;
-    }
 
-    .nav-link-sidebar.open {
-      transform: translate(100%);
+      &.open {
+        transform: translate(100%);
+        box-shadow: 0 0 4px rgba(0,0,0,0.25);
+      }
     }
   }
 
