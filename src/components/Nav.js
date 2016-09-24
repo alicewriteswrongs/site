@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import R from 'ramda'
-import ReactPageClick from 'react-page-click';
+import { ReactPageClick } from 'react-page-click';
 
 const navRecords = [
   { path: '/', label: 'Home', regex: /\/$/ },
@@ -40,8 +40,9 @@ const sidebar = (setNavShowState, pathname, open) => {
       </ReactPageClick>
     );
   }
-  return <div className='nav-link-sidebar closed'>
-  </div>
+  return (
+    <div className='nav-link-sidebar closed'></div>
+  );
 };
 
 const Nav = ({
