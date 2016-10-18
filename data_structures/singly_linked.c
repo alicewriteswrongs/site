@@ -1,8 +1,7 @@
 #include "singly_linked.h"
 #include <stdio.h>
 
-int main()
+list* newlist()
 {
-    printf("hey\n");
-    return 0;
+    list* new;
 }
