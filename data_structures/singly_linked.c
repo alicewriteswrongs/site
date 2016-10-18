@@ -1,7 +1,12 @@
 #include "singly_linked.h"
 #include <stdio.h>
 
-list *newlist() {
-  list *new;
-  return new;
+int newlist() {
+	/* list *new; */
+
+	if (1) {
+		return 1;
+	} else {
+		return 0;
+	}
 }
