@@ -1,7 +1,7 @@
 #include "singly_linked.h"
 #include <stdio.h>
 
-list* newlist()
-{
-    list* new;
+list *newlist() {
+  list *new;
+  return new;
 }
