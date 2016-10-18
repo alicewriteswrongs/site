@@ -1,12 +1,21 @@
 #include "singly_linked.h"
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-int newlist() {
-	/* list *new; */
+s_list *singly_linked() {
+	s_list *newlist;
+	newlist = malloc(sizeof(s_list));
 
-	if (1) {
-		return 1;
-	} else {
-		return 0;
-	}
+	s_list_node *init;
+	init = malloc(sizeof(s_list_node));
+	init->next = init;
+	newlist->head = init;
+	newlist->tail = init;
+
+	return newlist;
+}
+
+int main() {
+	printf("Hi");
 }
