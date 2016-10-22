@@ -8,4 +8,9 @@ typedef struct s_list {
 	s_list_node *tail;
 } s_list;
 
-s_list *singly_linked();
+/*
+ * Singly-linked list
+ */
+s_list *singly_linked(void *data);
+void print_s_list_node(s_list_node *node);
+void print_s_list(s_list *list);
