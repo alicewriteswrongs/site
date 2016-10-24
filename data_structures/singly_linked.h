@@ -12,5 +12,6 @@ typedef struct s_list {
  * Singly-linked list
  */
 s_list *singly_linked(void *data);
+void destroy_s_list(s_list *list);
 void print_s_list_node(s_list_node *node);
 void print_s_list(s_list *list);
