@@ -3,14 +3,28 @@ sudo: required
 services:
   - docker
 
-install:
-  - docker-compose -f travis-docker-compose.yml build
-  - docker-compose -f travis-docker-compose.yml run watch npm install --silent
+matrix:
+  include:
+    - language: node_js
+      node_js: "6"
+      install: npm install
+      script: npm run lint
+    - language: node_js
+      node_js: "6"
+      install: npm install
+      script: npm test
+    - language: node_js
+      node_js: "6"
+      install: npm install
+      script: npm run build_test
+    - language: node_js
+      node_js: "6"
+      install: npm install
+      script: npm run build_routes_test
+    - services: docker
+      install: docker-compose -f travis-docker-compose.yml build
+      script: docker-compose -f travis-docker-compose.yml run golang
 
-
-script:
-  - docker-compose -f travis-docker-compose.yml run golang
-  - docker-compose -f travis-docker-compose.yml run watch npm run lint
-  - docker-compose -f travis-docker-compose.yml run watch npm test
-  - docker-compose -f travis-docker-compose.yml run watch npm run build_test
-  - docker-compose -f travis-docker-compose.yml run watch npm run build_routes_test
+cache:
+  directories:
+    - $HOME/.npm
