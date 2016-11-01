@@ -13,7 +13,7 @@ const Home = () => (
         functional programming.
       </p>
       <p>
-        { "This site contains my " }
+        { 'This site contains my ' }
         <Link to='/blog'>blog</Link>
         { " and some projects I've worked on." }
       </p>
