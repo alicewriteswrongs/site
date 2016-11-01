@@ -13,8 +13,8 @@ matrix:
       install: yarn install
       script: npm run lint
       env:
-        name:
-          - language: node_js
+        name: JS linter
+    - language: node_js
       node_js: "6"
       before_install:
         - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -24,7 +24,9 @@ matrix:
         - sudo apt-get install -y -qq yarn
       install: yarn install
       script: npm test
-        - language: node_js
+      env:
+        name: JS tests
+    - language: node_js
       node_js: "6"
       before_install:
         - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -34,14 +36,25 @@ matrix:
         - sudo apt-get install -y -qq yarn
       install: yarn install
       script: npm run build_test
-        - language: node_js
+      env:
+        name: JS build test
+    - language: node_js
       node_js: "6"
-      install: npm install
+      before_install:
+        - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+        - sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
+        - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+        - sudo apt-get update -qq
+        - sudo apt-get install -y -qq yarn
+      install: yarn install
       script: npm run build_routes_test
-        - services: docker
+      env:
+        name: JS route building test
+    - services: docker
       install: docker-compose -f travis-docker-compose.yml build
-
       script: docker-compose -f travis-docker-compose.yml run golang
+      env:
+        name: Golang test
 
       cache:
         directories:
