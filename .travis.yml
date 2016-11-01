@@ -14,6 +14,10 @@ matrix:
       script: npm run lint
       env:
         name: JS linter
+      cache:
+        directories:
+          - $HOME/.yarn-cache
+
     - language: node_js
       node_js: "6"
       before_install:
@@ -26,6 +30,10 @@ matrix:
       script: npm test
       env:
         name: JS tests
+      cache:
+        directories:
+          - $HOME/.yarn-cache
+
     - language: node_js
       node_js: "6"
       before_install:
@@ -38,6 +46,10 @@ matrix:
       script: npm run build_test
       env:
         name: JS build test
+      cache:
+        directories:
+          - $HOME/.yarn-cache
+
     - language: node_js
       node_js: "6"
       before_install:
@@ -47,15 +59,15 @@ matrix:
         - sudo apt-get update -qq
         - sudo apt-get install -y -qq yarn
       install: yarn install
+      cache:
+        directories:
+          - $HOME/.yarn-cache
       script: npm run build_routes_test
       env:
         name: JS route building test
+
     - services: docker
       install: docker-compose -f travis-docker-compose.yml build
       script: docker-compose -f travis-docker-compose.yml run golang
       env:
         name: Golang test
-
-      cache:
-        directories:
-          - $HOME/.yarn-cache
