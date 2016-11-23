@@ -2,9 +2,13 @@ import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { browserHistory } from 'react-router'
+import {
+  Router,
+  browserHistory
+} from 'react-router'
 
-import { routes } from './routes'
+import { matasano, blogPosts } from './data'
+import { generateRoutes } from './lib/routing'
 import setup from './setup'
 import configureStore from './store'
 import {
@@ -12,7 +16,7 @@ import {
   setMatasanoContents,
   setBlogContents
 } from './actions/actions'
-import { matasano, blogPosts } from './data'
+import R from 'ramda'
 
 require('./stylesheets/main.scss')
 setup()
@@ -25,9 +29,17 @@ browserHistory.listen(() => store.dispatch(setNavShowState(false)))
 
 let domElement = document.getElementById('literate-crypto-app')
 
+const onRouteUpdate = () => {
+  if (window.MathJax !== undefined) {
+    window.MathJax.Hub.Typeset()
+  }
+}
+
 render(
   <Provider store={store}>
-    { routes() }
+    <Router history={browserHistory} onUpdate={onRouteUpdate}>
+      { generateRoutes(matasano, blogPosts) }
+    </Router>
   </Provider>,
   domElement
 )
