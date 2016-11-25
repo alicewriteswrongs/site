@@ -8,6 +8,12 @@ const linkToRoute = R.curry((parentPath, routeProps) => (
   </Link>
 ))
 
+export const linkProps = R.compose(
+  R.values, R.mapObjIndexed((v, k) => (
+    { path: k, label: v.title }
+  ))
+)
+
 export const linksToRoutes = parentPath => (
   R.map(linkToRoute(parentPath))
 )

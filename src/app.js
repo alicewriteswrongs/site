@@ -16,7 +16,6 @@ import {
   setMatasanoContents,
   setBlogContents
 } from './actions/actions'
-import R from 'ramda'
 
 require('./stylesheets/main.scss')
 setup()
