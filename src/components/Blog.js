@@ -6,8 +6,6 @@ import { linksToRoutes, linkProps } from '../lib/link_utils'
 import { blogPosts } from '../data'
 import { listify } from '../lib/helpers'
 
-const pathRegex = /blog\/?$/
-
 const blogPostLinks = R.compose(
   listify, linksToRoutes('blog'), linkProps
 )
