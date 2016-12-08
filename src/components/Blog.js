@@ -1,7 +1,7 @@
 import React from 'react'
 import R from 'ramda'
 
-import { Markdown, Page, IndexPage } from '../lib/markdown'
+import { Markdown, IndexPage } from '../lib/markdown'
 import { linksToRoutes, linkProps } from '../lib/link_utils'
 import { blogPosts } from '../data'
 import { listify } from '../lib/helpers'
