@@ -44,7 +44,7 @@ whether to use AES-ECB or AES-CBC.
 First, helper functions to do each of the different modes:
 */
 
-func aes_cbc_encrypt(key []byte, iv []byte, plaintext []byte) []byte {
+func AESCBCEncrypt(key []byte, iv []byte, plaintext []byte) []byte {
 	block, err := aes.NewCipher(key)
 
 	if err != nil {
@@ -59,7 +59,7 @@ func aes_cbc_encrypt(key []byte, iv []byte, plaintext []byte) []byte {
 	return ciphertext
 }
 
-func aes_ecb_encrypt(key []byte, plaintext []byte) []byte {
+func AESECBEncrypt(key []byte, plaintext []byte) []byte {
 	cipher, _ := aes.NewCipher([]byte(key))
 
 	bs := cipher.BlockSize()

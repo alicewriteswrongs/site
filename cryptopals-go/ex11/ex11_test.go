@@ -11,7 +11,7 @@ import (
 
 func TestRandomAESKey(t *testing.T) {
 	m := make(map[string]int)
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 100; i++ {
 		m[string(randomAESKey())]++
 	}
 
@@ -37,7 +37,7 @@ func TestAESCBCEncrypt(t *testing.T) {
 		plaintext := RandString(i * aes.BlockSize)
 		iv := randomBytes(aes.BlockSize)
 		key := randomAESKey()
-		ciphertext := aes_cbc_encrypt([]byte(key), iv, []byte(plaintext))
+		ciphertext := AESCBCEncrypt([]byte(key), iv, []byte(plaintext))
 		decrypted := ex10.DecryptAESCBC(ciphertext, string(key), iv)
 		if plaintext != string(decrypted) {
 			t.Error("Bad, they should be equal!")
@@ -51,7 +51,7 @@ func TestAESECBEncrypt(t *testing.T) {
 	for i := 0; i < 200; i++ {
 		plaintext := RandString(i * aes.BlockSize)
 		key := randomAESKey()
-		ciphertext := aes_ecb_encrypt([]byte(key), []byte(plaintext))
+		ciphertext := AESECBEncrypt([]byte(key), []byte(plaintext))
 		decrypted := ex07.DecryptAESECB(ciphertext, string(key))
 		if plaintext != string(decrypted) {
 			t.Error("They should be equal oh noooo")
