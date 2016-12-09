@@ -22,9 +22,6 @@ func TestRandomAESKey(t *testing.T) {
 	}
 }
 
-const key = "YELLOW SUBMARINE"
-const plaintext = "YELLOW SUBMARINE"
-
 var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 func RandString(n int) string {
@@ -36,14 +33,12 @@ func RandString(n int) string {
 }
 
 func TestAESCBCEncrypt(t *testing.T) {
-	// we'll use our (previously verified) DecryptAESCBC
-	// function from exercise 10 to test this function
-
 	for i := 0; i < 200; i++ {
-		plaintext := RandString(i)
+		plaintext := RandString(i * aes.BlockSize)
 		iv := randomBytes(aes.BlockSize)
+		key := randomAESKey()
 		ciphertext := aes_cbc_encrypt([]byte(key), iv, []byte(plaintext))
-		decrypted := ex10.DecryptAESCBC(ciphertext, key, iv)
+		decrypted := ex10.DecryptAESCBC(ciphertext, string(key), iv)
 		if plaintext != string(decrypted) {
 			t.Error("Bad, they should be equal!")
 		}
@@ -53,11 +48,13 @@ func TestAESCBCEncrypt(t *testing.T) {
 func TestAESECBEncrypt(t *testing.T) {
 	// we should be able to use the decryption function we wrote in
 	// exercise 07 here, to test our encryption function.
-	ciphertext := aes_ecb_encrypt([]byte(key), []byte(plaintext))
-
-	decrypted := ex07.DecryptAESECB(ciphertext, key)
-
-	if plaintext != string(decrypted) {
-		t.Error("They should be equal oh noooo")
+	for i := 0; i < 200; i++ {
+		plaintext := RandString(i * aes.BlockSize)
+		key := randomAESKey()
+		ciphertext := aes_ecb_encrypt([]byte(key), []byte(plaintext))
+		decrypted := ex07.DecryptAESECB(ciphertext, string(key))
+		if plaintext != string(decrypted) {
+			t.Error("They should be equal oh noooo")
+		}
 	}
 }
