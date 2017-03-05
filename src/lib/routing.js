@@ -13,6 +13,7 @@ import Home from '../components/Home'
 import { BlogPage, BlogPost } from '../components/Blog'
 import About from '../components/About'
 import App from '../components/App'
+import Projects from '../components/Projects'
 
 const generateRoute = R.curry((component, [key, object]) => (
   <Route key={key} path={key} component={component(object)} />
@@ -27,8 +28,10 @@ export function generateRoutes (matasano, blog) {
     <Route path='/' component={App}>
       <IndexRoute component={Home} />
       <Route path='about' component={About} />
-      <Route path='matasano' component={MatasanoExercises}>
-        { matasanoRoutes(_.entries(matasano)) }
+      <Route path='projects' component={Projects}>
+        <Route path='matasano' component={MatasanoExercises}>
+          { matasanoRoutes(_.entries(matasano)) }
+        </Route>
       </Route>
       <Route path='blog' component={BlogPage}>
         { blogRoutes(_.entries(blog)) }

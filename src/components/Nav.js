@@ -6,7 +6,7 @@ import { ReactPageClick } from 'react-page-click'
 const navRecords = [
   { path: '/', label: 'Home', regex: /\/$/ },
   { path: '/about', label: 'About', regex: /about\/?$/ },
-  { path: '/matasano', label: 'Matasano Exercises', regex: /matasano\/?/ },
+  { path: '/projects', label: 'Projects', regex: /projects\/?/ },
   { path: '/blog', label: 'Blog', regex: /blog\/?/ }
 ]
 

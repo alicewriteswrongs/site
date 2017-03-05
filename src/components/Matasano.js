@@ -7,12 +7,12 @@ import { matasano } from '../data'
 import { listify } from '../lib/helpers'
 
 const matasanoLinks = R.compose(
-  listify, linksToRoutes('matasano'), linkProps
+  listify, linksToRoutes('projects/matasano'), linkProps
 )
 
 export const MatasanoExercises = props => (
   <IndexPage
-    indexRegex={/matasano\/?$/}
+    indexRegex={/projects\/matasano\/?$/}
     pageContentName='matasano'
     linker={matasanoLinks}
     data={matasano}
