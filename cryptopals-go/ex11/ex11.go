@@ -16,7 +16,9 @@ package ex11
 import (
 	"crypto/aes"
 	"crypto/cipher"
+	"fmt"
 	"math/rand"
+	"time"
 )
 
 /*
@@ -75,4 +77,25 @@ func AESECBEncrypt(key []byte, plaintext []byte) []byte {
 		ciphertext = append(ciphertext, buffer...)
 	}
 	return ciphertext
+}
+
+/*
+So now we have two functions which encapsulate AES ECB and CBC encryption
+for us nicely, so that we just pass in a key and plaintext (and an IV for CBC)
+and then we get back a ciphertext.
+
+The CryptoPals question says that next we should write a function that takes in
+a plaintext, pads it on both sides with 5-10 random bytes, and then chooses a
+block cipher mode and encrypts under it:
+*/
+
+func encryptionOracle(plaintext []byte) {
+	rand.Seed(time.Now().UTC().UnixNano())
+	prepad := randomBytes(rand.Intn(5) + 5)
+	postpad := randomBytes(rand.Intn(5) + 5)
+
+	plaintext = append(prepad, plaintext...)
+	plaintext = append(plaintext, postpad...)
+
+	fmt.Println(plaintext)
 }

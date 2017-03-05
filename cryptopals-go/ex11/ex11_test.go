@@ -58,3 +58,7 @@ func TestAESECBEncrypt(t *testing.T) {
 		}
 	}
 }
+
+func TestEncryptionOracle(t *testing.T) {
+	encryptionOracle([]byte("foobar"))
+}
