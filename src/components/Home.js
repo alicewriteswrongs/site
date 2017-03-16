@@ -1,18 +1,26 @@
 // @flow
 import React from 'react'
+import R from 'ramda'
 import { Link } from 'react-router'
 
-import { blogPostLinks } from './Blog'
+import { linksToRoutes } from '../lib/link_utils'
+import { listify } from '../lib/helpers'
+import { blogLinkData } from './Blog'
+
+const formatBlogLinks = R.compose(listify, linksToRoutes('blog'))
+
+const recentPosts = R.compose(
+  R.reverse, R.takeLast(10)
+)(blogLinkData)
 
 const Home = () => {
-  console.log(blogPostLinks);
   return <div className='single-column home'>
-    <h1 className="announce">
+    <h1 className='announce'>
       Alice Pote
     </h1>
     <p>
-      I'm a software engineer in Boston. I like front-end stuff, cryptography, and
-      functional programming.
+      I'm a software engineer in Boston. I like front-end engineering, functional programming,
+      security / cryptography, and functional programming.
     </p>
     <p>
       { 'This site contains my ' }
@@ -21,11 +29,12 @@ const Home = () => {
       <Link to='/projects'>projects</Link>
       { " I've worked on." }
     </p>
-    <div className="showcase">
-      <div className="blog">
+    <div className='showcase'>
+      <div className='blog'>
         <h3>Recent Posts</h3>
+        { formatBlogLinks(recentPosts) }
       </div>
-      <div className="projects">
+      <div className='projects'>
         <h3>Projects</h3>
       </div>
     </div>

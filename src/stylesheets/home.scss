@@ -13,6 +13,10 @@
 
     @include breakpoint(desktop) {
       flex-direction: row;
+      > div {
+        width: 50%;
+      }
+
     }
 
     @include breakpoint(mobile) {

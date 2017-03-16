@@ -10,6 +10,8 @@ export const blogPostLinks = R.compose(
   listify, linksToRoutes('blog'), linkProps
 )
 
+export const blogLinkData = linkProps(blogPosts)
+
 export const BlogPage = props => (
   <IndexPage
     indexRegex={/blog\/?$/}
