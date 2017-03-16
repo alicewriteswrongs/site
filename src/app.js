@@ -26,7 +26,7 @@ store.dispatch(setBlogContents(blogPosts))
 
 browserHistory.listen(() => store.dispatch(setNavShowState(false)))
 
-let domElement = document.getElementById('literate-crypto-app')
+let domElement = document.getElementById('app')
 
 const onRouteUpdate = () => {
   if (window.MathJax !== undefined) {
