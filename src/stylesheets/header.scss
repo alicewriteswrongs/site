@@ -5,7 +5,7 @@
     }
   }
 
-  .literate-crypto-nav {
+  .nav {
     box-shadow: 0 0 4px rgba(0,0,0,0.25);
     width: 100%;
   }
@@ -17,7 +17,7 @@
   }
 
   @media (max-width: 899px) {
-    .literate-crypto-nav {
+    .nav {
       position: fixed;
       height: 40px;
       top: 0;
@@ -72,7 +72,7 @@
       display: none;
     }
 
-    .literate-crypto-nav {
+    .nav {
       height: 60px;
       display: flex;
       flex-direction: row;
