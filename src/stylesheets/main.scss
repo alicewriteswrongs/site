@@ -1,3 +1,4 @@
+@import "breakpoints";
 @import "../../node_modules/highlight.js/styles/tomorrow.css";
 @import "./variables";
 @import "./code";
@@ -20,12 +21,12 @@ body {
 }
 
 .literate-crypto-content {
-  @media (max-width: 899px) {
+  @include breakpoint(mobile) {
     height: 100%;
     padding-top: 40px;
   }
 
-  @media (min-width: 900px) {
+  @include breakpoint(desktop) {
     height: 94vh;
   }
 
@@ -40,4 +41,14 @@ body {
 
 p {
   text-align: justify;
+}
+
+body {
+  @include breakpoint(mobile) {
+    font-size: 16px;
+  }
+
+  @include breakpoint(desktop) {
+    font-size: 20px;
+  }
 }

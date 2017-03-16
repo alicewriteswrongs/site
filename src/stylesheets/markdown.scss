@@ -1,6 +1,5 @@
 .markdown {
   max-width: 800px;
-  font-size: 20px;
   margin: auto;
 
   p, li {
@@ -25,11 +24,5 @@
     code {
       padding: 0;
     }
-  }
-}
-
-@media (max-width: 899px) {
-  .markdown {
-    // width: calc(100% - 20px);
   }
 }
