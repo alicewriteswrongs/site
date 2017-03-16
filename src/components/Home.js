@@ -2,8 +2,11 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const Home = () => (
-  <div className='single-column home'>
+import { blogPostLinks } from './Blog'
+
+const Home = () => {
+  console.log(blogPostLinks);
+  return <div className='single-column home'>
     <h1 className="announce">
       Alice Pote
     </h1>
@@ -19,9 +22,16 @@ const Home = () => (
       { " I've worked on." }
     </p>
     <div className="showcase">
+      <div className="blog">
+        <h3>Recent Posts</h3>
+      </div>
+      <div className="projects">
+        <h3>Projects</h3>
+      </div>
     </div>
 
   </div>
-)
+}
+// )
 
 export default Home

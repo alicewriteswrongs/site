@@ -1,10 +1,22 @@
 .home {
   .announce {
+    @include breakpoint(desktop) {
+      margin-top: 100px;
+    }
+    @include breakpoint(mobile) {
+      margin-top: 40px;
+    }
   }
 
   .showcase {
     display: flex;
 
+    @include breakpoint(desktop) {
+      flex-direction: row;
+    }
 
+    @include breakpoint(mobile) {
+      flex-direction: column;
+    }
   }
 }

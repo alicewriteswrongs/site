@@ -6,7 +6,7 @@ import { linksToRoutes, linkProps } from '../lib/link_utils'
 import { blogPosts } from '../data'
 import { listify } from '../lib/helpers'
 
-const blogPostLinks = R.compose(
+export const blogPostLinks = R.compose(
   listify, linksToRoutes('blog'), linkProps
 )
 
