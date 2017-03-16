@@ -50,7 +50,7 @@ const Nav = ({
   setNavShowState
 }) => (
   <ReactPageClick notify={() => pageClick(navOpen, setNavShowState)}>
-    <div className='literate-crypto-nav-wrapper'>
+    <div className='nav-wrapper'>
       <nav className='literate-crypto-nav'>
         <ul className='nav-link-list'>
           { desktopLinks(navLinks(pathname)) }
