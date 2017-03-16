@@ -18,14 +18,25 @@ const projectData = [
     description: 'A Placeholder'
   },
   {
+    title: 'Boston Displacement Mapping Project',
+    description: 'A Placeholder'
+  },
+  {
+    title: 'Boston Displacement Mapping Project',
+    description: 'A Placeholder'
+  },
+  {
+    title: 'Boston Displacement Mapping Project',
+    description: 'A Placeholder'
+  },
+  {
     title: 'Matasano Exercises',
     description: 'Another Placeholder'
   }
 ]
 
 const projects = () => (
-  <div className='projects'>
-    HI THERE
+  <div className='projects single-column grid'>
     { R.addIndex(R.map)(project, projectData) }
   </div>
 )
