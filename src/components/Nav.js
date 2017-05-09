@@ -5,9 +5,9 @@ import { ReactPageClick } from 'react-page-click'
 
 const navRecords = [
   { path: '/', label: 'Home', regex: /\/$/ },
+  { path: '/blog', label: 'Blog', regex: /blog\/?/ },
   { path: '/about', label: 'About', regex: /about\/?$/ },
-  { path: '/projects', label: 'Projects', regex: /projects\/?/ },
-  { path: '/blog', label: 'Blog', regex: /blog\/?/ }
+  { path: '/projects', label: 'Projects', regex: /projects\/?/ }
 ]
 
 const navLink = rec => (
