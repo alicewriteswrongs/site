@@ -1,0 +1,29 @@
+.blog-index {
+  .blog-post-link {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include breakpoint(mobile) {
+      padding-bottom: 10px;
+    }
+
+    a {
+      font-size: 26px;
+
+      @include breakpoint(mobile) {
+        font-size: 18px;
+      }
+      max-width: 80%;
+    }
+
+    .post-date {
+      font-size: 18px;
+
+      @include breakpoint(mobile) {
+        font-size: 12px;
+      }
+    }
+  }
+}

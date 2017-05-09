@@ -19,8 +19,8 @@ const Home = () => {
       Alice Pote
     </h1>
     <p>
-      I'm a software engineer in Boston. I like front-end engineering, functional programming,
-      security / cryptography, and functional programming.
+      I'm a software engineer in Boston. I'm interested in Math, security, cryptography,
+      front-end engineering, and functional programming.
     </p>
     <p>
       { 'This site contains my ' }

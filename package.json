@@ -51,6 +51,7 @@
     "lodash": "^4.14.1",
     "mocha": "^3.0.2",
     "mocha-webpack": "^0.7.0",
+    "moment": "^2.18.1",
     "node-sass": "^3.8.0",
     "object.entries": "^1.0.3",
     "ramda": "^0.22.0",
