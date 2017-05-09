@@ -36,9 +36,9 @@ emails from a Gmail account.
 
 First do:
 
-    {% highlight bash %}
-    mkdir ~/.getmail
-    {% endhighlight %}
+```bash
+mkdir ~/.getmail
+```
 
 Which is where we'll store configuration files for each inbox. These look
 like this (for a Gmail account, other providers will be slightly
