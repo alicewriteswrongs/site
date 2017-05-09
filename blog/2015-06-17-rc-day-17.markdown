@@ -5,6 +5,8 @@ date: 2015-06-17T19:01:01-04:00
 layout: post
 ---
 
+# RC Day 17
+
 This is a bit late! oops.
 
 Yesterday (day 17) I read a bunch of the rust book, did a few exercises

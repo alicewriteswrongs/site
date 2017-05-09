@@ -5,6 +5,8 @@ date: 2015-08-11T18:03:01-04:00
 layout: post
 ---
 
+# Literate programming in Python
+
 Literate programming is something I read about a while ago (probably
 while reading [Donald Knuth's](200~https://en.wikipedia.org/wiki/Donald_Knuth) 
 terrifying overachiever Wikipedia page) and while I thought it sounded 

@@ -5,6 +5,8 @@ key: "a_post-rc_update"
 date: 2015-08-30T16:16:56-04:00
 ---
 
+# A post-RC update
+
 Well, my batch at RC ended a little over two weeks ago. It was a really
 great experience, filled with a lot of wonderful people. I wrote a whole
 mess of code, and advanced a lot as a programmer during my summer in NYC.

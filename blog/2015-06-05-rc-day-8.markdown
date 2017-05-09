@@ -5,6 +5,8 @@ key: "rc_day_8"
 date: 2015-06-05T10:14:12-04:00
 ---
 
+# RC Day 8!
+
 My blog entries are getting later and later...
 
 On day 8 (yesterday) I worked on a couple of things. When I got to RC my

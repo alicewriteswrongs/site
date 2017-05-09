@@ -5,6 +5,8 @@ key: "open_pull_requests_on_github_from_the_command_line"
 date: 2016-02-25T17:00:39-05:00
 ---
 
+# Open pull requests on Github from the command line
+
 I just got a nifty little bit of shell magic working that I wanted to
 share! Basically it's a set of shell functions that give you a command
 (`ghpull`) which will open the pull request for your current git branch in

@@ -11,6 +11,8 @@ tags:
     - privacy
 ---
 
+# Day Four at RC (friday!)
+
 I'm now done with the first week at RC, and I think to celebrate I'll
 write a blog post that is actually substantial!
 

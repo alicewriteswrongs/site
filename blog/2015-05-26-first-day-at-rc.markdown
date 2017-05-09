@@ -10,6 +10,8 @@ tags:
     - crypto 
 ---
 
+# First day at RC
+
 Today was my first day at the Recurse Center! What did I get up to? Well:
 
 - I wrote a kernel module (hello.c) which prints 'Hello World!' to

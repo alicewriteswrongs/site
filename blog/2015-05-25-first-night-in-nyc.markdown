@@ -4,9 +4,11 @@ title: First night in NYC
 key: "first_night_in_nyc"
 date: 2015-05-25T21:08:33-04:00
 tags:
-    - cecurse center
+    - recurse center
     - nyc
 ---
+
+# First night in NYC
 
 I'm super super excited because tomorrow I'm going to start my batch at
 the [Recurse Center](https://www.recurse.com)! My bus got in today around

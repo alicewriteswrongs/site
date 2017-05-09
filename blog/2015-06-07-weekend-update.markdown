@@ -5,6 +5,8 @@ date: 2015-06-07T20:37:33-04:00
 layout: post
 ---
 
+# Weekend update!
+
 I forgot to post on Friday! Yeesh! Too busy enjoying the MoMA. It's free
 on Friday evenings, which is great because I resent paying to look at
 things. I got to see a couple of really cool things, including a couple of

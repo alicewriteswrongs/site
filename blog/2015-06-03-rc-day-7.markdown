@@ -8,6 +8,8 @@ tags:
     - crypto
 ---
 
+# RC Day 7
+
 I passed Eudyptula task 02! Nice! So now I have to compile a custom kernel
 that has '-eudyptula' in the version string. I compiled the kernel with
 this option, and I made a patch (following the mailing list conventions)

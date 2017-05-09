@@ -10,6 +10,8 @@ tags:
     - sup
 ---
 
+# Switching from OfflineImap to Getmail
+
 So I've been happily using Offlineimap to get local copies (in Maildirs) of all
 my email for a while. Somehow I managed to miss the fact that offlineimap is
 actually a *synchronization* program, so if, for instance, your email provider
@@ -22,7 +24,7 @@ As soon as I realized (belatedly) upon deleting some mail from my
 disappearing  from my Sup index (nothing too important, thankfully)
 I decided to kick offlineimap to the curb and seek a suitable replacement.
 
-##Enter Getmail
+## Enter Getmail
 
 [Getmail](http://pyropus.ca/software/getmail/) was written as
 a replacement for the aged Fetchmail program. It's got the capability to
@@ -30,7 +32,7 @@ download mail using a bunch of different protocols, but I'm going to be
 using plain ol' much maligned POP3. Here's how to set up Getmail to fetch
 emails from a Gmail account.
 
-##Initial Configuration
+## Initial Configuration
 
 First do:
 
@@ -74,7 +76,7 @@ will automatically read it's options from any file in `.getmail` named
 remember which mails it has already downloaded (it writes a file to
 ~/.getmail for each account).
 
-##Multiple Accounts craziness
+## Multiple Accounts craziness
 
 OK so while getmail *does* support multiple accounts it's not the most
 intuitive thing. As I said above, we need to write a configuration file
@@ -96,7 +98,7 @@ we're working with. If these aren't new accounts and you're downloading 50k
 or so emails this may take a while, so let it run (check that it's saving
 them in the right place!) and go make a cup of coffee or tea.
 
-##Cron!
+## Cron!
 
 So we've downloaded all of our email and we're up-to-date. Good stuff, but
 how do we keep it up? Now that we've written our handy `mygetmail.sh` we

@@ -5,6 +5,8 @@ date: 2015-06-09T14:43:50-04:00
 layout: post
 ---
 
+# RC Days 10 and 11
+
 Late again! Oh well.
 
 Yesterday I started working on solving cryptopals problem 4, which has

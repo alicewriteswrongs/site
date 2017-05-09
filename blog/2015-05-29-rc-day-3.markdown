@@ -10,6 +10,8 @@ tags:
     - recurse center
 ---
 
+# RC day 3
+
 What did I do today? Mainly I worked on the gitViz project I've started.
 I have several of the functions I need for it to function working. I'm
 understanding more and more why people don't use C for string processing!

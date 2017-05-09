@@ -10,6 +10,8 @@ tags:
     - recurse center
 ---
 
+# RC, day 2! Haskell and Git stuff
+
 I had a great second day at RC! I'm just going to give a quick summary of what I did:
 
 - I did an intro to Haskell workshop, which inspired me to pick up [Real

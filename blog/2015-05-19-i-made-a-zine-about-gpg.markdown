@@ -10,6 +10,8 @@ tags:
     - zine
 ---
 
+# I made a zine about GPG
+
 I made a zine! It teaches the reader how to install Thunderbird and
 Enigmail, and how to use them to send encrypted emails.
 

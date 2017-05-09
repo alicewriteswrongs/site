@@ -5,6 +5,8 @@ key: "day_6_at_rc"
 date: 2015-06-02T18:21:38-04:00
 ---
 
+# Day 6 at RC
+
 Today I successfully finished the first Matasano challenge! Yes! It
 requires you to build a hex -> base64 translator, which works
 successfully! I didn't yet implement what to do if there aren't enough

@@ -5,6 +5,8 @@ date: 2015-08-07T10:12:52-04:00
 layout: post
 ---
 
+# Data Structures
+
 I've been trying to find a way to teach myself data structures (gotta
 learn those CS fundamentals for some reason) that was fun and engaging.
 I like reading books for some stuff, but for some reason when I try to

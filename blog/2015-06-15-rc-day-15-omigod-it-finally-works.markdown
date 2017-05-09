@@ -5,6 +5,8 @@ date: 2015-06-15T16:54:16-04:00
 layout: post
 ---
 
+# RC Day 15: omigod it finally works
+
 So in my first week here at RC I started a small utility to print out the
 commit history for a git repository. I wanted to write this in C, for some
 practice using C for a real project, which was maybe a bad choice - I'm
