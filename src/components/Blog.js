@@ -26,7 +26,9 @@ export const BlogPost = post => {
 const blogRegex = /blog\/?$/;
 
 const links = R.compose(
-  R.values, R.mapObjIndexed((post, k) => (
+  R.reverse,
+  R.values,
+  R.mapObjIndexed((post, k) => (
     <div className="blog-post-link" key={k}>
       <Link to={`/blog/${k}`}>
         { post.title }
