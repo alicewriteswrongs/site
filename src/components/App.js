@@ -13,7 +13,7 @@ const App = props => (
   <div>
     <Nav {...props} />
     <div className='page-content'>
-      <div className="single-column-wrapper">
+      <div className='single-column-wrapper'>
         { props.children }
       </div>
     </div>

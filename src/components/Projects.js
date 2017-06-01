@@ -3,13 +3,13 @@ import R from 'ramda'
 
 const projectWebsite = data => {
   return data.project_url
-    ? <a href={data.project_url} target="_blank">Learn more</a>
+    ? <a href={data.project_url} target='_blank'>Learn more</a>
     : null
 }
 
 const sourceLink = data => {
   return data.source_code
-    ? <a href={data.source_code} target="_blank">Code</a>
+    ? <a href={data.source_code} target='_blank'>Code</a>
     : null
 }
 
@@ -21,7 +21,7 @@ const project = (projectData, idx) => (
     <div className='description'>
       { projectData.description }
     </div>
-    <div className="links">
+    <div className='links'>
       { projectWebsite(projectData) }
       { sourceLink(projectData) }
     </div>

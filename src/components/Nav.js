@@ -44,7 +44,7 @@ const Nav = ({
   setNavShowState
 }) => (
   <nav className='nav'>
-    <ul className={`nav-link-list ${navOpen ? "open" : "closed"}`}>
+    <ul className={`nav-link-list ${navOpen ? 'open' : 'closed'}`}>
       { desktopLinks(navLinks(pathname)) }
     </ul>
   </nav>
