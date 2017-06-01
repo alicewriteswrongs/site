@@ -8,7 +8,9 @@
 
   .nav {
     box-shadow: 0 0 4px rgba(0,0,0,0.25);
-    // width: 100%;
+    margin: 5px;
+    border: 1px solid black;
+    width: calc(100% - 10px);
     // background: repeating-linear-gradient(45deg, $blue, $blue 25px, $purple 25px, $purple 50px);
   }
 
@@ -86,9 +88,6 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin: 5px;
-      border: 1px solid black;
-
       .nav-link-list {
         margin: auto;
         text-align: center;
