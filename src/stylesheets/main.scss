@@ -17,18 +17,25 @@ body {
   background-color: $page-background;
 }
 
+#app {
+  height: 100%;
+
+  // cross-hatching
+  // background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2NkQID/QCYjiAsmoABFEMRBAThVYmgHAAhoBQWHhfyYAAAAAElFTkSuQmCC) repeat;
+}
+
 .hljs {
   background: none;
 }
 
-.literate-crypto-content {
+.page-content {
   @include breakpoint(mobile) {
     height: 100%;
     padding-top: 40px;
   }
 
   @include breakpoint(desktop) {
-    height: 94vh;
+    height: 92vh;
   }
 
   overflow: auto;

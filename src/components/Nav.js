@@ -38,31 +38,16 @@ const pageClick = (open, setNavShowState) => {
 
 const sidebarClass = open => open ? 'open' : ''
 
-const sidebar = (pathname, open) => (
-  <div className={`nav-link-sidebar ${sidebarClass(open)}`}>
-    { navLinks(pathname) }
-  </div>
-)
-
 const Nav = ({
   location: { pathname },
   navOpen,
   setNavShowState
 }) => (
-  <ReactPageClick notify={() => pageClick(navOpen, setNavShowState)}>
-    <div className='nav-wrapper'>
-      <nav className='nav'>
-        <ul className='nav-link-list'>
-          { desktopLinks(navLinks(pathname)) }
-        </ul>
-        <div
-          className='nav-link-sidebar-switch'
-          onClick={() => setNavShowState(!navOpen)}
-        />
-      </nav>
-      { sidebar(pathname, navOpen) }
-    </div>
-  </ReactPageClick>
+  <nav className='nav'>
+    <ul className={`nav-link-list ${navOpen ? "open" : "closed"}`}>
+      { desktopLinks(navLinks(pathname)) }
+    </ul>
+  </nav>
 )
 
 export default Nav

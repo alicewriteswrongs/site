@@ -12,8 +12,10 @@ const setNavShowStateHelper = R.curry((dispatch, bool) => (
 const App = props => (
   <div>
     <Nav {...props} />
-    <div className='literate-crypto-content'>
-      { props.children }
+    <div className='page-content'>
+      <div className="single-column-wrapper">
+        { props.children }
+      </div>
     </div>
   </div>
 )
