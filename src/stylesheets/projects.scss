@@ -1,5 +1,10 @@
 .projects {
+  margin-top: 15px;
+
   .project {
-    width: 40%;
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    margin-bottom: 15px;
   }
 }

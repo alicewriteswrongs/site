@@ -3,9 +3,9 @@ import R from 'ramda'
 
 const project = (projectData, idx) => (
   <div className='project' key={idx}>
-    <div className='title'>
+    <h3 className='title'>
       { projectData.title }
-    </div>
+    </h3>
     <div className='description'>
       { projectData.description }
     </div>
@@ -51,7 +51,7 @@ const projectData = [
 ]
 
 const projects = () => (
-  <div className='projects single-column grid'>
+  <div className='projects single-column'>
     { R.addIndex(R.map)(project, projectData) }
   </div>
 )
