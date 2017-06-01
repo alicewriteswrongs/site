@@ -39,7 +39,7 @@ const links = R.compose(
   ))
 )
 
-export const BlogPage = ({ children, location: { pathname }}) => {
+export const BlogPage = ({children, location: {pathname}}) => {
   if (!pathname.match(blogRegex)) {
     return (
       <div className='single-column'>
