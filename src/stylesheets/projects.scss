@@ -6,5 +6,23 @@
     background-color: white;
     border: 1px solid black;
     margin-bottom: 15px;
+
+    .title {
+      margin: 15px 10px;
+    }
+
+    .description, .links, .title {
+      margin-left: 15px;
+    }
+
+    .links {
+      display: flex;
+      justify-content: flex-end;
+
+      a {
+        margin-right: 10px;
+      }
+      margin-bottom: 10px;
+    }
   }
 }

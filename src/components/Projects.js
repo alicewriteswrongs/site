@@ -1,6 +1,18 @@
 import React from 'react'
 import R from 'ramda'
 
+const projectWebsite = data => {
+  return data.project_url
+    ? <a href={data.project_url} target="_blank">Learn more</a>
+    : null
+}
+
+const sourceLink = data => {
+  return data.source_code
+    ? <a href={data.source_code} target="_blank">Code</a>
+    : null
+}
+
 const project = (projectData, idx) => (
   <div className='project' key={idx}>
     <h3 className='title'>
@@ -8,6 +20,10 @@ const project = (projectData, idx) => (
     </h3>
     <div className='description'>
       { projectData.description }
+    </div>
+    <div className="links">
+      { projectWebsite(projectData) }
+      { sourceLink(projectData) }
     </div>
   </div>
 )
@@ -22,7 +38,7 @@ const projectData = [
   },
   {
     title: 'Matasano Exercises',
-    description: 'A Placeholder',
+    description: "Solutions to some of the Matasano cryptography problems (I'll finish it eventually!)",
     project_url: '/projects/matasano',
     technologies: ['golang', 'cryptography']
   },
@@ -40,12 +56,14 @@ const projectData = [
   },
   {
     title: 'Data Structures in C',
-    description: 'Another Placeholder',
-    technologies: ['C', 'algorithms']
+    description: 'Implementations of some basic data structures, for learning and expository purposes.',
+    technologies: ['C', 'algorithms'],
+    source_code: 'https://github.com/aliceriot/datastructures'
   },
   {
     title: 'Pocket Guide to Email Encryption',
-    description: 'Another Placeholder',
+    description: 'A short guide I wrote explaining how to use GPG for email encryption, using Thunderbird and Enigmail.',
+    source_code: 'https://github.com/aliceriot/PocketGuide',
     technologies: ['svg', 'pdf']
   }
 ]
