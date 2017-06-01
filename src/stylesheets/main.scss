@@ -36,6 +36,7 @@ body {
 
   @include breakpoint(desktop) {
     height: 92vh;
+    padding-top: 60px;
   }
 
   overflow: auto;

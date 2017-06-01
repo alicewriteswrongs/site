@@ -4,6 +4,11 @@
   border: 1px solid black;
   width: calc(100% - 10px);
   background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
 
   a {
     color: #34495e;
@@ -39,21 +44,12 @@
 
 @include breakpoint(mobile) {
   .nav {
-    position: fixed;
     height: 40px;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
   }
 }
 
 @include breakpoint(desktop) {
   .nav {
     height: 60px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
   }
 }
