@@ -9,7 +9,7 @@ date: "empty date"
 I'm Alice - I'm a (mostly) frontend engineer with a wide range of
 interests in software things. I like cryptography, functional programming,
 fiddling with JS frameworks, Linux, tiling window managers, vim, and other
-nerdy stuff :).
+nerdy stuff 😁.
 
 I built this site to replace a Jekyll blog, because I wanted to build
 a React based single-page app (mostly for fun) which would replicate all

@@ -15,15 +15,12 @@ const recentPosts = R.compose(
 
 const Home = () => {
   return <div className='single-column home'>
-    <div className="emojis">
-      💻❤⭐🚀✨🎉🛠
-    </div>
     <h1 className='announce'>
       Alice Pote
     </h1>
     <p>
       I'm a software engineer in Boston. I'm interested in Math, security, cryptography,
-      front-end engineering, and functional programming.
+      front-end engineering, and functional programming. I ❤ JS.
     </p>
     <p>
       { 'This site contains my ' }
