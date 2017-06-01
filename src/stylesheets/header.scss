@@ -1,8 +1,8 @@
 .nav-wrapper {
   .active {
-    a {
-      border-bottom: 3px solid $green;
-    }
+    background-color: yellow;
+    border: 1px solid black;
+    box-shadow: 5px 5px #5d5a5a;
   }
 
   .nav {
@@ -98,6 +98,7 @@
           text-transform: lowercase;
           display: inline;
           padding-right: 5px;
+          margin-right: 7px;
         }
       }
 
