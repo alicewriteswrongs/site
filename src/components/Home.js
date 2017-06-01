@@ -15,6 +15,9 @@ const recentPosts = R.compose(
 
 const Home = () => {
   return <div className='single-column home'>
+    <div className="emojis">
+      💻❤⭐🚀✨🎉🛠
+    </div>
     <h1 className='announce'>
       Alice Pote
     </h1>

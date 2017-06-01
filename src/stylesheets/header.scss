@@ -1,13 +1,15 @@
 .nav-wrapper {
+
   .active {
-    background-color: yellow;
+    background-color: $yellow;
     border: 1px solid black;
-    box-shadow: 5px 5px #5d5a5a;
+    box-shadow: 5px 5px $dark-grey;
   }
 
   .nav {
     box-shadow: 0 0 4px rgba(0,0,0,0.25);
     width: 100%;
+    // background: repeating-linear-gradient(45deg, $blue, $blue 25px, $purple 25px, $purple 50px);
   }
 
   a {
