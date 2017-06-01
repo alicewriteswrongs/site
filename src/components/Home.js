@@ -25,7 +25,7 @@ const Home = () => {
     <p>
       { 'This site contains my ' }
       <Link to='/blog'>blog</Link>
-      { " and some " }
+      { ' and some ' }
       <Link to='/projects'>projects</Link>
       { " I've worked on." }
     </p>
