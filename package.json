@@ -9,6 +9,7 @@
     "singleTest": "mocha-webpack --webpack-config webpack.config.dev.js",
     "watchTest": "mocha-webpack --watch --webpack-config webpack.config.dev.js",
     "lint": "standard",
+    "fmt": "standard --fix",
     "build": "NODE_ENV=production webpack --progress -p --config webpack.config.prod.js",
     "build_routes": "NODE_ENV=production webpack --progress -p --config webpack.config.build.js",
     "build_test": "NODE_ENV=production webpack  -p --config webpack.config.prod.js",
