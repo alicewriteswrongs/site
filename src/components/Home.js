@@ -34,9 +34,6 @@ const Home = () => {
         <h3>Recent Posts</h3>
         { formatBlogLinks(recentPosts) }
       </div>
-      <div className='projects'>
-        <h3>Projects</h3>
-      </div>
     </div>
 
   </div>

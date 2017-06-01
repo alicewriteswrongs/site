@@ -11,16 +11,8 @@
   .showcase {
     display: flex;
 
-    @include breakpoint(desktop) {
-      flex-direction: row;
-      > div {
-        width: 50%;
-      }
-
-    }
-
-    @include breakpoint(mobile) {
-      flex-direction: column;
+    li {
+      display: block;
     }
   }
 }
