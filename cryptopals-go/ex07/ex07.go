@@ -35,7 +35,7 @@ func readExerciseInput() []byte {
 Now what we want is to decrypt the contents of the file! Go has, of course,
 some nice stuff in the standard library that makes that fairly easy.
 
-We'll be encrypting under a particular key:
+We'll be decrypting under a particular key:
 */
 
 const key = "YELLOW SUBMARINE"
@@ -48,19 +48,7 @@ This is a little wacky overall, because Go doesn't have official support for
 ECB mode in the AES implementation in the standard library. Still, ECB is
 the simplest block cipher mode, and it's not that hard to get it working ourselves.
 
-First, a quick little helper that takes two byte slices, and appends the second
-onto the first, returning the mutated first slice:
-*/
-
-func appendbytes(dest, src []byte) []byte {
-	for _, b := range src {
-		dest = append(dest, b)
-	}
-	return dest
-}
-
-/*
-Then we can do the thing! We take in our ciphertext (a byte slice) and
+We take in our ciphertext (a byte slice) and
 a key. Then basically all we need to do is create an AES cipher, and then
 move blockwise through the ciphertext, decrypting as we go, and collecting our
 results in another byte slice.
@@ -75,7 +63,7 @@ func DecryptAESECB(ciphertext []byte, key string) []byte {
 		start := i * bs
 		end := start + bs
 		cipher.Decrypt(buffer, ciphertext[start:end])
-		plaintext = appendbytes(plaintext, buffer)
+		plaintext = append(plaintext, buffer...)
 	}
 	return plaintext
 }

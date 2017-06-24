@@ -65,7 +65,7 @@ the IV.
 Here we go:
 */
 
-func decryptAESCBC(ciphertext []byte, key string, iv []byte) []byte {
+func DecryptAESCBC(ciphertext []byte, key string, iv []byte) []byte {
 	buffer := ex07.DecryptAESECB(ciphertext, key)
 	out := make([]byte, len(buffer))
 	for i := range buffer {
@@ -92,7 +92,7 @@ and we can write a little function that solves the problem!
 
 func solution() {
 	ciphertext := readExerciseInput()
-	plaintext := decryptAESCBC(ciphertext, key, iv)
+	plaintext := DecryptAESCBC(ciphertext, key, iv)
 	fmt.Println(string(plaintext))
 }
 
